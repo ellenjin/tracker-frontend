@@ -11,7 +11,7 @@ To enable auto-formatting and linting on save:
    - [Prettier - Code Formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
    - [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 
-2. Create a `.vscode/settings.json` file (not inside of `app`) and add this content to it:
+2. Create a `.vscode/settings.json` file (not inside of `app`) and add this content to it if not already existing:
 
 ```json
 {
