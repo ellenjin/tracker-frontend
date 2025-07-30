@@ -3,3 +3,9 @@
 // Imports: TextAllBtn, RemindBtn, CheckInBtn.jsx
 // Routes: GET /api/groups/:groupId
 // State: group
+
+function GroupDetails({ currentUser }) {
+  return <h1> This is the Group Page (testing) </h1>;
+}
+
+export default GroupDetails;
