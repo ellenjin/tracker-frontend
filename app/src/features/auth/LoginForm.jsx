@@ -6,9 +6,16 @@
 
 import LoginBtn from './LoginBtn';
 
-function LoginForm({ username, setUsername, onSubmit }) {
+function LoginForm({ username, setUsername, onSubmit, setError }) {
   const handleSubmit = (e) => {
     e.preventDefault();
+    // Make sure is username (not userId) and that field is not empty
+    let isAlphabetic = /^[A-Za-z]+$/.test(username); // username can only contain letters
+    // May want to change this to allow numbers as well just so long as there are *some* letters
+    if (!username || !isAlphabetic) {
+      setError('Please enter a valid username');
+      return;
+    }
     onSubmit();
   };
 
@@ -20,6 +27,7 @@ function LoginForm({ username, setUsername, onSubmit }) {
         onChange={(e) => setUsername(e.target.value)}
         placeholder="Username"
       />
+      <input placeholder="Password" /> {/* Just a dummy holder for now */}
       <LoginBtn></LoginBtn>
     </form>
   );
