@@ -7,22 +7,21 @@ import LoginForm from './LoginForm';
 import { getOneUserApi } from '../../requests/userApi';
 
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function AuthPage({ onLogin }) {
-  const [username, setUsername] = useState('');
-
   // Need to find user, and set state for currentUser to that user (if valid)
+  const [username, setUsername] = useState('');
+  const navigate = useNavigate();
+
   const handleLogin = async () => {
-    // onLogin({ name: username }); // fake login for now
-    // need to set it to the current user -- so search for the user to make sure they exist, and then
-    // get that user and onLogin(<User>)
-    // User currentUser = getOneUserApi(username);
-    // onLogin(currentUser);
     const userData = await getOneUserApi(username);
     if (userData) {
       onLogin(userData);
-    } // MAKE SURE TO CATCH CASE WHERE USER DOES NOT EXIST
+      navigate('/HomeDashboard');
+    } // write in condition for if user doesn't exist
   };
+
   return (
     <>
       <h1>Welcome to Accountability Tracker!</h1>

@@ -20,6 +20,7 @@ function LoginForm({ username, setUsername, onSubmit }) {
         onChange={(e) => setUsername(e.target.value)}
         placeholder="Username"
       />
+      <input placeholder="Password" /> {/* Just a dummy holder for now */}
       <LoginBtn></LoginBtn>
     </form>
   );

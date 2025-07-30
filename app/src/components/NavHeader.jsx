@@ -2,3 +2,4 @@
 // Events: onClick -> route change.
 // Imports: React Router, Hash router
 // Routes: N/A (nav only).
+// Notes: Reference PageRoutes where the routes are defined.
