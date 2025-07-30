@@ -12,6 +12,7 @@ import { useNavigate } from 'react-router-dom';
 function AuthPage({ onLogin }) {
   // Need to find user, and set state for currentUser to that user (if valid)
   const [username, setUsername] = useState('');
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const handleLogin = async () => {
@@ -19,7 +20,9 @@ function AuthPage({ onLogin }) {
     if (userData) {
       onLogin(userData);
       navigate('/HomeDashboard');
-    } // write in condition for if user doesn't exist
+    } else {
+      setError('User does not exist');
+    }
   };
 
   return (
@@ -29,7 +32,9 @@ function AuthPage({ onLogin }) {
         username={username}
         setUsername={setUsername}
         onSubmit={handleLogin}
+        setError={setError}
       ></LoginForm>
+      {error && <p>{error}</p>}
     </>
   );
 }
