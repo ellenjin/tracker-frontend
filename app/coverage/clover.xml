@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1754242123981" clover="3.2.0">
+  <project timestamp="1754242123981" name="All files">
+    <metrics statements="153" coveredstatements="0" conditionals="37" coveredconditionals="34" methods="37" coveredmethods="34" elements="227" coveredelements="68" complexity="0" loc="153" ncloc="153" packages="7" files="37" classes="37"/>
+    <package name="src">
+      <metrics statements="26" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
+      <file name="App.jsx" path="/Users/newstudent/Developer/capstone/tracker-frontend/app/src/App.jsx">
+        <metrics statements="17" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+      </file>
+      <file name="main.jsx" path="/Users/newstudent/Developer/capstone/tracker-frontend/app/src/main.jsx">
+        <metrics statements="9" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components">
+      <metrics statements="0" coveredstatements="0" conditionals="7" coveredconditionals="7" methods="7" coveredmethods="7"/>
+      <file name="ColorDropDwn.jsx" path="/Users/newstudent/Developer/capstone/tracker-frontend/app/src/components/ColorDropDwn.jsx">
+        <metrics statements="0" coveredstatements="0" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+      </file>
+      <file name="FormField.jsx" path="/Users/newstudent/Developer/capstone/tracker-frontend/app/src/components/FormField.jsx">
+        <metrics statements="0" coveredstatements="0" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+      </file>
+      <file name="FrequencyDropDwn.jsx" path="/Users/newstudent/Developer/capstone/tracker-frontend/app/src/components/FrequencyDropDwn.jsx">
+        <metrics statements="0" coveredstatements="0" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+      </file>
+      <file name="NavHeader.jsx" path="/Users/newstudent/Developer/capstone/tracker-frontend/app/src/components/NavHeader.jsx">
+        <metrics statements="0" coveredstatements="0" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+      </file>
+      <file name="NewGroupBtn.jsx" path="/Users/newstudent/Developer/capstone/tracker-frontend/app/src/components/NewGroupBtn.jsx">
+        <metrics statements="0" coveredstatements="0" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+      </file>
+      <file name="NewLogBtn.jsx" path="/Users/newstudent/Developer/capstone/tracker-frontend/app/src/components/NewLogBtn.jsx">
+        <metrics statements="0" coveredstatements="0" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+      </file>
+      <file name="NotesTextArea.jsx" path="/Users/newstudent/Developer/capstone/tracker-frontend/app/src/components/NotesTextArea.jsx">
+        <metrics statements="0" coveredstatements="0" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+      </file>
+    </package>
+    <package name="src.features.auth">
+      <metrics statements="43" coveredstatements="0" conditionals="6" coveredconditionals="6" methods="6" coveredmethods="6"/>
+      <file name="AuthPage.jsx" path="/Users/newstudent/Developer/capstone/tracker-frontend/app/src/features/auth/AuthPage.jsx">
+        <metrics statements="22" coveredstatements="0" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+      </file>
+      <file name="InterestsDropDwn.jsx" path="/Users/newstudent/Developer/capstone/tracker-frontend/app/src/features/auth/InterestsDropDwn.jsx">
+        <metrics statements="0" coveredstatements="0" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+      </file>
+      <file name="LoginBtn.jsx" path="/Users/newstudent/Developer/capstone/tracker-frontend/app/src/features/auth/LoginBtn.jsx">
+        <metrics statements="4" coveredstatements="0" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+      </file>
+      <file name="LoginForm.jsx" path="/Users/newstudent/Developer/capstone/tracker-frontend/app/src/features/auth/LoginForm.jsx">
+        <metrics statements="17" coveredstatements="0" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+      </file>
+      <file name="SignUpBtn.jsx" path="/Users/newstudent/Developer/capstone/tracker-frontend/app/src/features/auth/SignUpBtn.jsx">
+        <metrics statements="0" coveredstatements="0" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+      </file>
+      <file name="SignUpForm.jsx" path="/Users/newstudent/Developer/capstone/tracker-frontend/app/src/features/auth/SignUpForm.jsx">
+        <metrics statements="0" coveredstatements="0" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+      </file>
+    </package>
+    <package name="src.features.dashboard">
+      <metrics statements="0" coveredstatements="0" conditionals="3" coveredconditionals="3" methods="3" coveredmethods="3"/>
+      <file name="HomeDashboard.jsx" path="/Users/newstudent/Developer/capstone/tracker-frontend/app/src/features/dashboard/HomeDashboard.jsx">
+        <metrics statements="0" coveredstatements="0" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+      </file>
+      <file name="ProfilePicture.jsx" path="/Users/newstudent/Developer/capstone/tracker-frontend/app/src/features/dashboard/ProfilePicture.jsx">
+        <metrics statements="0" coveredstatements="0" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+      </file>
+      <file name="WelcomeMessage.jsx" path="/Users/newstudent/Developer/capstone/tracker-frontend/app/src/features/dashboard/WelcomeMessage.jsx">
+        <metrics statements="0" coveredstatements="0" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+      </file>
+    </package>
+    <package name="src.features.groups">
+      <metrics statements="55" coveredstatements="0" conditionals="9" coveredconditionals="9" methods="9" coveredmethods="9"/>
+      <file name="FriendCard.jsx" path="/Users/newstudent/Developer/capstone/tracker-frontend/app/src/features/groups/FriendCard.jsx">
+        <metrics statements="0" coveredstatements="0" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+      </file>
+      <file name="FriendListDropDwn.jsx" path="/Users/newstudent/Developer/capstone/tracker-frontend/app/src/features/groups/FriendListDropDwn.jsx">
+        <metrics statements="0" coveredstatements="0" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+      </file>
+      <file name="FriendsWithCheckins.jsx" path="/Users/newstudent/Developer/capstone/tracker-frontend/app/src/features/groups/FriendsWithCheckins.jsx">
+        <metrics statements="0" coveredstatements="0" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+      </file>
+      <file name="GroupDetails.jsx" path="/Users/newstudent/Developer/capstone/tracker-frontend/app/src/features/groups/GroupDetails.jsx">
+        <metrics statements="15" coveredstatements="0" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+      </file>
+      <file name="GroupTopicDropDwn.jsx" path="/Users/newstudent/Developer/capstone/tracker-frontend/app/src/features/groups/GroupTopicDropDwn.jsx">
+        <metrics statements="0" coveredstatements="0" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+      </file>
+      <file name="MatchDropDwn.jsx" path="/Users/newstudent/Developer/capstone/tracker-frontend/app/src/features/groups/MatchDropDwn.jsx">
+        <metrics statements="0" coveredstatements="0" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+      </file>
+      <file name="NewGroupForm.jsx" path="/Users/newstudent/Developer/capstone/tracker-frontend/app/src/features/groups/NewGroupForm.jsx">
+        <metrics statements="40" coveredstatements="0" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="44" count="0" type="stmt"/>
+        <line num="45" count="0" type="stmt"/>
+        <line num="46" count="0" type="stmt"/>
+        <line num="47" count="0" type="stmt"/>
+        <line num="48" count="0" type="stmt"/>
+        <line num="49" count="0" type="stmt"/>
+        <line num="50" count="0" type="stmt"/>
+        <line num="52" count="0" type="stmt"/>
+        <line num="54" count="0" type="stmt"/>
+      </file>
+      <file name="RemindBtn.jsx" path="/Users/newstudent/Developer/capstone/tracker-frontend/app/src/features/groups/RemindBtn.jsx">
+        <metrics statements="0" coveredstatements="0" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+      </file>
+      <file name="TextAllBtn.jsx" path="/Users/newstudent/Developer/capstone/tracker-frontend/app/src/features/groups/TextAllBtn.jsx">
+        <metrics statements="0" coveredstatements="0" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+      </file>
+    </package>
+    <package name="src.features.logs">
+      <metrics statements="0" coveredstatements="0" conditionals="7" coveredconditionals="7" methods="7" coveredmethods="7"/>
+      <file name="CheckInBtn.jsx" path="/Users/newstudent/Developer/capstone/tracker-frontend/app/src/features/logs/CheckInBtn.jsx">
+        <metrics statements="0" coveredstatements="0" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+      </file>
+      <file name="CheckInForm.jsx" path="/Users/newstudent/Developer/capstone/tracker-frontend/app/src/features/logs/CheckInForm.jsx">
+        <metrics statements="0" coveredstatements="0" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+      </file>
+      <file name="LogCard.jsx" path="/Users/newstudent/Developer/capstone/tracker-frontend/app/src/features/logs/LogCard.jsx">
+        <metrics statements="0" coveredstatements="0" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+      </file>
+      <file name="LogList.jsx" path="/Users/newstudent/Developer/capstone/tracker-frontend/app/src/features/logs/LogList.jsx">
+        <metrics statements="0" coveredstatements="0" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+      </file>
+      <file name="LogViewDetails.jsx" path="/Users/newstudent/Developer/capstone/tracker-frontend/app/src/features/logs/LogViewDetails.jsx">
+        <metrics statements="0" coveredstatements="0" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+      </file>
+      <file name="NewLogForm.jsx" path="/Users/newstudent/Developer/capstone/tracker-frontend/app/src/features/logs/NewLogForm.jsx">
+        <metrics statements="0" coveredstatements="0" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+      </file>
+      <file name="ViewGroupBtn.jsx" path="/Users/newstudent/Developer/capstone/tracker-frontend/app/src/features/logs/ViewGroupBtn.jsx">
+        <metrics statements="0" coveredstatements="0" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+      </file>
+    </package>
+    <package name="src.requests">
+      <metrics statements="29" coveredstatements="0" conditionals="3" coveredconditionals="2" methods="3" coveredmethods="2"/>
+      <file name="groupApi.js" path="/Users/newstudent/Developer/capstone/tracker-frontend/app/src/requests/groupApi.js">
+        <metrics statements="0" coveredstatements="0" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+      </file>
+      <file name="logApi.js" path="/Users/newstudent/Developer/capstone/tracker-frontend/app/src/requests/logApi.js">
+        <metrics statements="0" coveredstatements="0" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+      </file>
+      <file name="userApi.js" path="/Users/newstudent/Developer/capstone/tracker-frontend/app/src/requests/userApi.js">
+        <metrics statements="29" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>
