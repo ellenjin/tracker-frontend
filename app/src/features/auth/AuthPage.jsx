@@ -4,6 +4,7 @@
 // Routes: POST /api/auth/login, POST /api/auth/signup.
 // State: user
 import LoginForm from './LoginForm';
+import SignUpBtn from './SignUpBtn';
 import { getOneUserApi } from '../../requests/userApi';
 
 import { useState } from 'react';
@@ -34,6 +35,7 @@ function AuthPage({ onLogin }) {
         onSubmit={handleLogin}
         setError={setError}
       ></LoginForm>
+      <SignUpBtn></SignUpBtn>
       {error && <p>{error}</p>}
     </>
   );

@@ -29,3 +29,18 @@ export const getOneUserApi = async (identifier) => {
     console.log(error);
   }
 };
+
+export const postUserApi = async (userData) => {
+  try {
+    const response = await axios.post(`${URL}/users`, userData);
+    return [
+      {
+        id: response.data.id,
+        username: response.data.username,
+        groups: response.data.groups,
+      },
+    ];
+  } catch (error) {
+    console.log(error);
+  }
+};
