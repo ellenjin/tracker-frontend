@@ -23,7 +23,7 @@ function LoginForm({ username, setUsername, onSubmit, setError }) {
     <form onSubmit={handleSubmit}>
       <input
         /* Should this ^ be using FormField.jsx? Not sure if it's necessary */
-        value={username}
+        value={username} /* Should I change this to input name = instead? */
         onChange={(e) => setUsername(e.target.value)}
         placeholder="Username"
       />
