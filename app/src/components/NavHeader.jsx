@@ -4,22 +4,36 @@
 // Routes: N/A (nav only).
 // Notes: Reference PageRoutes where the routes are defined.
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import './NavHeader.css';
 
-function NavHeader() {
+function NavHeader({ onLogout }) {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    onLogout();
+    navigate('/login');
+  };
   return (
-    <nav>
-      <ul>
+    <nav className="nav">
+      <ul className="nav-links">
         <li>
-          <Link to="/HomeDashboard"> Home </Link>
+          <Link to="/HomeDashboard" className="nav-link">
+            Home
+          </Link>
         </li>
         <li>
-          <Link to="/GroupDetails"> Groups </Link>
+          <Link to="/GroupDetails" className="nav-link">
+            Groups
+          </Link>
         </li>
         {/* <li>
-          <Link to="/LogDetails"> Groups </Link>
+          <Link to="/LogDetails" className="nav-link">Groups</Link>
         </li> */}
       </ul>
+      <button onClick={handleLogout} className="logout-button">
+        Logout
+      </button>
     </nav>
   );
 }

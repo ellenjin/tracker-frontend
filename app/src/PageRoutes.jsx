@@ -16,7 +16,10 @@ function AppRoutes({ currentUser, setCurrentUser }) {
       <Route
         path="/HomeDashboard"
         element={
-          <ProtectedRoute user={currentUser}>
+          <ProtectedRoute
+            user={currentUser}
+            onLogout={() => setCurrentUser(null)}
+          >
             <HomeDashboard currentUser={currentUser} />
           </ProtectedRoute>
         }
@@ -24,7 +27,10 @@ function AppRoutes({ currentUser, setCurrentUser }) {
       <Route
         path="/GroupDetails"
         element={
-          <ProtectedRoute user={currentUser}>
+          <ProtectedRoute
+            user={currentUser}
+            onLogout={() => setCurrentUser(null)}
+          >
             <GroupDetails user={currentUser} />
           </ProtectedRoute>
         }
