@@ -5,12 +5,18 @@ to the login page.
 */
 
 import { Navigate } from 'react-router-dom';
+import NavHeader from './NavHeader';
 
 function ProtectedRoute({ user, children }) {
   if (!user) {
     return <Navigate to="/login" replace />;
   }
-  return children;
+  return (
+    <>
+      <NavHeader></NavHeader>
+      {children}
+    </>
+  );
 }
 
 export default ProtectedRoute;
