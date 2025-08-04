@@ -3,7 +3,7 @@ import axios from 'axios';
 const URL = import.meta.env.VITE_BACKEND_URL;
 
 // find existing user(s) -- will find just 1 if identifier is given.
-// works for multiple users, but is that needed?
+// works for multiple users
 export const getOneUserApi = async (identifier) => {
   try {
     const specificUrl = identifier
@@ -33,6 +33,7 @@ export const getOneUserApi = async (identifier) => {
 export const postUserApi = async (userData) => {
   try {
     const response = await axios.post(`${URL}/users`, userData);
+    console.log(response);
     return [
       {
         id: response.data.id,
@@ -41,6 +42,8 @@ export const postUserApi = async (userData) => {
       },
     ];
   } catch (error) {
+    console.log('Cannot post user with username "' + userData.username + '"');
     console.log(error);
+    throw error;
   }
 };

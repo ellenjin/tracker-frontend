@@ -5,16 +5,12 @@
 // State: form
 // import SignUpBtn from './SignUpBtn'; => update: maybe not
 
-/*
-- Take in necessary information
-- After sign up, log the user in (set the user)
-- newUser -> set the current user to the just created user (using onCreateUser)
-
-- Start with just taking username
-*/
 import { postUserApi } from '../../requests/userApi';
+import { useNavigate } from 'react-router-dom';
 
 function SignUpForm({ onCreateUser }) {
+  const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     // Read the form data
@@ -25,14 +21,15 @@ function SignUpForm({ onCreateUser }) {
       .then((newUser) => {
         onCreateUser(newUser);
 
-        // Optionally clear the form after successful submission
+        // Clear the form after successful submission
         e.target.reset();
         alert('User successfully created!');
+        navigate('/HomeDashboard');
       })
       .catch((error) => {
         console.error('Failed to create user:', error);
 
-        // Optionally show an error message to the user
+        // Show an error message to the user
         alert('Failed to create user. Please try again.');
       });
   };
