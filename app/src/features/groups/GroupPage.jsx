@@ -3,7 +3,16 @@
 import GroupTile from './GroupTile';
 import './GroupPage.css';
 
+import { useNavigate } from 'react-router-dom';
+
 function GroupPage({ groupList }) {
+  const navigate = useNavigate();
+
+  // NOTE: USE THIS TO NAVIGATE FROM EACH TILE TO THE PAGE WITH MORE DETAILS! AKA OTHER GROUP MEMBERS, ETC.
+  const handleClick = (groupId) => {
+    // navigate(`/groups/${groupId}`);
+  };
+
   const getGroupTilesJSX = () => {
     if (!groupList) {
       return (
@@ -17,12 +26,14 @@ function GroupPage({ groupList }) {
 
     return sortedGroups.map((group) => {
       return (
-        <GroupTile
-          key={group.id}
-          id={group.id}
-          name={group.name}
-          description={group.description}
-        ></GroupTile>
+        <button key={group.id} onClick={() => handleClick(group.id)}>
+          <GroupTile
+            key={group.id}
+            id={group.id}
+            name={group.name}
+            description={group.description}
+          ></GroupTile>
+        </button>
       );
     });
   };
