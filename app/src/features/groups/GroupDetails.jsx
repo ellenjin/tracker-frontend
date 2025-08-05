@@ -20,7 +20,7 @@ const GroupDetails = () => {
       <h1>{name}</h1>
       <img src={picture} alt="A flower in a field" />
       <p>{description}</p>
-      <NewGroupForm />
+      {/* <NewGroupForm /> */}
     </div>
   );
 };
