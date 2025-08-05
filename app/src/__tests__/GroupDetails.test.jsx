@@ -1,15 +1,23 @@
 /* eslint-disable no-undef */
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import GroupDetails from '../features/groups/GroupDetails';
 
-const name = 'Nature Hikes';
-const picture = '/public/assets/nature.jpg';
-const description = 'Group for weekend hiking trips and nature walks.';
+const group = {
+  id: 1,
+  name: 'Nature Hikes',
+  picture: '/public/assets/nature.jpg',
+  description: 'Group for weekend hiking trips and nature walks.',
+};
 
 test('Render GroupDetails component', () => {
+  // Arrange
   render(
-    <GroupDetails name={name} picture={picture} description={description} />
+    <GroupDetails
+      name={group.name}
+      picture={group.picture}
+      description={group.description}
+    />
   );
   screen.debug();
 });
@@ -17,7 +25,11 @@ test('Render GroupDetails component', () => {
 describe('GroupDetails Component', () => {
   beforeEach(() => {
     render(
-      <GroupDetails name={name} picture={picture} description={description} />
+      <GroupDetails
+        name={group.name}
+        picture={group.picture}
+        description={group.description}
+      />
     );
   });
 
@@ -43,9 +55,40 @@ describe('GroupDetails Component', () => {
     });
   });
 
-  // describe('Buttons', () => {
-  //   it('renders the join button');
+  describe('Buttons', () => {
+    // Arrange
+    let buttons;
 
-  //   it('renders the leave button');
-  //});
+    beforeEach(() => {
+      buttons = screen.getAllByRole('button');
+    });
+
+    it('renders the checkin button', () => {
+      const checkInBtn = buttons[0];
+      expect(checkInBtn).toBeInTheDocument();
+      expect(checkInBtn).toHaveTextContent('Check-in');
+    });
+    it.skip('checks user in on click', async () => {
+      const checkInBtn = buttons[0];
+      fireEvent.click(checkInBtn);
+      const count = await screen.findByLabelText(/check-in-count/i);
+      expect(checkInBtn).toBeDisabled();
+      expect(count).toBeInTheDocument();
+      expect(count).toHaveTextContent('1');
+    });
+
+    it('renders the text all button', () => {
+      const textAllBtn = buttons[1];
+      expect(textAllBtn).toBeInTheDocument();
+      expect(textAllBtn).toHaveTextContent('Text all');
+    });
+    it.skip('texts all group members a reminder to check in');
+
+    it('renders the remind button', () => {
+      const remindBtn = buttons[2];
+      expect(remindBtn).toBeInTheDocument();
+      expect(remindBtn).toHaveTextContent('Remind');
+    });
+    it.skip('texts one group member a reminder to check in');
+  });
 });

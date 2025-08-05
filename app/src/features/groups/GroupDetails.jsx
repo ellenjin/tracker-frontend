@@ -29,7 +29,10 @@ const GroupDetails = ({ name, picture, description }) => {
       />
       <p aria-label="description">{description}</p>
       <p>You haven't checked-in today!</p>
-      <button>Check-in</button>
+      <button type="button" disabled>
+        Check-in
+      </button>
+      <p aria-label="check-in-count">0</p>
       <button>Text all</button>
       <button>Remind</button>
     </div>
