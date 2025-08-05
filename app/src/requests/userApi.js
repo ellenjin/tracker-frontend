@@ -17,13 +17,11 @@ export const getOneUserApi = async (identifier) => {
         groups: user.groups,
       }));
     } else if (response.data) {
-      return [
-        {
-          id: response.data.id,
-          username: response.data.username,
-          groups: response.data.groups,
-        },
-      ];
+      return {
+        id: response.data.id,
+        username: response.data.username,
+        groups: response.data.groups,
+      };
     }
   } catch (error) {
     console.log(error);

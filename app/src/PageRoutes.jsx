@@ -5,10 +5,10 @@ import { Routes, Route } from 'react-router-dom';
 import ProtectedRoute from './components/ProtectedRoute';
 import AuthPage from './features/auth/AuthPage';
 import HomeDashboard from './features/dashboard/HomeDashboard';
-import GroupDetails from './features/groups/GroupDetails'; // rename to GroupPage
+import GroupPage from './features/groups/GroupPage'; // rename to GroupPage
 import SignUpForm from './features/auth/SignUpForm'; // rename to Signup Page
 
-function AppRoutes({ currentUser, setCurrentUser }) {
+function PageRoutes({ currentUser, setCurrentUser }) {
   return (
     <Routes>
       <Route path="/login" element={<AuthPage onLogin={setCurrentUser} />} />
@@ -25,13 +25,13 @@ function AppRoutes({ currentUser, setCurrentUser }) {
         }
       ></Route>
       <Route
-        path="/GroupDetails"
+        path="/GroupPage"
         element={
           <ProtectedRoute
             user={currentUser}
             onLogout={() => setCurrentUser(null)}
           >
-            <GroupDetails user={currentUser} />
+            {currentUser && <GroupPage groupList={currentUser.groups} />}
           </ProtectedRoute>
         }
       ></Route>
@@ -48,4 +48,4 @@ function AppRoutes({ currentUser, setCurrentUser }) {
   );
 }
 
-export default AppRoutes;
+export default PageRoutes;
