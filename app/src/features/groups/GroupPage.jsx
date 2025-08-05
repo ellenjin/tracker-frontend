@@ -2,11 +2,13 @@
 
 import GroupTile from './GroupTile';
 import './GroupPage.css';
-
+import GroupDetails from './GroupDetails';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 function GroupPage({ groupList }) {
   const navigate = useNavigate();
+  const [currentGroup, setCurrentGroup] = useState(null);
 
   // NOTE: USE THIS TO NAVIGATE FROM EACH TILE TO THE PAGE WITH MORE DETAILS! AKA OTHER GROUP MEMBERS, ETC.
   const handleClick = (groupId) => {
@@ -42,6 +44,10 @@ function GroupPage({ groupList }) {
     <>
       <h1>Groups</h1>
       <section className="group-list">{getGroupTilesJSX()}</section>
+      <GroupDetails
+        currentGroup={currentGroup}
+        setCurrentGroup={setCurrentGroup}
+      />
     </>
   );
 }
