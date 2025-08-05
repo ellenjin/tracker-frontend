@@ -2,7 +2,7 @@
 
 import GroupTile from './GroupTile';
 import './GroupPage.css';
-
+import GroupDetails from './GroupDetails';
 import { useNavigate } from 'react-router-dom';
 
 function GroupPage({ groupList }) {
@@ -42,6 +42,7 @@ function GroupPage({ groupList }) {
     <>
       <h1>Groups</h1>
       <section className="group-list">{getGroupTilesJSX()}</section>
+      <GroupDetails />
     </>
   );
 }
