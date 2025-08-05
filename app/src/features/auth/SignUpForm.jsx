@@ -46,7 +46,7 @@ function SignUpForm({ onCreateUser }) {
       <label>
         Phone number: <input name="phoneNumber" />
       </label>
-      <button type="submit">Submit form</button>
+      <button type="submit">Sign up</button>
     </form>
   );
 }
