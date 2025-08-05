@@ -30,6 +30,11 @@ function NavHeader({ onLogout }) {
         {/* <li>
           <Link to="/LogDetails" className="nav-link">Groups</Link>
         </li> */}
+        <li>
+          <Link to="/ProfilePage" className="nav-link">
+            Profile
+          </Link>
+        </li>
       </ul>
       <button onClick={handleLogout} className="logout-button">
         Logout

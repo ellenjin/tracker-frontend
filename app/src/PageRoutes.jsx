@@ -7,6 +7,7 @@ import AuthPage from './features/auth/AuthPage';
 import HomeDashboard from './features/dashboard/HomeDashboard';
 import GroupPage from './features/groups/GroupPage'; // rename to GroupPage
 import SignUpForm from './features/auth/SignUpForm'; // rename to Signup Page
+import ProfilePage from './features/profile/ProfilePage';
 
 function PageRoutes({ currentUser, setCurrentUser }) {
   return (
@@ -32,6 +33,17 @@ function PageRoutes({ currentUser, setCurrentUser }) {
             onLogout={() => setCurrentUser(null)}
           >
             {currentUser && <GroupPage groupList={currentUser.groups} />}
+          </ProtectedRoute>
+        }
+      ></Route>
+      <Route
+        path="/ProfilePage"
+        element={
+          <ProtectedRoute
+            user={currentUser}
+            onLogout={() => setCurrentUser(null)}
+          >
+            {currentUser && <ProfilePage user={currentUser} />}
           </ProtectedRoute>
         }
       ></Route>

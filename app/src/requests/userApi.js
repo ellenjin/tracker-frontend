@@ -15,12 +15,14 @@ export const getOneUserApi = async (identifier) => {
         id: user.id,
         username: user.username,
         groups: user.groups,
+        phoneNumber: user.phoneNumber,
       }));
     } else if (response.data) {
       return {
         id: response.data.id,
         username: response.data.username,
         groups: response.data.groups,
+        phoneNumber: response.data.phoneNumber,
       };
     }
   } catch (error) {
@@ -37,6 +39,7 @@ export const postUserApi = async (userData) => {
         id: response.data.id,
         username: response.data.username,
         groups: response.data.groups,
+        phoneNumber: response.data.phoneNumber,
       },
     ];
   } catch (error) {
