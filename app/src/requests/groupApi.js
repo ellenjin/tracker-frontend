@@ -7,6 +7,7 @@ const URL = import.meta.env.VITE_BACKEND_URL;
 // export const getGroupsApi = async (groupIds) => {};
 
 // PUT check user in
+// how do i update the log object with the group id
 export const putUserLogCheckIn = async (logData) => {
   try {
     const response = async () => {
