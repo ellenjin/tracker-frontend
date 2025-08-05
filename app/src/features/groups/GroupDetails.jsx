@@ -25,4 +25,12 @@ const GroupDetails = () => {
   );
 };
 
+// I think you can pass in the information from ^ and hold the group id in state,
+// allowing the page to be used for any group -- similar to how we used 'task-tile' in Tasklist
+
+// function GroupDetails({ currentUser }) {
+//   return <h1> This page holds the details for a single group </h1>;
+// }
+
+
 export default GroupDetails;

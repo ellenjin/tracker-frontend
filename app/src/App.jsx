@@ -1,22 +1,17 @@
 import { useState } from 'react';
+import { HashRouter } from 'react-router-dom';
 import './App.css';
-import AuthPage from './features/auth/AuthPage';
-import GroupDetails from './features/groups/GroupDetails';
+import PageRoutes from './PageRoutes';
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
   return (
-    <>
-      {!currentUser ? (
-        <AuthPage onLogin={setCurrentUser} />
-      ) : (
-        <h1>
-          Welcome {currentUser.username}
-          {/* Change ^ to redirect to the user home page once created */}
-        </h1>
-      )}
-      <GroupDetails />
-    </>
+    <HashRouter>
+      <PageRoutes
+        currentUser={currentUser}
+        setCurrentUser={setCurrentUser}
+      ></PageRoutes>
+    </HashRouter>
   );
 }
 
