@@ -5,8 +5,17 @@ import './GroupPage.css';
 
 function GroupPage({ groupList }) {
   const getGroupTilesJSX = () => {
-    console.log(groupList);
-    return groupList.map((group) => {
+    if (!groupList) {
+      return (
+        <>
+          <h1>Groups</h1>
+          <h2>Oops! No groups here, you should join some!</h2>
+        </>
+      );
+    }
+    const sortedGroups = [...groupList].sort((a, b) => a.id - b.id);
+
+    return sortedGroups.map((group) => {
       return (
         <GroupTile
           key={group.id}
