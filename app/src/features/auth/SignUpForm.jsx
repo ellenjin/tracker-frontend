@@ -36,8 +36,15 @@ function SignUpForm({ onCreateUser }) {
 
   return (
     <form method="post" onSubmit={handleSubmit}>
+      {/* Want the input names to be the same as the Axios request JSON structure */}
       <label>
         Username: <input name="username" />
+      </label>
+      <label>
+        Password: <input name="password" />
+      </label>
+      <label>
+        Phone number: <input name="phoneNumber" />
       </label>
       <button type="submit">Submit form</button>
     </form>
