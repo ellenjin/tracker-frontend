@@ -1,33 +1,43 @@
 import { useState } from 'react';
 
-const InterestDropdown = () => {
-  const [selectedInterests, setSelectedInterests] = useState([]);
+const InterestDropdown = ({ selectedInterests, setSelectedInterests }) => {
+  // const [selectedInterests, setSelectedInterests] = useState([]);
+  const interests = [
+    'running',
+    'cooking',
+    'cleaning',
+    'swimming',
+    'meditating',
+  ];
 
-  const handleChange = (e) => {
-    const interests = e.target.options;
-    const selectedInterests = [];
+  const handleCheckboxChange = (e) => {
+    const { value, checked } = e.target;
 
-    for (let i = 0; i < interests.length; i++) {
-      if (interests[i].selected) {
-        selectedInterests.push(interests[i].value);
-      }
+    if (checked) {
+      setSelectedInterests([...selectedInterests, value]);
+    } else {
+      setSelectedInterests(
+        selectedInterests.filter((interest) => interest !== value)
+      );
     }
-    setSelectedInterests(selectedInterests);
   };
 
   return (
     <label>
       Interests:
-      <select
-        name="selectedInterests"
-        multiple={true}
-        value={selectedInterests}
-        onChange={handleChange}
-      >
-        <option value="running">Running</option>
-        <option value="cooking">Cooking</option>
-        <option value="cleaning">Cleaning</option>
-      </select>
+      <div>
+        {interests.map((interest) => (
+          <label key={interest}>
+            <input
+              type="checkbox"
+              value={interest}
+              checked={selectedInterests.includes(interest)}
+              onChange={handleCheckboxChange}
+            />
+            {interest.charAt(0).toUpperCase() + interest.slice(1)}
+          </label>
+        ))}
+      </div>
       <p>Selected Interests: {selectedInterests.join(', ')}</p>
     </label>
   );
