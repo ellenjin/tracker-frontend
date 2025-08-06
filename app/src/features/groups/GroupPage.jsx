@@ -41,14 +41,14 @@ function GroupPage({ groupList }) {
   };
 
   return (
-    <>
-      <h1>Groups</h1>
+    <div className='group-page'>
+      <h1 className='page-header'>Groups</h1>
       <section className="group-list">{getGroupTilesJSX()}</section>
       <GroupDetails
         currentGroup={currentGroup}
         setCurrentGroup={setCurrentGroup}
       />
-    </>
+    </div>
   );
 }
 
