@@ -8,9 +8,9 @@ import HomeDashboard from './features/dashboard/HomeDashboard';
 import GroupPage from './features/groups/GroupPage'; // rename to GroupPage
 import SignUpForm from './features/auth/SignUpForm'; // rename to Signup Page
 
-import LogList from './features/dashboard/logs/LogList';
-import LogForm from './features/dashboard/logs/NewLogForm';
-import LogDetails from './features/dashboard/logs/LogDetails';
+import LogList from './features/logs/LogList';
+import LogForm from './features/logs/NewLogForm';
+import LogDetails from './features/logs/LogDetails';
 
 function PageRoutes({ currentUser, setCurrentUser }) {
   return (
@@ -52,18 +52,19 @@ function PageRoutes({ currentUser, setCurrentUser }) {
       <Route
         path="/Logs"
         element={
-        <ProtectedRoute user={currentUser}>
-          <LogList user={currentUser} />
-        </ProtectedRoute>
+          <ProtectedRoute user={currentUser}>
+            <LogList user={currentUser} />
+          </ProtectedRoute>
         }
-      /><Route
+      />
+      <Route
         path="/LogDetails"
         element={
-        <ProtectedRoute user={currentUser}>
-          <LogDetails />
-        </ProtectedRoute>
-      }
-    />
+          <ProtectedRoute user={currentUser}>
+            <LogDetails />
+          </ProtectedRoute>
+        }
+      />
     </Routes>
   );
 }
