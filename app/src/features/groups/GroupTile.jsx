@@ -1,5 +1,3 @@
-import './GroupTile.css';
-
 const GroupTile = ({ name, description }) => {
   return (
     <div className="group-tile">
