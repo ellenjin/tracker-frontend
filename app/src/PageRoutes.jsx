@@ -9,9 +9,9 @@ import GroupPage from './features/groups/GroupPage'; // rename to GroupPage
 import SignUpForm from './features/auth/SignUpForm'; // rename to Signup Page
 import ProfilePage from './features/profile/ProfilePage';
 
-import LogList from './features/logs/LogList';
-import LogForm from './features/logs/NewLogForm';
-import LogDetails from './features/logs/LogDetails';
+import LogList from './features/logging/LogList';
+import LogForm from './features/logging/NewLogForm';
+import LogDetails from './features/logging/LogDetails';
 
 function PageRoutes({ currentUser, setCurrentUser }) {
   return (
