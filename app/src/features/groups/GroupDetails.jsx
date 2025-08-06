@@ -17,7 +17,7 @@ import NewGroupForm from './NewGroupForm';
 // const name = 'Nature Hikes';
 // const picture = './public/assets/nature.jpg';
 // const description = 'Group for weekend hiking trips and nature walks.';
-
+// NEED TO UPDATE DESTRUCTING POROPS TO GRAB GROUP STATE
 const GroupDetails = ({ name, picture, description }) => {
   return (
     <div>
