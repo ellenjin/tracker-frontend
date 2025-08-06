@@ -27,9 +27,11 @@ function NavHeader({ onLogout }) {
             Groups
           </Link>
         </li>
-        {/* <li>
-          <Link to="/LogDetails" className="nav-link">Groups</Link>
-        </li> */}
+        <li>
+          <Link to="/logs" className="nav-link">
+            Logs
+          </Link>
+        </li>
         <li>
           <Link to="/ProfilePage" className="nav-link">
             Profile
