@@ -7,18 +7,23 @@ const URL = import.meta.env.VITE_BACKEND_URL;
 // export const getGroupsApi = async (groupIds) => {};
 
 // PUT check user in
-// how do i update the log object with the group id
-export const putUserLogCheckIn = async (logData) => {
-  try {
-    const response = async () => {
-      await axios.put(`${URL}/logId`, {
-        data: { logData },
-      });
-      return {
-        checkInCount: response.data.checkInCount,
-      };
-    };
-  } catch (error) {
-    console.log(error);
-  }
-};
+// Blocked - sno will update shape of log response
+// export const putUserLogCheckIn = async (logData) => {
+//   try {
+//     const response = async () => {
+//       await axios.put(`${URL}/logId`, {
+//         data: { logData },
+//       });
+//       return {
+//         checkInCount: response.data.checkInCount,
+//       };
+//     };
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
+
+// Send text belt API request
+export const postTextAll = async (userId) => {
+  // Get phone number 
+}

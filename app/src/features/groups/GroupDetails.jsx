@@ -35,6 +35,7 @@ const GroupDetails = ({ name, picture, description }) => {
       <p aria-label="check-in-count">0</p>
       <button>Text all</button>
       <button>Remind</button>
+      <NewGroupForm />
     </div>
   );
 };
