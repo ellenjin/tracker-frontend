@@ -8,6 +8,10 @@ import HomeDashboard from './features/dashboard/HomeDashboard';
 import GroupPage from './features/groups/GroupPage'; // rename to GroupPage
 import SignUpForm from './features/auth/SignUpForm'; // rename to Signup Page
 
+import LogList from './features/dashboard/logs/LogList';
+import LogForm from './features/dashboard/logs/NewLogForm';
+import LogDetails from './features/dashboard/logs/LogDetails';
+
 function PageRoutes({ currentUser, setCurrentUser }) {
   return (
     <Routes>
@@ -44,6 +48,22 @@ function PageRoutes({ currentUser, setCurrentUser }) {
       ></Route>
       {/* Not logged in (catch all) -> Default path (to login page) */}
       <Route path="*" element={<AuthPage onLogin={setCurrentUser} />} />
+
+      <Route
+        path="/Logs"
+        element={
+        <ProtectedRoute user={currentUser}>
+          <LogList user={currentUser} />
+        </ProtectedRoute>
+        }
+      /><Route
+        path="/LogDetails"
+        element={
+        <ProtectedRoute user={currentUser}>
+          <LogDetails />
+        </ProtectedRoute>
+      }
+    />
     </Routes>
   );
 }
