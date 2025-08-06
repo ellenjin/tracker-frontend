@@ -1,7 +1,9 @@
 /* eslint-disable no-undef */
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import GroupDetails from '../features/groups/GroupDetails';
+import { afterEach } from 'vitest';
+import AxiosMock from 'axios'; 
 
 const group = {
   id: 1,
@@ -32,6 +34,8 @@ describe('GroupDetails Component', () => {
       />
     );
   });
+
+  afterEach(cleanup);
 
   describe('Static content', () => {
     it('shows group picture', () => {
@@ -68,6 +72,7 @@ describe('GroupDetails Component', () => {
       expect(checkInBtn).toBeInTheDocument();
       expect(checkInBtn).toHaveTextContent('Check-in');
     });
+    // Need to create mock api request for put request to update clicked log
     it.skip('checks user in on click', async () => {
       const checkInBtn = buttons[0];
       fireEvent.click(checkInBtn);
@@ -82,7 +87,7 @@ describe('GroupDetails Component', () => {
       expect(textAllBtn).toBeInTheDocument();
       expect(textAllBtn).toHaveTextContent('Text all');
     });
-    it.skip('texts all group members a reminder to check in');
+    it.skip('texts all group members a reminder to check in', () => {});
 
     it('renders the remind button', () => {
       const remindBtn = buttons[2];

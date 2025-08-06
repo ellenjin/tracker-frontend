@@ -28,7 +28,11 @@ function GroupPage({ groupList }) {
 
     return sortedGroups.map((group) => {
       return (
-        <button key={group.id} onClick={() => handleClick(group.id)}>
+        <button
+          className="group-tile"
+          key={group.id}
+          onClick={() => handleClick(group.id)}
+        >
           <GroupTile
             key={group.id}
             id={group.id}
@@ -41,8 +45,8 @@ function GroupPage({ groupList }) {
   };
 
   return (
-    <div className='group-page'>
-      <h1 className='page-header'>Groups</h1>
+    <div className="group-page">
+      <h1 className="page-header">Groups</h1>
       <section className="group-list">{getGroupTilesJSX()}</section>
       <GroupDetails
         currentGroup={currentGroup}
