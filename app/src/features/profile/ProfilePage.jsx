@@ -2,11 +2,17 @@
 // Allow user to choose interests (from a drop down)
 // Allow user to change username and phone number?
 import InterestDropdown from './InterestDropdown';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { updateUserInterestsApi } from '../../requests/userApi';
 
 function ProfilePage({ user }) {
-  const [selectedInterests, setSelectedInterests] = useState(user.interests);
+  const [selectedInterests, setSelectedInterests] = useState(
+    user.interests || []
+  );
+
+  useEffect(() => {
+    setSelectedInterests(user.interests || []);
+  }, [user.interests]);
 
   const updateInterests = async (newInterests) => {
     setSelectedInterests(newInterests);
