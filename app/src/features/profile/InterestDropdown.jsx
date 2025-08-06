@@ -1,6 +1,4 @@
-import { useState } from 'react';
-
-const InterestDropdown = ({ selectedInterests, setSelectedInterests }) => {
+const InterestDropdown = ({ selectedInterests, onChange }) => {
   // const [selectedInterests, setSelectedInterests] = useState([]);
   const interests = [
     'running',
@@ -8,18 +6,22 @@ const InterestDropdown = ({ selectedInterests, setSelectedInterests }) => {
     'cleaning',
     'swimming',
     'meditating',
+    'Took vitamins',
+    'reading',
+    'journaling',
   ];
 
   const handleCheckboxChange = (e) => {
     const { value, checked } = e.target;
+    let updated;
 
     if (checked) {
-      setSelectedInterests([...selectedInterests, value]);
+      updated = [...selectedInterests, value];
     } else {
-      setSelectedInterests(
-        selectedInterests.filter((interest) => interest !== value)
-      );
+      updated = selectedInterests.filter((interest) => interest !== value);
     }
+
+    onChange(updated);
   };
 
   return (

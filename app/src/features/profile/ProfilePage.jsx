@@ -3,9 +3,19 @@
 // Allow user to change username and phone number?
 import InterestDropdown from './InterestDropdown';
 import { useState } from 'react';
+import { updateUserInterestsApi } from '../../requests/userApi';
 
 function ProfilePage({ user }) {
-  const [selectedInterests, setSelectedInterests] = useState([]);
+  const [selectedInterests, setSelectedInterests] = useState(user.interests);
+
+  const updateInterests = async (newInterests) => {
+    setSelectedInterests(newInterests);
+    try {
+      await updateUserInterestsApi(user.id, newInterests);
+    } catch (error) {
+      console.error('Failed to update interests', error);
+    }
+  };
 
   return (
     <>
@@ -15,7 +25,7 @@ function ProfilePage({ user }) {
       <p>Phone number: {user.phoneNumber}</p>
       <InterestDropdown
         selectedInterests={selectedInterests}
-        setSelectedInterests={setSelectedInterests}
+        onChange={updateInterests}
       ></InterestDropdown>
     </>
   );
