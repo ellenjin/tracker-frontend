@@ -25,16 +25,18 @@ const NewGroupForm = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <label htmlFor="groupName">Group Name</label>
+      <label htmlFor="groupName">Name</label>
       <input
+        id="groupName"
         onChange={handleChange}
         type="text"
         name="groupName"
         value={formData['groupName']}
       />
 
-      <label htmlFor="owner">Description</label>
+      <label htmlFor="description">Description</label>
       <input
+        id="description"
         onChange={handleChange}
         type="text"
         name="groupDescription"

@@ -27,7 +27,7 @@ const GroupDetails = ({ name, picture, description }) => {
         alt="A flower in a field"
         style={{ height: '200px', width: '200px' }}
       />
-      <p aria-label="description">{description}</p>
+      <p aria-label="group-description">{description}</p>
       <p>You haven't checked-in today!</p>
       <button type="button" disabled>
         Check-in
