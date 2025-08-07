@@ -33,7 +33,7 @@ const LogList = ({ userId }) => {
             <li key={log.logId}>
               <button
                 onClick={() => handleClick(log.logId)}
-                className="text-blue-600 underline hover:text-blue-800"
+                // className="text-blue-600 underline hover:text-blue-800"
               >
                 {log.title}
               </button>
