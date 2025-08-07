@@ -4,12 +4,11 @@ import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 import NewGroupForm from '../features/groups/NewGroupForm';
 import { afterEach, describe, beforeEach, expect } from 'vitest';
+import axios from 'axios';
+import MockAdapter from 'axios-mock-adapter';
 
-const group = {
-  name: 'Nature Hikes',
-  picture: '/public/assets/nature.jpg',
-  description: 'Group for weekend hiking trips and nature walks.',
-};
+const mock = new MockAdapter(axios);
+const user = userEvent.setup();
 
 test('Render NewGroupForm component', () => {
   // Arrange
@@ -17,15 +16,21 @@ test('Render NewGroupForm component', () => {
   screen.debug();
 });
 
-describe('NewGroupForm Component', () => {
-  let user = userEvent.setup();
+describe('Tests elements in the NewGroupForm component', () => {
+  const group = {
+    name: 'Nature Hikes',
+    picture: '/public/assets/nature.jpg',
+    description: 'Group for weekend hiking trips and nature walks.',
+  };
+
   beforeEach(() => {
+    mock.reset();
     render(<NewGroupForm />);
   });
 
   afterEach(cleanup);
 
-  describe('Form fields', () => {
+  describe('Updates the form fields correctly', () => {
     it('Shows input field for group name', () => {
       const input = screen.getByLabelText('Name');
       expect(input).toBeInTheDocument();
@@ -61,7 +66,31 @@ describe('NewGroupForm Component', () => {
       expect(button).toHaveTextContent('Create Group');
       expect(button).toHaveAttribute('type', 'submit');
     });
+  });
+});
 
-    it.skip('Creates a new group ', () => {});
+// Integration test - form submission THIS FAILS BECAUSE YOU NEED TO WRITE THE CODE ON THE FRONTEND
+test('Sends the correct group data when the form is submitted', async () => {
+  let reqBody;
+  mock.onPost('/groups').reply((config) => {
+    reqBody = JSON.parse(config.data);
+    return [200, { message: 'Group created successfully' }];
+  });
+
+  render(<NewGroupForm />);
+  const name = screen.getByLabelText('Name');
+  const description = screen.getByLabelText('Description');
+  const button = screen.getByRole('button', { name: /create group/i });
+
+  await user.type(name, 'Nature Hikes');
+  await user.type(
+    description,
+    'Group for weekend hiking trips and nature walks.'
+  );
+  await user.click(button);
+
+  expect(reqBody).toEqual({
+    name: 'Nature Hikes',
+    description: 'Group for weekend hiking trips and nature walks.',
   });
 });
