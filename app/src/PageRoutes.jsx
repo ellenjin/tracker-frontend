@@ -65,12 +65,12 @@ function PageRoutes({ currentUser, setCurrentUser }) {
         path="/Logs"
         element={
           <ProtectedRoute user={currentUser}>
-            <LogList user={currentUser} />
+            {currentUser && <LogList userId={currentUser.id} />}
           </ProtectedRoute>
         }
       />
       <Route
-        path="/LogDetails"
+        path="/Logs/:logId"
         element={
           <ProtectedRoute user={currentUser}>
             <LogDetails />
