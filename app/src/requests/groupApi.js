@@ -2,6 +2,22 @@ import axios from 'axios';
 
 const URL = import.meta.env.VITE_BACKEND_URL;
 
+// Create new group
+export const postGroupApi = async (groupData) => {
+  try {
+    const response = await axios.post(`${URL}/groups`, {
+      name: groupData.groupName,
+      picture: groupData.groupPicture,
+      description: groupData.groupDescription,
+    });
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// Upload file
+
 // // find groups' information. Can be used for multiple
 // // group ids must be passed in as an array
 // export const getGroupsApi = async (groupIds) => {};
@@ -25,5 +41,5 @@ const URL = import.meta.env.VITE_BACKEND_URL;
 
 // Send text belt API request
 export const postTextAll = async (userId) => {
-  // Get phone number 
-}
+  // Get phone number
+};

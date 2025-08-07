@@ -12,8 +12,6 @@
 // }
 
 import React from 'react';
-import NewGroupForm from './NewGroupForm';
-
 // const name = 'Nature Hikes';
 // const picture = './public/assets/nature.jpg';
 // const description = 'Group for weekend hiking trips and nature walks.';
@@ -35,7 +33,6 @@ const GroupDetails = ({ name, picture, description }) => {
       <p aria-label="check-in-count">0</p>
       <button>Text all</button>
       <button>Remind</button>
-      <NewGroupForm />
     </div>
   );
 };

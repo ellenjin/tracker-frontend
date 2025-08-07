@@ -1,23 +1,28 @@
 import { useState } from 'react';
-import PictureUpload from './PictureUpload';
+import './NewGroupForm.css';
 
 const KDefaultGroupState = {
   groupName: '',
   groupPicture: '',
   groupDescription: '',
 };
-const NewGroupForm = () => {
+const NewGroupForm = ({ createGroup }) => {
   const [formData, setFormData] = useState(KDefaultGroupState);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     // neew to create function that makes POST requestonGroupSubmit(formData);
+    createGroup(formData);
     setFormData(KDefaultGroupState);
   };
 
   const handleChange = (event) => {
     const inputName = event.target.name;
-    const inputValue = event.target.value;
+    const inputValue =
+      event.target.value === 'file'
+        ? event.target.files[0]
+        : event.target.value;
+
     setFormData((formData) => ({
       ...formData,
       [inputName]: inputValue,
@@ -25,7 +30,7 @@ const NewGroupForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} action="/action_page.php">
       <label htmlFor="groupName">Name</label>
       <input
         id="groupName"
@@ -43,7 +48,13 @@ const NewGroupForm = () => {
         name="groupDescription"
         value={formData['groupDescription']}
       />
-      <PictureUpload />
+      <label htmlFor="groupPicture">Picture</label>
+      <input
+        type="file"
+        id="groupPicture"
+        name="groupPicture"
+        onChange={handleChange}
+      />
       <button type="submit">Create Group</button>
     </form>
   );

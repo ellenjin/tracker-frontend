@@ -3,16 +3,23 @@
 import GroupTile from './GroupTile';
 import './GroupPage.css';
 import GroupDetails from './GroupDetails';
+import NewGroupForm from './NewGroupForm';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import axios from 'axios';
+import { postGroupApi } from '../../requests/groupApi';
 
 function GroupPage({ groupList }) {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [currentGroup, setCurrentGroup] = useState(null);
 
   // NOTE: USE THIS TO NAVIGATE FROM EACH TILE TO THE PAGE WITH MORE DETAILS! AKA OTHER GROUP MEMBERS, ETC.
   const handleClick = (groupId) => {
     // navigate(`/groups/${groupId}`);
+  };
+
+  const handleCreateGroup = (newGroupData) => {
+    postGroupApi(newGroupData);
   };
 
   const getGroupTilesJSX = () => {
@@ -38,7 +45,7 @@ function GroupPage({ groupList }) {
             id={group.id}
             name={group.name}
             description={group.description}
-          ></GroupTile>
+          />
         </button>
       );
     });
@@ -48,6 +55,7 @@ function GroupPage({ groupList }) {
     <div className="group-page">
       <h1 className="page-header">Groups</h1>
       <section className="group-list">{getGroupTilesJSX()}</section>
+      <NewGroupForm createGroup={handleCreateGroup} />
       <GroupDetails
         currentGroup={currentGroup}
         setCurrentGroup={setCurrentGroup}
