@@ -30,9 +30,9 @@ const LogList = ({ userId }) => {
       ) : (
         <ul className="space-y-2">
           {logs.map((log) => (
-            <li key={log.id}>
+            <li key={log.logId}>
               <button
-                onClick={() => handleClick(log.id)}
+                onClick={() => handleClick(log.logId)}
                 className="text-blue-600 underline hover:text-blue-800"
               >
                 {log.title}
