@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import PictureUpload from './PictureUpload';
 
 const KDefaultGroupState = {
   groupName: '',
@@ -42,6 +43,7 @@ const NewGroupForm = () => {
         name="groupDescription"
         value={formData['groupDescription']}
       />
+      <PictureUpload />
       <button type="submit">Create Group</button>
     </form>
   );
