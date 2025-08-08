@@ -11,6 +11,7 @@ import ProfilePage from './features/profile/ProfilePage';
 import LogList from './features/logging/LogList';
 import LogForm from './features/logging/NewLogForm';
 import LogDetails from './features/logging/LogDetails';
+import GroupDetails from './features/groups/GroupDetails';
 
 function PageRoutes({ currentUser, setCurrentUser }) {
   return (
@@ -35,10 +36,23 @@ function PageRoutes({ currentUser, setCurrentUser }) {
             user={currentUser}
             onLogout={() => setCurrentUser(null)}
           >
-            {currentUser && <GroupPage groupList={currentUser.groups} />}
+            {currentUser && (
+              <GroupPage
+                groupList={currentUser.groups}
+                userId={currentUser.id}
+              />
+            )}
           </ProtectedRoute>
         }
       ></Route>
+      <Route
+        path="/groups/:groupId"
+        element={
+          <ProtectedRoute user={currentUser}>
+            <GroupDetails />
+          </ProtectedRoute>
+        }
+      />
       <Route
         path="/ProfilePage"
         element={
