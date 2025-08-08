@@ -60,28 +60,22 @@ function PageRoutes({ currentUser, setCurrentUser }) {
       {/* Not logged in (catch all) -> Default path (to login page) */}
       <Route path="*" element={<AuthPage onLogin={setCurrentUser} />} />
 
-      {/* <Route
+      <Route
         path="/Logs"
         element={
           <ProtectedRoute user={currentUser}>
-
             {currentUser && <LogList userId={currentUser.id} />}
-
           </ProtectedRoute>
         }
       />
       <Route
-
         path="/Logs/:logId"
-
         element={
           <ProtectedRoute user={currentUser}>
             <LogDetails />
           </ProtectedRoute>
         }
-
       />
-
     </Routes>
   );
 }
