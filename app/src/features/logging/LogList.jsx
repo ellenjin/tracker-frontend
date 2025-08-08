@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getLogsApi } from '../../requests/logApi';
 import { useNavigate } from 'react-router-dom';
+import NewLogForm from './NewLogForm';
 
 // Fetch logs from backend using getLogsApi(userId) in logApi.js
 // Map over the logs and display relevant info (Log Name for now to click into later)
@@ -12,8 +13,12 @@ const LogList = ({ userId }) => {
 
   useEffect(() => {
     const fetchLogs = async () => {
-      const result = await getLogsApi(userId);
-      setLogs(result);
+      try {
+        const logs = await getLogsApi(userId);
+        setLogs(logs);
+      } catch (error) {
+        console.error('Failed to fetch logs:', error);
+      }
     };
     fetchLogs();
   }, [userId]);
@@ -41,6 +46,10 @@ const LogList = ({ userId }) => {
           ))}
         </ul>
       )}
+      <h2>Create a New Log</h2>
+      {/* hardcode test */}
+      <NewLogForm userId={userId} groupId={104} />
+      {/* <NewLogForm userId={userId} groupId={groupId} /> */}
     </div>
   );
 };
