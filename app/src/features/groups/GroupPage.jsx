@@ -5,6 +5,7 @@ import './GroupPage.css';
 import GroupDetails from './GroupDetails';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+// import { getAllGroupUsersApi } from '../../requests/groupApi';
 
 function GroupPage({ groupList }) {
   const navigate = useNavigate();
@@ -42,6 +43,7 @@ function GroupPage({ groupList }) {
 
   return (
     <>
+      <button onClick={getGroupUsers}>Click Me to test API</button>
       <h1>Groups</h1>
       <section className="group-list">{getGroupTilesJSX()}</section>
       <GroupDetails

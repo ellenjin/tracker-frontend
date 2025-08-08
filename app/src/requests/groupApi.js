@@ -22,3 +22,17 @@ export const putUserLogCheckIn = async (logData) => {
     console.log(error);
   }
 };
+
+// If this isn't working/the file isn't running, comment out ^
+export const getAllGroupUsersApi = async (groupId) => {
+  try {
+    const response = await axios.get(`${URL}/groups/${groupId}/users`);
+    console.log(response);
+    return {
+      users: response.data.users,
+    };
+  } catch (error) {
+    console.log('Could not get users in group ', groupId);
+    console.log(error);
+  }
+};
