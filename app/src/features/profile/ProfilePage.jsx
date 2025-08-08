@@ -2,6 +2,7 @@
 // Allow user to choose interests (from a drop down)
 // Allow user to change username and phone number?
 import InterestDropdown from './InterestDropdown';
+import DeleteAccountButton from './DeleteAccountButton';
 import { useState, useEffect } from 'react';
 import { updateUserInterestsApi } from '../../requests/userApi';
 
@@ -27,12 +28,14 @@ function ProfilePage({ user }) {
     <>
       <h1>Profile Page for {user.username}</h1>{' '}
       {/* could change this later to user.name if we add in name */}
+      <h2> Information </h2>
       <p>Username: {user.username}</p>
       <p>Phone number: {user.phoneNumber}</p>
       <InterestDropdown
         selectedInterests={selectedInterests}
         onChange={updateInterests}
       ></InterestDropdown>
+      <DeleteAccountButton user={user}></DeleteAccountButton>
     </>
   );
 }

@@ -66,3 +66,13 @@ export const updateUserInterestsApi = async (userId, interests) => {
     console.log(error);
   }
 };
+
+export const deleteUserApi = async (userId) => {
+  try {
+    const response = await axios.delete(`${URL}/users/${userId}`);
+    return response;
+  } catch (error) {
+    console.log('Could not delete user ' + userId);
+    console.log(error);
+  }
+};
