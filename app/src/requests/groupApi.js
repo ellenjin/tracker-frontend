@@ -2,6 +2,12 @@ import axios from 'axios';
 
 const URL = import.meta.env.VITE_BACKEND_URL;
 
+// Get on group
+export const getOneGroupApi = async (groupId) => {
+  const response = await axios.get(`${URL}/groups/${groupId}`);
+  return response.data;
+};
+
 // Create new group
 export const postGroupApi = async (groupData) => {
   try {

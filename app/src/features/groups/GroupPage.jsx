@@ -12,11 +12,12 @@ import {
 import { use } from 'react';
 
 function GroupPage({ groupList, userId }) {
-  const [currentGroup, setCurrentGroup] = useState({
-    name: 'walking',
-    picture: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb',
-    description: 'group for walking',
-  });
+  // const [currentGroup, setCurrentGroup] = useState({
+  //   name: 'walking',
+  //   picture: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb',
+  //   description: 'group for walking',
+  // });
+
   const [createdGroup, setCreatedGroup] = useState(null);
 
   const handleCreateGroup = async (newGroupData) => {
@@ -34,7 +35,7 @@ function GroupPage({ groupList, userId }) {
       console.log(createdGroup);
     }
   }, [createdGroup, userId]);
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   // NOTE: USE THIS TO NAVIGATE FROM EACH TILE TO THE PAGE WITH MORE DETAILS! AKA OTHER GROUP MEMBERS, ETC.
   const handleClick = (groupId) => {
     navigate(`/groups/${groupId}`);
@@ -73,8 +74,8 @@ function GroupPage({ groupList, userId }) {
     <div className="group-page">
       <h1 className="page-header">Groups</h1>
       <section className="group-list">{getGroupTilesJSX()}</section>
+      <button>New Group</button>
       <NewGroupForm createGroup={handleCreateGroup} userId={userId} />
-      <GroupDetails currentGroup={currentGroup} />
     </div>
   );
 }
