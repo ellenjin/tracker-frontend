@@ -1,31 +1,47 @@
 import GroupTile from './GroupTile';
-import './GroupPage.css';
-import GroupDetails from './GroupDetails';
 import NewGroupForm from './NewGroupForm';
-import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import {
+  postGroupApi,
+  putAddUserToGroupApi,
+  postTextMemberApi,
+} from '../../requests/groupApi';
 
-import axios from 'axios';
-// import { postGroupApi } from '../../requests/groupApi';
+function GroupPage({ groupList, userId }) {
+  const [createdGroup, setCreatedGroup] = useState(null);
+  // const [showForm, setShowForm] = useState(false);
+  const navigate = useNavigate();
 
-import { getAllGroupUsersApi } from '../../requests/groupApi';
+  // add to useEffect
+  // const handleShowForm = () => {
+  //   setShowForm(!showForm);
+  // };
 
+  useEffect(() => {
+    if (createdGroup) {
+      putAddUserToGroupApi(userId, createdGroup.id);
+      console.log(createdGroup);
+    }
+  }, [createdGroup, userId]);
 
-function GroupPage({ groupList }) {
-  // const navigate = useNavigate();
-  const [currentGroup, setCurrentGroup] = useState({
-    name: 'walking',
-    picture: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb',
-    description: 'group for walking',
-  });
-
-  // NOTE: USE THIS TO NAVIGATE FROM EACH TILE TO THE PAGE WITH MORE DETAILS! AKA OTHER GROUP MEMBERS, ETC.
   const handleClick = (groupId) => {
-    // navigate(`/groups/${groupId}`);
+    navigate(`/groups/${groupId}`);
   };
 
-  const handleCreateGroup = (newGroupData) => {
-    postGroupApi(newGroupData);
+  const handleCreateGroup = async (newGroupData) => {
+    try {
+      const response = await postGroupApi(newGroupData);
+      setCreatedGroup(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleTextGroupUsers = (groupUsers) => {
+    for (const user in groupUsers) {
+      postTextMemberApi(user.phone);
+    }
   };
 
   const getGroupTilesJSX = () => {
@@ -61,8 +77,12 @@ function GroupPage({ groupList }) {
     <div className="group-page">
       <h1 className="page-header">Groups</h1>
       <section className="group-list">{getGroupTilesJSX()}</section>
-      <NewGroupForm createGroup={handleCreateGroup} />
-      <GroupDetails currentGroup={currentGroup} />
+      <button>New Group</button>
+      <NewGroupForm
+        createGroup={handleCreateGroup}
+        userId={userId}
+        textGroupUsers={handleTextGroupUsers}
+      />
     </div>
   );
 }
