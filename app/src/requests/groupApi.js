@@ -1,5 +1,4 @@
 import axios from 'axios';
-
 const URL = import.meta.env.VITE_BACKEND_URL;
 
 // Get on group
@@ -23,9 +22,9 @@ export const postGroupApi = async (groupData) => {
 };
 
 // Add user to group
-export const postAddUserToGroupApi = async (userId, newGroupId) => {
+export const putAddUserToGroupApi = async (userId, newGroupId) => {
   try {
-    const response = await axios.post(`${URL}/users/${userId}/add-to-group`, {
+    const response = await axios.put(`${URL}/users/${userId}/add-to-group`, {
       groupId: newGroupId,
     });
     return response.data;
@@ -34,8 +33,8 @@ export const postAddUserToGroupApi = async (userId, newGroupId) => {
   }
 };
 
-// Text one group member
-export const postRemindOneMember = async (phoneNumber) => {
+// Text group member
+export const postTextMemberApi = async (phoneNumber) => {
   try {
     const response = await axios.post('https://textbelt.com/text', {
       phone: phoneNumber,
@@ -48,16 +47,7 @@ export const postRemindOneMember = async (phoneNumber) => {
   }
 };
 
-// Text all group members
-
-// // find groups' information. Can be used for multiple
-// // group ids must be passed in as an array
-
-// Send text belt API request
-// export const postTextAll = async (userId) => {
-// Get phone number
-// };
-
+// Get all lgroup members
 export const getAllGroupUsersApi = async (groupId) => {
   try {
     const response = await axios.get(`${URL}/groups/${groupId}/users`);

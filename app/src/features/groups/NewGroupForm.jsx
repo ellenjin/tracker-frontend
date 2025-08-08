@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import './NewGroupForm.css';
 
 const KDefaultGroupState = {
   groupName: '',

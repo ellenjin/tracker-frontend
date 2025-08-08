@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getOneGroupApi } from '../../requests/groupApi';
+import { getOneGroupApi, getAllGroupUsersApi } from '../../requests/groupApi';
 
-const GroupDetails = () => {
+const GroupDetails = ({ textGroupUsers }) => {
   const { groupId } = useParams(); // groupId = the value from the URL
   const [group, setGroup] = useState(null);
+  const [groupUsers, setGroupUsers] = useState(null);
 
   useEffect(() => {
     const fetchGroup = async () => {
@@ -14,7 +15,20 @@ const GroupDetails = () => {
     fetchGroup();
   }, [groupId]);
 
+  useEffect(() => {
+    const fetchGroupUsers = async () => {
+      const data = await getAllGroupUsersApi(groupId);
+      setGroupUsers(data);
+    };
+    fetchGroupUsers();
+  }, [groupId]);
+
   if (!group) return <p>No group Id found... try again</p>;
+
+  // add time to give time for respond between each request
+  const handleClick = () => {
+    textGroupUsers(groupUsers);
+  };
 
   return (
     <div>
@@ -30,8 +44,8 @@ const GroupDetails = () => {
         Check-in
       </button>
       <p aria-label="check-in-count">0</p>
-      <button>Text all</button>
-      <button>Remind</button>
+      <button onClick={() => handleClick}>Text all</button>
+      <button onClick={() => handleClick}>Remind</button>
     </div>
   );
 };

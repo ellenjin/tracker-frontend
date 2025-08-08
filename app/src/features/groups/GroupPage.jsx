@@ -1,23 +1,33 @@
 import GroupTile from './GroupTile';
-import './GroupPage.css';
-import GroupDetails from './GroupDetails';
 import NewGroupForm from './NewGroupForm';
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import {
-  getAllGroupUsersApi,
   postGroupApi,
-  postAddUserToGroupApi,
+  putAddUserToGroupApi,
+  postTextMemberApi,
 } from '../../requests/groupApi';
 
 function GroupPage({ groupList, userId }) {
-  // const [currentGroup, setCurrentGroup] = useState({
-  //   name: 'walking',
-  //   picture: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb',
-  //   description: 'group for walking',
-  // });
-
   const [createdGroup, setCreatedGroup] = useState(null);
+  // const [showForm, setShowForm] = useState(false);
+  const navigate = useNavigate();
+
+  // add to useEffect
+  // const handleShowForm = () => {
+  //   setShowForm(!showForm);
+  // };
+
+  useEffect(() => {
+    if (createdGroup) {
+      putAddUserToGroupApi(userId, createdGroup.id);
+      console.log(createdGroup);
+    }
+  }, [createdGroup, userId]);
+
+  const handleClick = (groupId) => {
+    navigate(`/groups/${groupId}`);
+  };
 
   const handleCreateGroup = async (newGroupData) => {
     try {
@@ -28,16 +38,10 @@ function GroupPage({ groupList, userId }) {
     }
   };
 
-  useEffect(() => {
-    if (createdGroup) {
-      postAddUserToGroupApi(userId, createdGroup.id);
-      console.log(createdGroup);
+  const handleTextGroupUsers = (groupUsers) => {
+    for (const user in groupUsers) {
+      postTextMemberApi(user.phone);
     }
-  }, [createdGroup, userId]);
-  const navigate = useNavigate();
-  // NOTE: USE THIS TO NAVIGATE FROM EACH TILE TO THE PAGE WITH MORE DETAILS! AKA OTHER GROUP MEMBERS, ETC.
-  const handleClick = (groupId) => {
-    navigate(`/groups/${groupId}`);
   };
 
   const getGroupTilesJSX = () => {
@@ -74,7 +78,11 @@ function GroupPage({ groupList, userId }) {
       <h1 className="page-header">Groups</h1>
       <section className="group-list">{getGroupTilesJSX()}</section>
       <button>New Group</button>
-      <NewGroupForm createGroup={handleCreateGroup} userId={userId} />
+      <NewGroupForm
+        createGroup={handleCreateGroup}
+        userId={userId}
+        textGroupUsers={handleTextGroupUsers}
+      />
     </div>
   );
 }
