@@ -9,7 +9,6 @@ import {
   postGroupApi,
   postAddUserToGroupApi,
 } from '../../requests/groupApi';
-import { use } from 'react';
 
 function GroupPage({ groupList, userId }) {
   // const [currentGroup, setCurrentGroup] = useState({

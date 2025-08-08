@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getOneGroupApi } from '../../requests/groupApi';
-// import { getOneLogApi, deleteLogApi } from '../../requests/logApi';
+
 const GroupDetails = () => {
   const { groupId } = useParams(); // groupId = the value from the URL
   const [group, setGroup] = useState(null);
