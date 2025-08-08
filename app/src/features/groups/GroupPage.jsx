@@ -1,5 +1,3 @@
-// This page should show a list view of all the groups that a user is a part of.
-
 import GroupTile from './GroupTile';
 import './GroupPage.css';
 import GroupDetails from './GroupDetails';
@@ -11,7 +9,11 @@ import { postGroupApi } from '../../requests/groupApi';
 
 function GroupPage({ groupList }) {
   // const navigate = useNavigate();
-  const [currentGroup, setCurrentGroup] = useState(null);
+  const [currentGroup, setCurrentGroup] = useState({
+    name: 'walking',
+    picture: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb',
+    description: 'group for walking',
+  });
 
   // NOTE: USE THIS TO NAVIGATE FROM EACH TILE TO THE PAGE WITH MORE DETAILS! AKA OTHER GROUP MEMBERS, ETC.
   const handleClick = (groupId) => {
@@ -56,10 +58,7 @@ function GroupPage({ groupList }) {
       <h1 className="page-header">Groups</h1>
       <section className="group-list">{getGroupTilesJSX()}</section>
       <NewGroupForm createGroup={handleCreateGroup} />
-      <GroupDetails
-        currentGroup={currentGroup}
-        setCurrentGroup={setCurrentGroup}
-      />
+      <GroupDetails currentGroup={currentGroup} />
     </div>
   );
 }

@@ -14,25 +14,13 @@ const group = {
 
 test('Render GroupDetails component', () => {
   // Arrange
-  render(
-    <GroupDetails
-      name={group.name}
-      picture={group.picture}
-      description={group.description}
-    />
-  );
+  render(<GroupDetails currentGroup={group} />);
   screen.debug();
 });
 
 describe('GroupDetails Component', () => {
   beforeEach(() => {
-    render(
-      <GroupDetails
-        name={group.name}
-        picture={group.picture}
-        description={group.description}
-      />
-    );
+    render(<GroupDetails currentGroup={group} />);
   });
 
   afterEach(cleanup);
