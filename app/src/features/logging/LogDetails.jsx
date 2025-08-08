@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getOneLogApi, deleteLogApi } from '../../requests/logApi';
+import { useNavigate } from 'react-router-dom';
 
 const LogDetails = () => {
   const { logId } = useParams(); // logId = the value from the URL
+  const navigate = useNavigate();
   const [log, setLog] = useState(null);
 
   useEffect(() => {
@@ -14,10 +16,18 @@ const LogDetails = () => {
     fetchLog();
   }, [logId]);
 
-  if (!log) return <p>No Log Id found... try again</p>;
+  if (!log) return <p>Loading... </p>;
 
-  const deleteLog = () => {
-    deleteLogApi(logId);
+  // const deleteLog = () => {
+  //   deleteLogApi(logId);
+  // };
+
+  const deleteLog = async () => {
+    const confirm = window.confirm('Delete this log?');
+    if (!confirm) return;
+
+    await deleteLogApi(logId);
+    navigate('/logs');
   };
 
   return (
@@ -38,12 +48,7 @@ const LogDetails = () => {
       <p>
         <strong>Partner Name:</strong> {log.partnerName}
       </p>
-      <button
-        onClick={() => deleteLog(log.logId)}
-        // className="text-blue-600 underline hover:text-blue-800"
-      >
-        Delete this Log
-      </button>
+      <button onClick={deleteLog}> Delete this Log </button>
     </div>
   );
 };

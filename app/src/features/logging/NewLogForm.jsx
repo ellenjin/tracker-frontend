@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { createLogApi } from '../../requests/logApi';
 
-// Controlled inputs form and ubmit button that calls createLogApi(logData) from logApi.js
-const NewLogForm = ({ groupId }) => {
+// Controlled inputs form and submit button that calls createLogApi(logData) from logApi.js
+const NewLogForm = ({ userId, groupId }) => {
   const [formData, setFormData] = useState({
     title: '',
     frequencyCount: '',
@@ -11,7 +11,7 @@ const NewLogForm = ({ groupId }) => {
     checkInCount: 0,
     partnerName: '',
     wantsPartner: false,
-    group: { id: groupId },
+    // group: { id: groupId },
   });
 
   const handleChange = (e) => {
@@ -24,19 +24,41 @@ const NewLogForm = ({ groupId }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await createLogApi(formData);
-    alert('Log created!');
-    setFormData({ ...formData, title: '', partnerName: '' });
+
+    const payload = {
+      ...formData,
+      frequencyCount: Number(formData.frequencyCount),
+      checkInCount: Number(formData.checkInCount),
+      group: { id: groupId },
+      user: { id: userId },
+    };
+
+    try {
+      await createLogApi(payload);
+      alert('Log created!');
+      // Reset form
+      setFormData({
+        title: '',
+        frequencyCount: '',
+        frequencyUnit: 'WEEK',
+        skillLevel: 'BEGINNER',
+        checkInCount: 0,
+        partnerName: '',
+        wantsPartner: false,
+      });
+    } catch (error) {
+      console.error('Failed to create log:', error);
+      alert('Something went wrong. Try Again.');
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-3">
+    <form onSubmit={handleSubmit}>
       <input
         name="title"
         value={formData.title}
         onChange={handleChange}
         placeholder="Title"
-        className="border p-2 w-full"
       />
       <input
         name="frequencyCount"
@@ -44,13 +66,11 @@ const NewLogForm = ({ groupId }) => {
         onChange={handleChange}
         placeholder="Frequency Count"
         type="number"
-        className="border p-2 w-full"
       />
       <select
         name="frequencyUnit"
         value={formData.frequencyUnit}
         onChange={handleChange}
-        className="border p-2 w-full"
       >
         <option value="DAY">Day</option>
         <option value="WEEK">Week</option>
@@ -60,7 +80,6 @@ const NewLogForm = ({ groupId }) => {
         name="skillLevel"
         value={formData.skillLevel}
         onChange={handleChange}
-        className="border p-2 w-full"
       >
         <option value="BEGINNER">Beginner</option>
         <option value="INTERMEDIATE">Intermediate</option>
@@ -71,7 +90,6 @@ const NewLogForm = ({ groupId }) => {
         value={formData.partnerName}
         onChange={handleChange}
         placeholder="Partner Name"
-        className="border p-2 w-full"
       />
       <label>
         <input
@@ -82,9 +100,7 @@ const NewLogForm = ({ groupId }) => {
         />
         Looking for a partner
       </label>
-      <button type="submit" className="bg-blue-500 text-white p-2 rounded">
-        Add Log
-      </button>
+      <button type="submit"> Add Log </button>
     </form>
   );
 };
