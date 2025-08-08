@@ -1,4 +1,3 @@
-
 /* eslint-disable no-undef */
 import { render, screen, cleanup } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -87,7 +86,7 @@ test.skip('Sends the correct group data when the form is submitted', async () =>
     return [200, { message: 'Group created successfully' }];
   });
 
-  render(<NewGroupForm createGroup={postGroupApi}/>);
+  render(<NewGroupForm createGroup={postGroupApi} />);
   const name = screen.getByLabelText('Name');
   const picture = screen.getByLabelText('Picture');
   const file = new File(['test'], 'nature.jpg', { type: 'image/jpeg' });
@@ -108,4 +107,3 @@ test.skip('Sends the correct group data when the form is submitted', async () =>
     picture: file,
   });
 });
-

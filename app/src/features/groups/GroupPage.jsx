@@ -2,30 +2,42 @@ import GroupTile from './GroupTile';
 import './GroupPage.css';
 import GroupDetails from './GroupDetails';
 import NewGroupForm from './NewGroupForm';
-import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import {
+  getAllGroupUsersApi,
+  postGroupApi,
+  postAddUserToGroupApi,
+} from '../../requests/groupApi';
+import { use } from 'react';
 
-import axios from 'axios';
-// import { postGroupApi } from '../../requests/groupApi';
-
-import { getAllGroupUsersApi } from '../../requests/groupApi';
-
-
-function GroupPage({ groupList }) {
-  // const navigate = useNavigate();
+function GroupPage({ groupList, userId }) {
   const [currentGroup, setCurrentGroup] = useState({
     name: 'walking',
     picture: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb',
     description: 'group for walking',
   });
+  const [createdGroup, setCreatedGroup] = useState(null);
 
-  // NOTE: USE THIS TO NAVIGATE FROM EACH TILE TO THE PAGE WITH MORE DETAILS! AKA OTHER GROUP MEMBERS, ETC.
-  const handleClick = (groupId) => {
-    // navigate(`/groups/${groupId}`);
+  const handleCreateGroup = async (newGroupData) => {
+    try {
+      const response = await postGroupApi(newGroupData);
+      setCreatedGroup(response);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  const handleCreateGroup = (newGroupData) => {
-    postGroupApi(newGroupData);
+  useEffect(() => {
+    if (createdGroup) {
+      postAddUserToGroupApi(userId, createdGroup.id);
+      console.log(createdGroup);
+    }
+  }, [createdGroup, userId]);
+  // const navigate = useNavigate();
+  // NOTE: USE THIS TO NAVIGATE FROM EACH TILE TO THE PAGE WITH MORE DETAILS! AKA OTHER GROUP MEMBERS, ETC.
+  const handleClick = (groupId) => {
+    navigate(`/groups/${groupId}`);
   };
 
   const getGroupTilesJSX = () => {
@@ -61,7 +73,7 @@ function GroupPage({ groupList }) {
     <div className="group-page">
       <h1 className="page-header">Groups</h1>
       <section className="group-list">{getGroupTilesJSX()}</section>
-      <NewGroupForm createGroup={handleCreateGroup} />
+      <NewGroupForm createGroup={handleCreateGroup} userId={userId} />
       <GroupDetails currentGroup={currentGroup} />
     </div>
   );

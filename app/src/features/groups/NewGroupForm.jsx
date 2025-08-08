@@ -11,17 +11,13 @@ const NewGroupForm = ({ createGroup }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // neew to create function that makes POST requestonGroupSubmit(formData);
     createGroup(formData);
     setFormData(KDefaultGroupState);
   };
 
   const handleChange = (event) => {
     const inputName = event.target.name;
-    const inputValue =
-      event.target.value === 'file'
-        ? event.target.files[0]
-        : event.target.value;
+    const inputValue = event.target.value;
 
     setFormData((formData) => ({
       ...formData,
@@ -48,13 +44,13 @@ const NewGroupForm = ({ createGroup }) => {
         name="groupDescription"
         value={formData['groupDescription']}
       />
-      <label htmlFor="groupPicture">Picture</label>
+      {/* <label htmlFor="groupPicture">Picture</label>
       <input
         type="file"
         id="groupPicture"
         name="groupPicture"
         onChange={handleChange}
-      />
+      /> */}
       <button type="submit">Create Group</button>
     </form>
   );
