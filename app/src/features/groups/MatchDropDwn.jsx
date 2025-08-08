@@ -1,5 +1,9 @@
-// Purpose: Opt-in to be matched with accountability partner within group.
-// Events: onClick match with friend.
-// Imports: List of available matches.
-// Routes: POST /api/
-// log/:id/partner, GET /api/groups/:groupId/partners
+import React from 'react';
+
+// pass current group state
+export const MatchDropDwn = () => {
+  // get all members of current group
+  // add members who want a partner to the drop down
+  // return dropdown
+  return <div>MatchDropDwn</div>;
+};
