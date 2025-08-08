@@ -2,21 +2,11 @@ import GroupTile from './GroupTile';
 import NewGroupForm from './NewGroupForm';
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import {
-  postGroupApi,
-  putAddUserToGroupApi,
-  postTextMemberApi,
-} from '../../requests/groupApi';
+import { postGroupApi, putAddUserToGroupApi } from '../../requests/groupApi';
 
 function GroupPage({ groupList, userId }) {
   const [createdGroup, setCreatedGroup] = useState(null);
-  // const [showForm, setShowForm] = useState(false);
   const navigate = useNavigate();
-
-  // add to useEffect
-  // const handleShowForm = () => {
-  //   setShowForm(!showForm);
-  // };
 
   useEffect(() => {
     if (createdGroup) {
@@ -35,12 +25,6 @@ function GroupPage({ groupList, userId }) {
       setCreatedGroup(response);
     } catch (error) {
       console.log(error);
-    }
-  };
-
-  const handleTextGroupUsers = (groupUsers) => {
-    for (const user in groupUsers) {
-      postTextMemberApi(user.phone);
     }
   };
 
@@ -81,7 +65,6 @@ function GroupPage({ groupList, userId }) {
       <NewGroupForm
         createGroup={handleCreateGroup}
         userId={userId}
-        textGroupUsers={handleTextGroupUsers}
       />
     </div>
   );

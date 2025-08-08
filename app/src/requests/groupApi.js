@@ -36,25 +36,22 @@ export const putAddUserToGroupApi = async (userId, newGroupId) => {
 // Text group member
 export const postTextMemberApi = async (phoneNumber) => {
   try {
-    const response = await axios.post('https://textbelt.com/text', {
+    const response = await axios.post(`${URL}/texts/send`, {
       phone: phoneNumber,
       message: "Don't forget to log!",
-      key: 'textbelt',
     });
-    console.log(response.data);
+    return response.data;
   } catch (error) {
-    console.log(error);
+    console.log('Error sending text:', error);
   }
 };
+
 
 // Get all lgroup members
 export const getAllGroupUsersApi = async (groupId) => {
   try {
     const response = await axios.get(`${URL}/groups/${groupId}/users`);
-    console.log(response);
-    return {
-      users: response.data.users,
-    };
+    return response.data;
   } catch (error) {
     console.log('Could not get users in group ', groupId);
     console.log(error);
