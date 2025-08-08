@@ -4,8 +4,8 @@
 // Routes: GET /api/user/:id
 // State: user
 
-function HomeDashboard() {
-  return <h1> This is the Homepage (testing) </h1>;
+function HomeDashboard({ user }) {
+  return <h1> Welcome, {user.username}! </h1>;
 }
 
 export default HomeDashboard;

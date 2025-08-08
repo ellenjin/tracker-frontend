@@ -25,7 +25,7 @@ function PageRoutes({ currentUser, setCurrentUser }) {
             user={currentUser}
             onLogout={() => setCurrentUser(null)}
           >
-            <HomeDashboard currentUser={currentUser} />
+            <HomeDashboard user={currentUser} />
           </ProtectedRoute>
         }
       ></Route>
@@ -48,7 +48,10 @@ function PageRoutes({ currentUser, setCurrentUser }) {
       <Route
         path="/groups/:groupId"
         element={
-          <ProtectedRoute user={currentUser}>
+          <ProtectedRoute
+            user={currentUser}
+            onLogout={() => setCurrentUser(null)}
+          >
             <GroupDetails />
           </ProtectedRoute>
         }
@@ -60,7 +63,9 @@ function PageRoutes({ currentUser, setCurrentUser }) {
             user={currentUser}
             onLogout={() => setCurrentUser(null)}
           >
-            {currentUser && <ProfilePage user={currentUser} />}
+            {currentUser && (
+              <ProfilePage user={currentUser} setCurrentUser={setCurrentUser} />
+            )}
           </ProtectedRoute>
         }
       ></Route>
@@ -77,7 +82,10 @@ function PageRoutes({ currentUser, setCurrentUser }) {
       <Route
         path="/Logs"
         element={
-          <ProtectedRoute user={currentUser}>
+          <ProtectedRoute
+            user={currentUser}
+            onLogout={() => setCurrentUser(null)}
+          >
             {currentUser && <LogList userId={currentUser.id} />}
           </ProtectedRoute>
         }
