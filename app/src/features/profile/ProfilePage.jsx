@@ -6,14 +6,10 @@ import DeleteAccountButton from './DeleteAccountButton';
 import { useState } from 'react';
 import { updateUserInterestsApi } from '../../requests/userApi';
 
-function ProfilePage({ user }) {
+function ProfilePage({ user, setCurrentUser }) {
   const [selectedInterests, setSelectedInterests] = useState(
     user.interests || []
   );
-
-  // useEffect(() => {
-  //   setSelectedInterests(user.interests || []);
-  // }, [user.interests]);
 
   const updateInterests = async (newInterests) => {
     setSelectedInterests(newInterests);
@@ -35,7 +31,10 @@ function ProfilePage({ user }) {
         selectedInterests={selectedInterests}
         onChange={updateInterests}
       ></InterestDropdown>
-      <DeleteAccountButton user={user}></DeleteAccountButton>
+      <DeleteAccountButton
+        user={user}
+        setCurrentUser={setCurrentUser}
+      ></DeleteAccountButton>
     </>
   );
 }
