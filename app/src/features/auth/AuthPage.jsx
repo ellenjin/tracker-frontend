@@ -30,7 +30,8 @@ function AuthPage({ onLogin }) {
 
   return (
     <div className="auth-container">
-      <h1>Welcome to Accountability Tracker!</h1>
+      <h1>Logger</h1>
+      <p>Let's stay on track together!</p>
       <LoginForm
         username={username}
         setUsername={setUsername}
