@@ -43,7 +43,6 @@ function GroupPage({ groupList }) {
 
   return (
     <>
-      <button onClick={getGroupUsers}>Click Me to test API</button>
       <h1>Groups</h1>
       <section className="group-list">{getGroupTilesJSX()}</section>
       <GroupDetails
