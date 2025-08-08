@@ -7,10 +7,10 @@ import AuthPage from './features/auth/AuthPage';
 import HomeDashboard from './features/dashboard/HomeDashboard';
 import GroupPage from './features/groups/GroupPage'; // rename to GroupPage
 import SignUpForm from './features/auth/SignUpForm'; // rename to Signup Page
-
-// import LogList from './features/dashboard/logs/LogList';
-// import LogForm from './features/dashboard/logs/NewLogForm';
-// import LogDetails from './features/dashboard/logs/LogDetails';
+import ProfilePage from './features/profile/ProfilePage';
+import LogList from './features/logging/LogList';
+import LogForm from './features/logging/NewLogForm';
+import LogDetails from './features/logging/LogDetails';
 
 function PageRoutes({ currentUser, setCurrentUser }) {
   return (
@@ -39,6 +39,17 @@ function PageRoutes({ currentUser, setCurrentUser }) {
           </ProtectedRoute>
         }
       ></Route>
+      <Route
+        path="/ProfilePage"
+        element={
+          <ProtectedRoute
+            user={currentUser}
+            onLogout={() => setCurrentUser(null)}
+          >
+            {currentUser && <ProfilePage user={currentUser} />}
+          </ProtectedRoute>
+        }
+      ></Route>
       {/* Should probably add something here saying that we have to be 'signing up' to access page */}
       <Route
         path="/SignUpForm"
@@ -53,18 +64,24 @@ function PageRoutes({ currentUser, setCurrentUser }) {
         path="/Logs"
         element={
           <ProtectedRoute user={currentUser}>
-            <LogList user={currentUser} />
+
+            {currentUser && <LogList userId={currentUser.id} />}
+
           </ProtectedRoute>
         }
       />
       <Route
-        path="/LogDetails"
+
+        path="/Logs/:logId"
+
         element={
           <ProtectedRoute user={currentUser}>
             <LogDetails />
           </ProtectedRoute>
         }
-      /> */}
+
+      />
+
     </Routes>
   );
 }

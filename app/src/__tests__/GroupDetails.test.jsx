@@ -1,9 +1,11 @@
 /* eslint-disable no-undef */
+
 import { render, screen, userEvent, cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import GroupDetails from '../features/groups/GroupDetails';
 import { afterEach, beforeEach } from 'vitest';
 import AxiosMock from 'axios';
+
 
 const group = {
   id: 1,

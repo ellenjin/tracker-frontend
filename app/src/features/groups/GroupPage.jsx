@@ -4,8 +4,12 @@ import GroupDetails from './GroupDetails';
 import NewGroupForm from './NewGroupForm';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+
 import axios from 'axios';
-import { postGroupApi } from '../../requests/groupApi';
+// import { postGroupApi } from '../../requests/groupApi';
+
+import { getAllGroupUsersApi } from '../../requests/groupApi';
+
 
 function GroupPage({ groupList }) {
   // const navigate = useNavigate();

@@ -1,3 +1,4 @@
+
 /* eslint-disable no-undef */
 import { render, screen, cleanup } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -107,3 +108,4 @@ test.skip('Sends the correct group data when the form is submitted', async () =>
     picture: file,
   });
 });
+

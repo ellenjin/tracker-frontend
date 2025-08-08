@@ -7,7 +7,9 @@
 // I think you can pass in the information from ^ and hold the group id in state,
 // allowing the page to be used for any group -- similar to how we used 'task-tile' in Tasklist
 
+
 const GroupDetails = ({ currentGroup }) => {
+
   return (
     <div>
       <h1>{currentGroup.name}</h1>
