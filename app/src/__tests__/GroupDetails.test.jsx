@@ -1,8 +1,11 @@
 /* eslint-disable no-undef */
-import { render, screen, fireEvent, cleanup } from '@testing-library/react';
+
+import { render, screen, userEvent, cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import GroupDetails from '../features/groups/GroupDetails';
-import { afterEach } from 'vitest';
+import { afterEach, beforeEach } from 'vitest';
+import AxiosMock from 'axios';
+
 
 const group = {
   id: 1,
@@ -13,25 +16,13 @@ const group = {
 
 test('Render GroupDetails component', () => {
   // Arrange
-  render(
-    <GroupDetails
-      name={group.name}
-      picture={group.picture}
-      description={group.description}
-    />
-  );
+  render(<GroupDetails currentGroup={group} />);
   screen.debug();
 });
 
 describe('GroupDetails Component', () => {
   beforeEach(() => {
-    render(
-      <GroupDetails
-        name={group.name}
-        picture={group.picture}
-        description={group.description}
-      />
-    );
+    render(<GroupDetails currentGroup={group} />);
   });
 
   afterEach(cleanup);
@@ -50,7 +41,7 @@ describe('GroupDetails Component', () => {
     });
 
     it('renders the group description text', () => {
-      const par = screen.getByLabelText(/description/i);
+      const par = screen.getByLabelText('group-description');
       expect(par).toBeInTheDocument();
       expect(par).toHaveTextContent(
         'Group for weekend hiking trips and nature walks.'
@@ -74,7 +65,7 @@ describe('GroupDetails Component', () => {
     // Need to create mock api request for put request to update clicked log
     it.skip('checks user in on click', async () => {
       const checkInBtn = buttons[0];
-      fireEvent.click(checkInBtn);
+      userEvent.click(checkInBtn);
       const count = await screen.findByLabelText(/check-in-count/i);
       expect(checkInBtn).toBeDisabled();
       expect(count).toBeInTheDocument();

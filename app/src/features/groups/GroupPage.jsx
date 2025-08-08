@@ -1,19 +1,31 @@
-// This page should show a list view of all the groups that a user is a part of.
-
 import GroupTile from './GroupTile';
 import './GroupPage.css';
 import GroupDetails from './GroupDetails';
+import NewGroupForm from './NewGroupForm';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-// import { getAllGroupUsersApi } from '../../requests/groupApi';
+
+import axios from 'axios';
+// import { postGroupApi } from '../../requests/groupApi';
+
+import { getAllGroupUsersApi } from '../../requests/groupApi';
+
 
 function GroupPage({ groupList }) {
-  const navigate = useNavigate();
-  const [currentGroup, setCurrentGroup] = useState(null);
+  // const navigate = useNavigate();
+  const [currentGroup, setCurrentGroup] = useState({
+    name: 'walking',
+    picture: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb',
+    description: 'group for walking',
+  });
 
   // NOTE: USE THIS TO NAVIGATE FROM EACH TILE TO THE PAGE WITH MORE DETAILS! AKA OTHER GROUP MEMBERS, ETC.
   const handleClick = (groupId) => {
     // navigate(`/groups/${groupId}`);
+  };
+
+  const handleCreateGroup = (newGroupData) => {
+    postGroupApi(newGroupData);
   };
 
   const getGroupTilesJSX = () => {
@@ -29,27 +41,29 @@ function GroupPage({ groupList }) {
 
     return sortedGroups.map((group) => {
       return (
-        <button key={group.id} onClick={() => handleClick(group.id)}>
+        <button
+          className="group-tile"
+          key={group.id}
+          onClick={() => handleClick(group.id)}
+        >
           <GroupTile
             key={group.id}
             id={group.id}
             name={group.name}
             description={group.description}
-          ></GroupTile>
+          />
         </button>
       );
     });
   };
 
   return (
-    <>
-      <h1>Groups</h1>
+    <div className="group-page">
+      <h1 className="page-header">Groups</h1>
       <section className="group-list">{getGroupTilesJSX()}</section>
-      <GroupDetails
-        currentGroup={currentGroup}
-        setCurrentGroup={setCurrentGroup}
-      />
-    </>
+      <NewGroupForm createGroup={handleCreateGroup} />
+      <GroupDetails currentGroup={currentGroup} />
+    </div>
   );
 }
 

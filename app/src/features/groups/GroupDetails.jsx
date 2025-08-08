@@ -7,27 +7,18 @@
 // I think you can pass in the information from ^ and hold the group id in state,
 // allowing the page to be used for any group -- similar to how we used 'task-tile' in Tasklist
 
-// function GroupDetails({ currentUser }) {
-//   return <h1> This page holds the details for a single group </h1>;
-// }
 
-import React from 'react';
-import NewGroupForm from './NewGroupForm';
+const GroupDetails = ({ currentGroup }) => {
 
-// const name = 'Nature Hikes';
-// const picture = './public/assets/nature.jpg';
-// const description = 'Group for weekend hiking trips and nature walks.';
-// NEED TO UPDATE DESTRUCTING POROPS TO GRAB GROUP STATE
-const GroupDetails = ({ name, picture, description }) => {
   return (
     <div>
-      <h1>{name}</h1>
+      <h1>{currentGroup.name}</h1>
       <img
-        src={picture}
+        src={currentGroup.picture}
         alt="A flower in a field"
         style={{ height: '200px', width: '200px' }}
       />
-      <p aria-label="description">{description}</p>
+      <p aria-label="group-description">{currentGroup.description}</p>
       <p>You haven't checked-in today!</p>
       <button type="button" disabled>
         Check-in

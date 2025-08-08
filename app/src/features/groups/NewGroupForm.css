@@ -1,0 +1,7 @@
+/* Form Styles */
+form {
+    margin: 1rem;
+    padding: 5px;
+    box-sizing: border-box;
+    border: solid 1px blue;
+}

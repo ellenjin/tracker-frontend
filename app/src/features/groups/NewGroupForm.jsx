@@ -1,28 +1,28 @@
-// Purpose: Create new group, select friends to add, assign topic.
-// Events: onChange for inputs, onSubmit to create group.
-// Imports: FormField, GroupTopicDropdown, FriendsListDropdown.
-// Routes: POST /api/groups.
-// State: group
-
 import { useState } from 'react';
+import './NewGroupForm.css';
 
 const KDefaultGroupState = {
-  groupName: 'Lorem ipsum',
+  groupName: '',
   groupPicture: '',
-  groupDescription: 'Lorem ipsum',
+  groupDescription: '',
 };
-const NewGroupForm = () => {
+const NewGroupForm = ({ createGroup }) => {
   const [formData, setFormData] = useState(KDefaultGroupState);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     // neew to create function that makes POST requestonGroupSubmit(formData);
+    createGroup(formData);
     setFormData(KDefaultGroupState);
   };
 
   const handleChange = (event) => {
     const inputName = event.target.name;
-    const inputValue = event.target.value;
+    const inputValue =
+      event.target.value === 'file'
+        ? event.target.files[0]
+        : event.target.value;
+
     setFormData((formData) => ({
       ...formData,
       [inputName]: inputValue,
@@ -30,21 +30,30 @@ const NewGroupForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="groupName">Group Name</label>
+    <form onSubmit={handleSubmit} action="/action_page.php">
+      <label htmlFor="groupName">Name</label>
       <input
+        id="groupName"
         onChange={handleChange}
         type="text"
         name="groupName"
         value={formData['groupName']}
       />
 
-      <label htmlFor="owner">Description</label>
+      <label htmlFor="description">Description</label>
       <input
+        id="description"
         onChange={handleChange}
         type="text"
         name="groupDescription"
         value={formData['groupDescription']}
+      />
+      <label htmlFor="groupPicture">Picture</label>
+      <input
+        type="file"
+        id="groupPicture"
+        name="groupPicture"
+        onChange={handleChange}
       />
       <button type="submit">Create Group</button>
     </form>
