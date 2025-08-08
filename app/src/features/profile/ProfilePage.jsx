@@ -3,7 +3,7 @@
 // Allow user to change username and phone number?
 import InterestDropdown from './InterestDropdown';
 import DeleteAccountButton from './DeleteAccountButton';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { updateUserInterestsApi } from '../../requests/userApi';
 
 function ProfilePage({ user }) {
@@ -11,9 +11,9 @@ function ProfilePage({ user }) {
     user.interests || []
   );
 
-  useEffect(() => {
-    setSelectedInterests(user.interests || []);
-  }, [user.interests]);
+  // useEffect(() => {
+  //   setSelectedInterests(user.interests || []);
+  // }, [user.interests]);
 
   const updateInterests = async (newInterests) => {
     setSelectedInterests(newInterests);
