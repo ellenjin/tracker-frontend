@@ -5,15 +5,12 @@ import NewGroupForm from './NewGroupForm';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
-import axios from 'axios';
 // import { postGroupApi } from '../../requests/groupApi';
-
-import { getAllGroupUsersApi } from '../../requests/groupApi';
-
 
 function GroupPage({ groupList }) {
   // const navigate = useNavigate();
   const [currentGroup, setCurrentGroup] = useState({
+    // for testing for now
     name: 'walking',
     picture: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb',
     description: 'group for walking',
@@ -21,7 +18,7 @@ function GroupPage({ groupList }) {
 
   // NOTE: USE THIS TO NAVIGATE FROM EACH TILE TO THE PAGE WITH MORE DETAILS! AKA OTHER GROUP MEMBERS, ETC.
   const handleClick = (groupId) => {
-    // navigate(`/groups/${groupId}`);
+    // navigate(`/groups/details`);
   };
 
   const handleCreateGroup = (newGroupData) => {
