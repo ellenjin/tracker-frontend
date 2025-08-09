@@ -26,7 +26,7 @@ const InterestDropdown = ({ selectedInterests, onChange }) => {
 
   return (
     <label>
-      Interests:
+      <h2>Interests</h2>
       <div>
         {interests.map((interest) => (
           <label key={interest}>

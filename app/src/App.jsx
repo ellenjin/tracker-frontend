@@ -7,16 +7,24 @@ import { getOneUserApi } from './requests/userApi';
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
 
-  const fetchUser = async () => {
-    const updatedUser = await getOneUserApi(currentUser.id);
-    setCurrentUser(updatedUser);
-  };
-
   useEffect(() => {
-    if (currentUser) {
-      fetchUser();
+    console.log('useEffect triggered');
+    if (!currentUser?.id) {
+      return;
     }
-  });
+
+    const fetchUser = async () => {
+      try {
+        const updatedUser = await getOneUserApi(currentUser.id);
+        setCurrentUser(updatedUser);
+      } catch (error) {
+        console.error('Failed to load user: ', error);
+      }
+    };
+
+    fetchUser();
+  }, [currentUser?.id]);
+
   return (
     <HashRouter>
       <PageRoutes
