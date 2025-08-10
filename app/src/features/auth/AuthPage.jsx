@@ -29,7 +29,6 @@ function AuthPage({ onLogin }) {
   };
 
   return (
-    
     <div className="container auth-container">
       <h1>Logger</h1>
       <p>Let's stay on track together!</p>

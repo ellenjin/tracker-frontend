@@ -5,8 +5,9 @@ import {
   getAllGroupUsersApi,
   postTextMemberApi,
 } from '../../requests/groupApi';
+import { getLogForUserInGroupApi, logCheckInApi } from '../../requests/logApi';
 
-const GroupDetails = () => {
+const GroupDetails = ({ userId }) => {
   const { groupId } = useParams(); // groupId = the value from the URL
   const [group, setGroup] = useState(null);
 
@@ -32,6 +33,13 @@ const GroupDetails = () => {
     }
   };
 
+  const handleCheckIn = async () => {
+    const log = await getLogForUserInGroupApi(userId, group.id);
+    console.log(log);
+    logCheckInApi(log.logId); // adjust this to handle error
+    console.log('successfully checked in');
+  };
+
   return (
     <div className="container">
       <h1>{group.name}</h1>
@@ -41,8 +49,9 @@ const GroupDetails = () => {
         style={{ height: '200px', width: '200px' }}
       />
       <p aria-label="group-description">{group.description}</p>
-      <p>You haven't checked-in today!</p>
-      <button type="button">Check-in</button>
+      <p>You haven't checked in today!</p>
+      {/* <button type="button">Check-in</button> */}
+      <button onClick={handleCheckIn}>Check in</button>
       <p aria-label="check-in-count">0</p>
       <button onClick={handleTextGroupUsers}>Text all</button>
       <button onClick={handleTextGroupUsers}>Remind</button>
