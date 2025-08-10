@@ -9,7 +9,6 @@ import {
 const GroupDetails = () => {
   const { groupId } = useParams(); // groupId = the value from the URL
   const [group, setGroup] = useState(null);
-  // const [groupUsers, setGroupUsers] = useState(null);
 
   useEffect(() => {
     const fetchGroup = async () => {
@@ -19,14 +18,6 @@ const GroupDetails = () => {
 
     fetchGroup();
   }, [groupId]);
-
-  // useEffect(() => {
-  //   const fetchGroupUsers = async () => {
-  //     const data = await getAllGroupUsersApi(groupId);
-  //     setGroupUsers(data);
-  //   };
-  //   fetchGroupUsers();
-  // }, [groupId]);
 
   if (!group) return <p>No group Id found... try again</p>;
 
@@ -42,7 +33,7 @@ const GroupDetails = () => {
   };
 
   return (
-    <div>
+    <div className="container">
       <h1>{group.name}</h1>
       <img
         src={group.picture}

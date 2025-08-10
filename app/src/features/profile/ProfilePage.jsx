@@ -21,7 +21,7 @@ function ProfilePage({ user, setCurrentUser }) {
   };
 
   return (
-    <>
+    <div className="container">
       <h1>Profile Page for {user.username}</h1>{' '}
       {/* could change this later to user.name if we add in name */}
       <h2> Information </h2>
@@ -35,7 +35,7 @@ function ProfilePage({ user, setCurrentUser }) {
         user={user}
         setCurrentUser={setCurrentUser}
       ></DeleteAccountButton>
-    </>
+    </div>
   );
 }
 

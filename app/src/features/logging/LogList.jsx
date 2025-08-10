@@ -28,7 +28,7 @@ const LogList = ({ userId }) => {
   };
 
   return (
-    <div>
+    <div className="container">
       <h2 className="text-xl font-semibold mb-2">Your Currrent Logs</h2>
       {logs.length === 0 ? (
         <p>No logs yet.</p>

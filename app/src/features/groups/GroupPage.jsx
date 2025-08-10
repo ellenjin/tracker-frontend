@@ -58,7 +58,7 @@ function GroupPage({ groupList, userId }) {
   };
 
   return (
-    <div className="group-page">
+    <div className="container group-page">
       <h1 className="page-header">Groups</h1>
       <section className="group-list">{getGroupTilesJSX()}</section>
       <button>New Group</button>

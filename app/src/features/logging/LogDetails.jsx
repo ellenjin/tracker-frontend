@@ -31,7 +31,7 @@ const LogDetails = () => {
   };
 
   return (
-    <div className="p-4 border rounded">
+    <div className="p-4 border rounded container">
       <h2 className="text-2xl font-semibold">{log.title}</h2>
       <p>
         <strong>Frequency:</strong> {log.frequencyCount} / {log.frequencyUnit}
