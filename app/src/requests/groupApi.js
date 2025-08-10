@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 const URL = import.meta.env.VITE_BACKEND_URL;
 
 // Get on group
@@ -34,20 +35,26 @@ export const putAddUserToGroupApi = async (userId, newGroupId) => {
 };
 
 // Text group member
-export const postTextMemberApi = async (phoneNumber) => {
+export const postTextMemberApi = async (phoneNumber, message) => {
   try {
-    const response = await axios.post(`${URL}/texts/send`, {
+    const data = {
       phone: phoneNumber,
-      message: "Don't forget to log!",
+      message: message,
+    };
+
+    const response = await axios.post(`${URL}/texts/send`, data, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
     });
+
     return response.data;
   } catch (error) {
     console.log('Error sending text:', error);
   }
 };
 
-
-// Get all lgroup members
+// Get all group members
 export const getAllGroupUsersApi = async (groupId) => {
   try {
     const response = await axios.get(`${URL}/groups/${groupId}/users`);
