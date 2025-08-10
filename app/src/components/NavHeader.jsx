@@ -15,7 +15,7 @@ function NavHeader({ onLogout }) {
     navigate('/login');
   };
   return (
-    <nav className="nav">
+    <nav className="container nav">
       <ul className="nav-links">
         <li>
           <Link to="/HomeDashboard" className="nav-link">
