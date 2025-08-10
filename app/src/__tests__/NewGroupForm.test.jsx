@@ -1,109 +1,89 @@
-// /* eslint-disable no-undef */
-// import { render, screen, cleanup } from '@testing-library/react';
-// import userEvent from '@testing-library/user-event';
-// import '@testing-library/jest-dom';
-// import NewGroupForm from '../features/groups/NewGroupForm';
-// import { afterEach, describe, beforeEach, expect } from 'vitest';
-// import axios from 'axios';
-// import MockAdapter from 'axios-mock-adapter';
-// import { postGroupApi } from '../requests/groupApi';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import userEvent from '@testing-library/user-event';
+import { describe, it, expect, vi, beforeEach} from 'vitest';
+import { MemoryRouter } from 'react-router-dom';
 
-// const mock = new MockAdapter(axios);
-// const user = userEvent.setup();
+import GroupPage from '../features/groups/GroupPage';
+import * as groupApi from '../requests/groupApi';
 
-// test('Render NewGroupForm component', () => {
-//   // Arrange
-//   render(<NewGroupForm />);
-//   screen.debug();
-// });
+describe('GroupPage with NewGroupForm inside', () => {
+  const user = userEvent.setup();
 
-// describe('Tests elements in the NewGroupForm component', () => {
-//   const group = {
-//     name: 'Nature Hikes',
-//     picture: '/public/assets/nature.jpg',
-//     description: 'Group for weekend hiking trips and nature walks.',
-//   };
+  const groups = [
+    {
+      id: 1,
+      name: 'Hiking Enthusiasts',
+      description: 'Group for mountain hiking',
+      picture: '/assets/hiking.jpg',
+    },
+    {
+      id: 2,
+      name: 'Literary Circle',
+      description: 'Book lovers unite',
+      picture: '/assets/books.jpg',
+    },
+  ];
 
-//   beforeEach(() => {
-//     mock.reset();
-//     render(<NewGroupForm />);
-//   });
+  beforeEach(() => {
+    // Reset mocks before each test
+    vi.restoreAllMocks();
+  });
 
-//   afterEach(cleanup);
+  it('renders group names in buttons', () => {
+    render(
+      <MemoryRouter>
+        <GroupPage groupList={groups} userId={42} />
+      </MemoryRouter>
+    );
 
-//   describe('Updates the form fields correctly', () => {
-//     it('Shows input field for group name', () => {
-//       const input = screen.getByLabelText('Name');
-//       expect(input).toBeInTheDocument();
-//       expect(input.value).toBe('');
-//     });
+    expect(screen.getByText(/Hiking Enthusiasts/i)).toBeInTheDocument();
+    expect(screen.getByText(/Literary Circle/i)).toBeInTheDocument();
+  });
 
-//     it('Shows the name that the user types in field', async () => {
-//       const input = screen.getByLabelText('Name');
-//       await user.type(input, group.name);
-//       expect(input.value).toEqual('Nature Hikes');
-//     });
+  it('renders empty form fields initially', () => {
+    render(
+      <MemoryRouter>
+        <GroupPage groupList={groups} userId={42} />
+      </MemoryRouter>
+    );
 
-//     it('Shows input field for group description', () => {
-//       const input = screen.getByLabelText('Name');
-//       expect(input).toBeInTheDocument();
-//       expect(input).not.toHaveAttribute('placeholder');
-//       expect(input.value).toBe('');
-//     });
+    expect(screen.getByLabelText(/Name/i).value).toBe('');
+    expect(screen.getByLabelText(/Description/i).value).toBe('');
+  });
 
-//     it('Shows the description that the user types in field', async () => {
-//       const input = screen.getByLabelText('Description');
-//       await user.type(input, group.description);
-//       expect(input.value).toEqual(
-//         'Group for weekend hiking trips and nature walks.'
-//       );
-//     });
+  it('submits form and calls API with correct data', async () => {
+    // Mock the postGroupApi function
+    const postGroupApiMock = vi
+      .spyOn(groupApi, 'postGroupApi')
+      .mockResolvedValue({
+        id: 99,
+        name: 'Weekend Hikers',
+        picture: '', // adjust if your form sends something else
+        description: 'Group for hiking every weekend.',
+      });
 
-//     it.skip('Shows the input to upload a picture', async () => {
-//       const input = screen.getByLabelText('Picture');
-//       await user.upload(input, group.picture);
-//       expect(input.value).toEqual('/public/assets/nature.jpg');
-//     });
+    render(
+      <MemoryRouter>
+        <GroupPage groupList={groups} userId={42} />
+      </MemoryRouter>
+    );
 
-//     it.skip('Clicking on label button uploads file', async () => {});
-//   });
+    const nameInput = screen.getByLabelText(/Name/i);
+    const descriptionInput = screen.getByLabelText(/Description/i);
+    const createButton = screen.getByRole('button', { name: /create group/i });
 
-//   describe('Button', () => {
-//     it.skip('Shows create new group button', () => {
-//       const button = screen.getByRole('button');
-//       expect(button).toBeInTheDocument();
-//       expect(button).toHaveTextContent('Create Group');
-//       expect(button).toHaveAttribute('type', 'submit');
-//     });
-//   });
-// });
+    await user.type(nameInput, 'Weekend Hikers');
+    await user.type(descriptionInput, 'Group for hiking every weekend.');
 
-// // Integration test - form submission THIS FAILS BECAUSE YOU NEED TO WRITE THE CODE ON THE FRONTEND
-// test.skip('Sends the correct group data when the form is submitted', async () => {
-//   let response;
-//   mock.onPost('http://localhost:8080/groups').reply((config) => {
-//     response = JSON.parse(config.data);
-//     return [200, { message: 'Group created successfully' }];
-//   });
+    await user.click(createButton);
 
-//   render(<NewGroupForm createGroup={postGroupApi} />);
-//   const name = screen.getByLabelText('Name');
-//   const picture = screen.getByLabelText('Picture');
-//   const file = new File(['test'], 'nature.jpg', { type: 'image/jpeg' });
-//   const description = screen.getByLabelText('Description');
-//   const button = screen.getByRole('button', { name: /create group/i });
+    expect(postGroupApiMock).toHaveBeenCalledWith({
+      groupName: 'Weekend Hikers',
+      groupPicture: '',
+      groupDescription: 'Group for hiking every weekend.',
+    });
 
-//   await user.type(name, 'Nature Hikes');
-//   await user.upload(picture, file);
-//   await user.type(
-//     description,
-//     'Group for weekend hiking trips and nature walks.'
-//   );
-//   await user.click(button);
-
-//   expect(response).toEqual({
-//     description: 'Group for weekend hiking trips and nature walks.',
-//     name: 'Nature Hikes',
-//     picture: file,
-//   });
-// });
+    postGroupApiMock.mockRestore();
+  });
+});
