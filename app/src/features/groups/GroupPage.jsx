@@ -1,13 +1,18 @@
 import GroupTile from './GroupTile';
 import NewGroupForm from './NewGroupForm';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { postGroupApi, putAddUserToGroupApi } from '../../requests/groupApi';
 import JoinGroupForm from './JoinGroupForm';
 
 function GroupPage({ groupList, userId }) {
+  const [groups, setGroups] = useState(groupList || []);
   const [createdGroup, setCreatedGroup] = useState(null);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setGroups(groupList || []);
+  }, [groupList]);
 
   useEffect(() => {
     if (createdGroup) {
@@ -20,17 +25,22 @@ function GroupPage({ groupList, userId }) {
     navigate(`/groups/${groupId}`);
   };
 
-  const handleCreateGroup = async (newGroupData) => {
-    try {
-      const response = await postGroupApi(newGroupData);
-      setCreatedGroup(response);
-    } catch (error) {
-      console.log(error);
-    }
+  const handleCreateGroup = (newGroup) => {
+    setGroups((prev) => [...prev, newGroup]); // Show in UI immediately
+    setCreatedGroup(newGroup);
   };
 
+  // const handleCreateGroup = async (newGroupData) => {
+  //   try {
+  //     const response = await postGroupApi(newGroupData);
+  //     setCreatedGroup(response);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
   const getGroupTilesJSX = () => {
-    if (!groupList) {
+    if (!groups.length) {
       return (
         <>
           <h1>Groups</h1>
@@ -62,7 +72,7 @@ function GroupPage({ groupList, userId }) {
     <div className="container group-page">
       <h1 className="page-header">Groups</h1>
       <section className="group-list">{getGroupTilesJSX()}</section>
-      <button>New Group</button>
+      {/* <button>New Group</button> */}
       <NewGroupForm createGroup={handleCreateGroup} userId={userId} />
       <button>Join an existing group</button>
       <JoinGroupForm></JoinGroupForm>
