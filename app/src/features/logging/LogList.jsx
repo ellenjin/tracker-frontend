@@ -46,7 +46,7 @@ const LogList = ({ userId, groupId, logId }) => {
       )}
 
       <button onClick={() => setIsVisible(!isVisible)}>
-        Create a New Log!
+        {isVisible ? 'Hide New Log Form' : 'Create a New Log!'}
       </button>
       {isVisible && (
         <div>
