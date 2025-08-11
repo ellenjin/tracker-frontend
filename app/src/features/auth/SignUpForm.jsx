@@ -7,8 +7,10 @@
 
 import { postUserApi } from '../../requests/userApi';
 import { useNavigate } from 'react-router-dom';
+import { useUser } from '../../contexts/UserContext';
 
-function SignUpForm({ currentUser, onCreateUser }) {
+function SignUpForm() {
+  const { setCurrentUser } = useUser();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -16,15 +18,12 @@ function SignUpForm({ currentUser, onCreateUser }) {
     // Read the form data
     const formData = new FormData(e.target);
     const formDataJson = Object.fromEntries(formData.entries());
-    console.log('current user');
-    console.log(currentUser);
 
     try {
       const newUser = await postUserApi(formDataJson);
-      onCreateUser(newUser);
+      setCurrentUser(newUser);
       console.log(newUser);
-      e.target.reset(); // clear form
-      // alert('User successfully created!');
+      e.target.reset();
       navigate('/HomeDashboard');
     } catch (error) {
       alert('User could not be created! Please check your input.');
@@ -33,19 +32,25 @@ function SignUpForm({ currentUser, onCreateUser }) {
   };
 
   return (
-    <form method="post" onSubmit={handleSubmit}>
-      {/* Want the input names to be the same as the Axios request JSON structure */}
-      <label>
-        Username: <input name="username" />
-      </label>
-      <label>
-        Password: <input name="password" />
-      </label>
-      <label>
-        Phone number: <input name="phoneNumber" />
-      </label>
-      <button type="submit">Sign up</button>
-    </form>
+    <>
+      <button type="button" onClick={() => navigate('/')}>
+        ← Log in
+      </button>
+      <h1>Create an account</h1>
+      <form method="post" onSubmit={handleSubmit}>
+        {/* Want the input names to be the same as the Axios request JSON structure */}
+        <label>
+          Username: <input name="username" />
+        </label>
+        <label>
+          Password: <input name="password" />
+        </label>
+        <label>
+          Phone number: <input name="phoneNumber" />
+        </label>
+        <button type="submit">Sign up</button>
+      </form>
+    </>
   );
 }
 
