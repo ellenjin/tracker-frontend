@@ -28,7 +28,7 @@ const GroupDetails = () => {
     fetchGroupUsers();
   }, [groupId]);
 
-  if (!group) return <p>No group Id found... try again</p>;
+  if (!group) return <p>Loading...</p>;
 
   const handleTextGroupUsers = async () => {
     for (const user of groupUsers) {
@@ -45,7 +45,7 @@ const GroupDetails = () => {
         groupId={groupId}
       />
       <h2>Your Friends</h2>
-      <GroupUserList groupUsers={groupUsers} groupId={groupId} />
+      <GroupUserList groupUsers={groupUsers} groupId={groupId} onRemind={handleTextGroupUsers}/>
     </div>
   );
 };

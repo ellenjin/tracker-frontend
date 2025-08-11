@@ -1,4 +1,3 @@
-import React from 'react';
 import MatchDropdown from './MatchDropDown';
 
 const GroupActions = ({ onRemind, groupUsers, groupId }) => {

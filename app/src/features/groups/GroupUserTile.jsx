@@ -1,8 +1,8 @@
 import './details/GroupUserTile.css';
-import { useUser } from '../auth/UserContext';
+// import { useUser } from '../auth/UserContext';
 
 const GroupUserTile = ({ user, userLog, onRemind }) => {
-  const { currentUser } = useUser();
+  // const { currentUser } = useUser();
   const formatDate = (isoString) => {
     if (!isoString) return 'N/A';
     const d = new Date(isoString);
