@@ -3,12 +3,26 @@
 // Imports: NavHeader, ProfilePicture, NewGroupBtn, NewLogBtn
 // Routes: GET /api/user/:id
 // State: user
+import React, { useState } from 'react';
+import NewLogForm from '../../features/logging/NewLogForm';
 
-function HomeDashboard({ user }) {
+function HomeDashboard({ user, userId, groupId, logId }) {
+  const [isVisible, setIsVisible] = useState(false);
   return (
-    <div className="container">
-      <h1> Welcome, {user.username}! </h1>
-    </div>
+    <>
+      <div className="container">
+        <h1> Welcome, {user.username}! </h1>
+      </div>
+
+      <button onClick={() => setIsVisible(!isVisible)}>
+        {isVisible ? 'Hide New Log Form' : 'Create a New Log!'}
+      </button>
+      {isVisible && (
+        <div>
+          <NewLogForm userId={userId} groupId={groupId} logId={logId} />
+        </div>
+      )}
+    </>
   );
 }
 

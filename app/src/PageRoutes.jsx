@@ -25,7 +25,12 @@ function PageRoutes({ currentUser, setCurrentUser }) {
             user={currentUser}
             onLogout={() => setCurrentUser(null)}
           >
-            <HomeDashboard user={currentUser} />
+            <HomeDashboard
+              user={currentUser}
+              userId={currentUser ? currentUser.id : null}
+              groupId={null}
+              logId={null}
+            />
           </ProtectedRoute>
         }
       ></Route>

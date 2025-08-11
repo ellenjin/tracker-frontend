@@ -3,7 +3,7 @@ import { createLogApi } from '../../requests/logApi';
 import { useNavigate } from 'react-router-dom';
 
 // Controlled inputs form and submit button that calls createLogApi(logData) from logApi.js
-const NewLogForm = ({ userId, groupId }) => {
+const NewLogForm = ({ userId }) => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     title: '',
