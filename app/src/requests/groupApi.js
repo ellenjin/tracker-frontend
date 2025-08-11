@@ -3,7 +3,7 @@ import { UNSAFE_ErrorResponseImpl } from 'react-router-dom';
 
 const URL = import.meta.env.VITE_BACKEND_URL;
 
-// Get on group
+// Get one group
 export const getOneGroupApi = async (groupId) => {
   const response = await axios.get(`${URL}/groups/${groupId}`);
   return response.data;
