@@ -9,7 +9,8 @@ import SignUpForm from './features/auth/SignUpForm';
 import ProfilePage from './features/profile/ProfilePage';
 import LogList from './features/logging/LogList';
 import LogDetails from './features/logging/LogDetails';
-import GroupDetails from './features/groups/GroupDetails';
+
+import GroupDetails from './features/groups/details/GroupDetails';
 import { useUser } from './features/auth/UserContext';
 
 function PageRoutes() {
