@@ -11,7 +11,7 @@ import LogList from './features/logging/LogList';
 import LogDetails from './features/logging/LogDetails';
 
 import GroupDetails from './features/groups/details/GroupDetails';
-import { useUser } from './features/auth/UserContext';
+import { useUser } from './contexts/UserContext';
 
 function PageRoutes() {
   const { currentUser, setCurrentUser } = useUser();
@@ -106,4 +106,3 @@ function PageRoutes() {
 }
 
 export default PageRoutes;
-

@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { useUser } from '../auth/UserContext';
 import { putAddUserToGroupApi } from '../../requests/groupApi';
+import { useUser } from '../../contexts/UserContext';
 
 const KDefaultGroupState = {
   groupId: '',

@@ -4,10 +4,10 @@ import { getOneUserApi } from '../../requests/userApi';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './AuthPage.css';
-import { useUser } from './UserContext';
+import { useUser } from '../../contexts/UserContext';
 
 function AuthPage() {
-// function AuthPage({ onLogin }) {
+  // function AuthPage({ onLogin }) {
   // Need to find user, and set state for currentUser to that user (if valid)
   const { setCurrentUser } = useUser();
   const [username, setUsername] = useState('');
