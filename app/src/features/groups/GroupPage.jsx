@@ -3,6 +3,7 @@ import NewGroupForm from './NewGroupForm';
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { postGroupApi, putAddUserToGroupApi } from '../../requests/groupApi';
+import JoinGroupForm from './JoinGroupForm';
 
 function GroupPage({ groupList, userId }) {
   const [createdGroup, setCreatedGroup] = useState(null);
@@ -63,6 +64,8 @@ function GroupPage({ groupList, userId }) {
       <section className="group-list">{getGroupTilesJSX()}</section>
       <button>New Group</button>
       <NewGroupForm createGroup={handleCreateGroup} userId={userId} />
+      <button>Join an existing group</button>
+      <JoinGroupForm></JoinGroupForm>
     </div>
   );
 }

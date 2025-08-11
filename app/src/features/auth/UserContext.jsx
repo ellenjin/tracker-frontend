@@ -1,7 +1,8 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
+import UserContext from './UserContextObject';
 import { getOneUserApi } from '../../requests/userApi';
 
-const UserContext = createContext();
+// const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);

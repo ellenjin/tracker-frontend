@@ -1,16 +1,26 @@
 import { useState } from 'react';
+import { useUser } from '../auth/UserContext';
+import { putAddUserToGroupApi } from '../../requests/groupApi';
 
 const KDefaultGroupState = {
-  groupId: '', // May want to change to name?
+  groupId: '',
 };
-const JoinGroupForm = ({ setGroup }) => {
+const JoinGroupForm = () => {
   const [formData, setFormData] = useState(KDefaultGroupState);
+  const [error, setError] = useState('');
+  const { currentUser } = useUser();
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Axios call to join a group`
-    setGroup(formData);
-    setFormData(KDefaultGroupState);
+    try {
+      await putAddUserToGroupApi(currentUser.id, formData.groupId);
+      console.log('User added to group ', formData.groupId);
+      setError('');
+      setFormData(KDefaultGroupState);
+    } catch (error) {
+      console.log(error);
+      setError('Group ' + formData.groupId + ' could not be joined');
+    }
   };
 
   const handleChange = (event) => {
@@ -34,6 +44,7 @@ const JoinGroupForm = ({ setGroup }) => {
         value={formData['groupId']}
       />
       <button type="submit">Join Group</button>
+      <div>{error || ''}</div>
     </form>
   );
 };
