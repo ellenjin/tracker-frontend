@@ -4,11 +4,6 @@ import axios from 'axios';
 const URL = import.meta.env.VITE_BACKEND_URL;
 
 // getLogsApi(userId) -- Fetches all logs for a specific user
-// export const getLogsApi = async (userId) => {
-//   const response = await axios.get(`${URL}/logs/user/${userId}`);
-//   return response.data;
-// };
-
 export const getLogsApi = async (userId) => {
   const response = await axios.get(`${URL}/users/${userId}`);
   return response.data.logs; // Access logs from user object

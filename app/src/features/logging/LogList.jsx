@@ -7,9 +7,10 @@ import NewLogForm from './NewLogForm';
 // Map over the logs and display relevant info (Log Name for now to click into later)
 // Each log display title will be a button that takes you to full log information
 
-const LogList = ({ userId }) => {
+const LogList = ({ userId, groupId, logId }) => {
   const [logs, setLogs] = useState([]);
   const navigate = useNavigate();
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const fetchLogs = async () => {
@@ -28,28 +29,30 @@ const LogList = ({ userId }) => {
   };
 
   return (
-    <div className="container">
-      <h2 className="text-xl font-semibold mb-2">Your Currrent Logs</h2>
+    <div>
+      <h2>Your Currrent Logs</h2>
       {logs.length === 0 ? (
         <p>No logs yet.</p>
       ) : (
-        <ul className="space-y-2">
+        <ul>
           {logs.map((log) => (
             <li key={log.logId}>
-              <button
-                onClick={() => handleClick(log.logId)}
-                // className="text-blue-600 underline hover:text-blue-800"
-              >
+              <button onClick={() => handleClick(log.logId)}>
                 {log.title}
               </button>
             </li>
           ))}
         </ul>
       )}
-      <h2>Create a New Log</h2>
-      {/* hardcode test */}
-      <NewLogForm userId={userId} groupId={104} />
-      {/* <NewLogForm userId={userId} groupId={groupId} /> */}
+
+      <button onClick={() => setIsVisible(!isVisible)}>
+        Create a New Log!
+      </button>
+      {isVisible && (
+        <div>
+          <NewLogForm userId={userId} groupId={groupId} logId={logId} />
+        </div>
+      )}
     </div>
   );
 };
