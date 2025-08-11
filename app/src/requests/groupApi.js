@@ -64,3 +64,15 @@ export const getAllGroupUsersApi = async (groupId) => {
     console.log(error);
   }
 };
+
+// Get log of one group member
+export const getUserLogForGroupApi = async (userId, groupId) => {
+  try {
+    const response = await axios.get(
+      `${URL}/users/${userId}/groups/${groupId}/log`
+    );
+    return response.data;
+  } catch (error) {
+    console.error('Could not get user log for group', userId, groupId, error);
+  }
+};

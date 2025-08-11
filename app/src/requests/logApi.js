@@ -33,3 +33,5 @@ export const deleteLogApi = async (logId) => {
 };
 
 // updateLogApi(id, data) -- Sends a PUT/PATCH to edit a specific log
+
+
