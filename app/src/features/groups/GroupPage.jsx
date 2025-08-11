@@ -62,10 +62,7 @@ function GroupPage({ groupList, userId }) {
       <h1 className="page-header">Groups</h1>
       <section className="group-list">{getGroupTilesJSX()}</section>
       <button>New Group</button>
-      <NewGroupForm
-        createGroup={handleCreateGroup}
-        userId={userId}
-      />
+      <NewGroupForm createGroup={handleCreateGroup} userId={userId} />
     </div>
   );
 }
