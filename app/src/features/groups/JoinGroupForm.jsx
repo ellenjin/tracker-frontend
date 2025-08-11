@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { putAddUserToGroupApi } from '../../requests/groupApi';
+import { createLogApi } from '../../requests/logApi';
+import { getOneGroupApi } from '../../requests/groupApi';
 import { useUser } from '../../contexts/UserContext';
 
 const KDefaultGroupState = {
@@ -13,8 +14,14 @@ const JoinGroupForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await putAddUserToGroupApi(currentUser.id, formData.groupId);
-      console.log('User added to group ', formData.groupId);
+      const group = await getOneGroupApi(formData.groupId);
+      const request = {
+        title: group.name,
+        user: { id: currentUser.id },
+        group: { id: group.id },
+      };
+      const response = await createLogApi(request);
+      console.log('User added to group ', response.title);
       setError('');
       setFormData(KDefaultGroupState);
     } catch (error) {
