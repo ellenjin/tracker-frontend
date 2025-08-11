@@ -1,7 +1,8 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import { getOneUserApi } from '../../requests/userApi';
+import { useState, useEffect } from 'react';
+import { UserContext } from './UserContext';
+import { getOneUserApi } from '../requests/userApi';
 
-const UserContext = createContext();
+// const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
@@ -31,6 +32,3 @@ export const UserProvider = ({ children }) => {
     </UserContext.Provider>
   );
 };
-
-// Custom hook for easy access
-export const useUser = () => useContext(UserContext);

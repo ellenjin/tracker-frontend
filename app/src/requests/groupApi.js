@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { UNSAFE_ErrorResponseImpl } from 'react-router-dom';
 
 const URL = import.meta.env.VITE_BACKEND_URL;
 
@@ -31,6 +32,7 @@ export const putAddUserToGroupApi = async (userId, newGroupId) => {
     return response.data;
   } catch (error) {
     console.log(error);
+    throw error;
   }
 };
 
