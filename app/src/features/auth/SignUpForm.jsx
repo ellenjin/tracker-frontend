@@ -32,19 +32,25 @@ function SignUpForm() {
   };
 
   return (
-    <form method="post" onSubmit={handleSubmit}>
-      {/* Want the input names to be the same as the Axios request JSON structure */}
-      <label>
-        Username: <input name="username" />
-      </label>
-      <label>
-        Password: <input name="password" />
-      </label>
-      <label>
-        Phone number: <input name="phoneNumber" />
-      </label>
-      <button type="submit">Sign up</button>
-    </form>
+    <>
+      <button type="button" onClick={() => navigate('/')}>
+        ← Log in
+      </button>
+      <h1>Create an account</h1>
+      <form method="post" onSubmit={handleSubmit}>
+        {/* Want the input names to be the same as the Axios request JSON structure */}
+        <label>
+          Username: <input name="username" />
+        </label>
+        <label>
+          Password: <input name="password" />
+        </label>
+        <label>
+          Phone number: <input name="phoneNumber" />
+        </label>
+        <button type="submit">Sign up</button>
+      </form>
+    </>
   );
 }
 
