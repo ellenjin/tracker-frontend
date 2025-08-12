@@ -32,9 +32,9 @@ function ProfilePage({ user, setCurrentUser }) {
     }
   };
 
-  // Generate placeholder if avatarUrl is missing
+  // Generate placeholder if profilePicture is missing
   const avatarSrc =
-    // user.avatarUrl || will need to pudate this if solhee is able to add a picture prop to user
+    user.profilePicture || //will need to pudate this if solhee is able to add a picture prop to user
     `https://ui-avatars.com/api/?name=${encodeURIComponent(
       user.username
     )}&background=random&color=fff&size=256`;
@@ -48,7 +48,7 @@ function ProfilePage({ user, setCurrentUser }) {
         justifyContent={'space-between'}
         direction={isSmallScreen ? 'column' : 'row'}
       >
-        <Grid item xs>
+        <Grid>
           <Typography variant="h4" gutterBottom>
             Howdy, {user.username}!
           </Typography>
@@ -62,7 +62,7 @@ function ProfilePage({ user, setCurrentUser }) {
           </Typography>
         </Grid>
 
-        <Grid item>
+        <Grid>
           <Avatar
             alt={user.username}
             src={avatarSrc}

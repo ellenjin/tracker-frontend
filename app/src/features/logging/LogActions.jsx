@@ -1,4 +1,3 @@
-// src/features/logging/LogActions.jsx
 import React, { useState } from 'react';
 import {
   Box,
@@ -10,9 +9,9 @@ import {
   DialogTitle,
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit'; // ✅ added import for Edit icon
+import EditIcon from '@mui/icons-material/Edit'; 
 
-const LogActions = ({ onDelete, setIsEditing }) => { // ✅ added setIsEditing prop
+const LogActions = ({ onDelete, setIsEditing }) => { 
   const [open, setOpen] = useState(false);
 
   const handleDelete = async () => {
@@ -28,7 +27,7 @@ const LogActions = ({ onDelete, setIsEditing }) => { // ✅ added setIsEditing p
     <Box
       sx={{
         display: 'flex',
-        gap: 2, // ✅ added spacing between buttons
+        gap: 2, 
         justifyContent: 'flex-end',
         mt: 4,
       }}
@@ -36,8 +35,8 @@ const LogActions = ({ onDelete, setIsEditing }) => { // ✅ added setIsEditing p
       <Button
         variant="outlined"
         color="primary"
-        startIcon={<EditIcon />} // ✅ added Edit icon
-        onClick={() => setIsEditing(true)} // ✅ triggers edit mode
+        startIcon={<EditIcon />} 
+        onClick={() => setIsEditing(true)} 
       >
         Edit
       </Button>
