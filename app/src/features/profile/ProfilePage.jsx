@@ -46,7 +46,7 @@ function ProfilePage({ user, setCurrentUser }) {
       >
         <Grid item xs>
           <Typography variant="h4" gutterBottom>
-            Howdy {user.username}!
+            Howdy, {user.username}!
           </Typography>
 
           <Typography variant="h6" gutterBottom>
