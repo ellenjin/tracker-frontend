@@ -8,9 +8,16 @@ import {
 } from '../../../requests/groupApi';
 import { getLogForUserInGroupApi } from '../../../requests/logApi';
 import GroupHeader from './GroupHeader';
-import GroupActions from './GroupActions';
 import GroupUserList from './GroupUserList';
 import { useUser } from '../../../contexts/UserContext';
+import {
+  Container,
+  CircularProgress,
+  Box,
+  Button,
+  Typography,
+} from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const GroupDetails = () => {
   const { currentUser } = useUser();
@@ -33,7 +40,12 @@ const GroupDetails = () => {
     fetchGroupUsers();
   }, [groupId]);
 
-  if (!group) return <p>Loading...</p>;
+  if (!group)
+    return (
+      <Container sx={{ mt: 4, display: 'flex', justifyContent: 'center' }}>
+        <CircularProgress />
+      </Container>
+    );
 
   const handleTextGroupUsers = async () => {
     for (const user of groupUsers) {
@@ -43,7 +55,6 @@ const GroupDetails = () => {
 
   const handleCheckIn = async () => {
     const getLog = await getLogForUserInGroupApi(currentUser.id, groupId);
-    console.log(getLog);
     navigate(`/logs/${getLog.logId}`);
   };
 
@@ -56,7 +67,6 @@ const GroupDetails = () => {
     try {
       await deleteGroupApi(group.id);
       alert('Group deleted successfully');
-      // navigate('/groups', { state: { deletedGroupId: group.id } });
       navigate('/groups');
     } catch (error) {
       console.error(error);
@@ -65,22 +75,37 @@ const GroupDetails = () => {
   };
 
   return (
-    <div className="container">
-      <GroupHeader group={group} />
-      <GroupActions
-        onRemind={handleTextGroupUsers}
+    <Container sx={{ mt: 4 }}>
+      {/* Pass required props to GroupHeader */}
+      <GroupHeader
+        group={group}
         groupUsers={groupUsers}
         groupId={groupId}
         handleCheckIn={handleCheckIn}
+        onRemind={handleTextGroupUsers}
       />
-      <h2>Your Friends</h2>
+
+      <Typography variant="h5" gutterBottom>
+        Your Friends
+      </Typography>
+
       <GroupUserList
         groupUsers={groupUsers}
         groupId={groupId}
         onRemind={handleTextGroupUsers}
       />
-      <button onClick={handleDeleteGroup}>Delete Group</button>
-    </div>
+
+      <Box sx={{ mt: 4, display: 'flex', justifyContent: 'flex-end' }}>
+        <Button
+          startIcon={<DeleteIcon />}
+          variant="outlined"
+          color="error"
+          onClick={handleDeleteGroup}
+        >
+          Delete Group
+        </Button>
+      </Box>
+    </Container>
   );
 };
 
