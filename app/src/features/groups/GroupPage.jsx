@@ -1,46 +1,58 @@
 import GroupTile from './GroupTile';
 import NewGroupForm from './NewGroupForm';
 import { useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { postGroupApi, putAddUserToGroupApi } from '../../requests/groupApi';
+import { useUser } from '../../contexts/UserContext';
+import {
+  getOneGroupApi,
+  postGroupApi,
+  putAddUserToGroupApi,
+} from '../../requests/groupApi';
+import { createLogApi } from '../../requests/logApi';
 import JoinGroupForm from './JoinGroupForm';
 
-function GroupPage({ groupList, userId }) {
-  const [groups, setGroups] = useState(groupList || []);
-  const [createdGroup, setCreatedGroup] = useState(null);
+function GroupPage() {
+  const { currentUser, setCurrentUser } = useUser();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    setGroups(groupList || []);
-  }, [groupList]);
-
-  useEffect(() => {
-    if (createdGroup) {
-      putAddUserToGroupApi(userId, createdGroup.id);
-      console.log(createdGroup);
-    }
-  }, [createdGroup, userId]);
 
   const handleClick = (groupId) => {
     navigate(`/groups/${groupId}`);
   };
-
-  const handleCreateGroup = (newGroup) => {
-    setGroups((prev) => [...prev, newGroup]); // Show in UI immediately
-    setCreatedGroup(newGroup);
+  // just creates a group
+  const handleCreateGroup = async (newGroupData) => {
+    try {
+      console.log(newGroupData);
+      const response = await postGroupApi(newGroupData);
+      console.log(response);
+      handleJoinGroup(response.id);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  // const handleCreateGroup = async (newGroupData) => {
-  //   try {
-  //     const response = await postGroupApi(newGroupData);
-  //     setCreatedGroup(response);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  // Handles joining an existing group
+  const handleJoinGroup = async (groupId) => {
+    try {
+      const group = await getOneGroupApi(groupId);
+      await putAddUserToGroupApi(currentUser.id, group.id);
+      // createa log for joining
+      const request = {
+        title: group.name,
+        user: { id: currentUser.id },
+        group: { id: group.id },
+      };
+      const response = await createLogApi(request);
+      console.log('User added to group ', response.title);
+      setCurrentUser((prevUser) => ({
+        ...prevUser,
+        groups: [...(prevUser.groups || []), group],
+      }));
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const getGroupTilesJSX = () => {
-    if (!groups.length) {
+    if (!currentUser?.groups || currentUser.groups.length === 0) {
       return (
         <>
           <h1>Groups</h1>
@@ -48,7 +60,7 @@ function GroupPage({ groupList, userId }) {
         </>
       );
     }
-    const sortedGroups = [...groupList].sort((a, b) => a.id - b.id);
+    const sortedGroups = [...currentUser.groups].sort((a, b) => a.id - b.id);
 
     return sortedGroups.map((group) => {
       return (
@@ -72,10 +84,9 @@ function GroupPage({ groupList, userId }) {
     <div className="container group-page">
       <h1 className="page-header">Groups</h1>
       <section className="group-list">{getGroupTilesJSX()}</section>
-      {/* <button>New Group</button> */}
-      <NewGroupForm createGroup={handleCreateGroup} userId={userId} />
+      <NewGroupForm createGroup={handleCreateGroup} userId={currentUser.id} />
       <button>Join an existing group</button>
-      <JoinGroupForm></JoinGroupForm>
+      <JoinGroupForm joinGroup={handleJoinGroup}></JoinGroupForm>
     </div>
   );
 }
