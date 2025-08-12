@@ -3,14 +3,13 @@
 // Imports: SignupButton, InterestsDropdown, FormField.
 // Routes: POST /api/auth/signup.
 // State: form
-// import SignUpBtn from './SignUpBtn'; => update: maybe not
 
 import { postUserApi } from '../../requests/userApi';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '../../contexts/UserContext';
 
 function SignUpForm() {
-  const { setCurrentUser } = useUser();
+  const { setCurrentUser, refreshUser } = useUser();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -24,6 +23,7 @@ function SignUpForm() {
       setCurrentUser(newUser);
       console.log(newUser);
       e.target.reset();
+      refreshUser();
       navigate('/HomeDashboard');
     } catch (error) {
       alert('User could not be created! Please check your input.');

@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { postGroupApi } from '../../requests/groupApi';
-import { useNavigate } from 'react-router-dom';
+// import { postGroupApi } from '../../requests/groupApi';
+// import { useNavigate } from 'react-router-dom';
 
 const KDefaultGroupState = {
   groupName: '',
@@ -10,7 +10,7 @@ const KDefaultGroupState = {
 const NewGroupForm = ({ createGroup }) => {
   const [formData, setFormData] = useState(KDefaultGroupState);
   const [showForm, setShowForm] = useState(false);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -22,23 +22,23 @@ const NewGroupForm = ({ createGroup }) => {
   // const inputName = event.target.name;
   // const inputValue = event.target.value;
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    try {
-      const newGroup = await postGroupApi(formData);
-      alert('Group created!');
-      if (createGroup) {
-        createGroup(newGroup);
-      }
+  // const handleSubmit = async (event) => {
+  //   event.preventDefault();
+  //   try {
+  //     const newGroup = await postGroupApi(formData);
+  //     alert('Group created!');
+  //     if (createGroup) {
+  //       createGroup(newGroup);
+  //     }
 
-      navigate(`/groups/${newGroup.id}`);
-    } catch (error) {
-      console.error('Failed to create group:', error);
-      alert('Something went wrong. Try again.');
-    }
-    // createGroup(formData);
-    // setFormData(KDefaultGroupState);
-  };
+  //     navigate(`/groups/${newGroup.id}`);
+  //   } catch (error) {
+  //     console.error('Failed to create group:', error);
+  //     alert('Something went wrong. Try again.');
+  //   }
+  // createGroup(formData);
+  // setFormData(KDefaultGroupState);
+  // };
 
   //   setFormData((formData) => ({
   //     ...formData,
@@ -52,7 +52,7 @@ const NewGroupForm = ({ createGroup }) => {
         {showForm ? 'Hide New Group Form' : 'Create New Group!'}
       </button>
       {showForm && (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={createGroup}>
           {/* <form onSubmit={handleSubmit} action="/action_page.php"> */}
           <label htmlFor="groupName">Name</label>
           <input

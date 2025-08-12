@@ -7,8 +7,6 @@ import './AuthPage.css';
 import { useUser } from '../../contexts/UserContext';
 
 function AuthPage() {
-  // function AuthPage({ onLogin }) {
-  // Need to find user, and set state for currentUser to that user (if valid)
   const { setCurrentUser } = useUser();
   const [username, setUsername] = useState('');
   const [error, setError] = useState('');
@@ -18,10 +16,9 @@ function AuthPage() {
     const userData = await getOneUserApi(username);
     if (userData) {
       setCurrentUser(userData);
-      // onLogin(userData);
       navigate('/HomeDashboard');
     } else {
-      setError('User does not exist');
+      setError('Could not log in, please try again!');
     }
   };
 
