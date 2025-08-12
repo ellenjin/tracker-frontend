@@ -137,4 +137,4 @@ VITE_BACKEND_URL=http://localhost:8080
   - `http://localhost:5173` (default Vite port), or
   - The deployed frontend (`ellenjin.github.io/tracker-frontend`).
 - The app is configured to use the deployed database by default — local DB setup is optional.
-- For backend setup instructions, refer to the [`tracker-backend` repository](https://github.com/ellenjin/tracker-backend).
+- For backend setup instructions, refer to the [`tracker-backend repository`](https://github.com/ellenjin/tracker-backend).
