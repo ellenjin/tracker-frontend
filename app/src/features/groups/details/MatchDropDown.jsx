@@ -3,10 +3,14 @@ import React from 'react';
 const MatchDropdown = ({ groupUsers, groupId }) => {
   // Filter match options: wantsPartner = true, same skill level, no partner assigned yet
   const matchOptions = groupUsers.filter((user) =>
-    user.logs.some(
-      (log) =>
-        log.group.id === Number(groupId) && log.wantsPartner && !log.partnerName
-    )
+    user.logs.some((log) => {
+      console.log(log);
+      return (
+        log.group?.id === Number(groupId) &&
+        log.wantsPartner &&
+        !log.partnerName
+      );
+    })
   );
 
   const handleSelect = (event) => {
@@ -19,10 +23,10 @@ const MatchDropdown = ({ groupUsers, groupId }) => {
     <select onChange={handleSelect}>
       <option value="">Select a partner</option>
       {matchOptions.map((user) => {
-        const log = user.logs.find((log) => log.group.id === Number(groupId));
+        const log = user.logs.find((log) => log.group?.id === Number(groupId));
         return (
           <option key={user.id} value={user.id}>
-            {user.username} ({log.skillLevel})
+            {user.username} ({log?.skillLevel || 'No skill set'})
           </option>
         );
       })}

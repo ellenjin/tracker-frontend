@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import NewLogForm from '../../features/logging/NewLogForm';
 import { Box, Typography } from '@mui/material';
 import NewLogBtn from '../../components/NewLogBtn';
+import NewGroupBtn from '../../components/NewLogBtn';
 import NewGroupForm from '../../features/groups/NewGroupForm';
 
 function HomeDashboard({ user, userId, groupId, logId }) {
   const [isLogFormVisible, setIsLogFormVisible] = useState(false);
+  const [isGroupFormVisible, setIsGroupFormVisible] = useState(false);
 
   return (
     <>
@@ -24,9 +26,20 @@ function HomeDashboard({ user, userId, groupId, logId }) {
         {isLogFormVisible && (
           <NewLogForm userId={userId} groupId={groupId} logId={logId} />
         )}
+
+        <NewGroupBtn
+          isVisible={isGroupFormVisible}
+          onClick={() => setIsGroupFormVisible(!isGroupFormVisible)}
+          showText="Create a New Group!"
+          hideText="Hide New Group Form"
+        />
+
+        {isGroupFormVisible && (
+          <NewGroupForm userId={userId} groupId={groupId} logId={logId} />
+        )}
       </Box>
 
-      <NewGroupForm userId={userId} />
+      {/* <NewGroupForm userId={userId} /> */}
     </>
   );
 }

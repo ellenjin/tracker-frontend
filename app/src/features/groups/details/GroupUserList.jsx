@@ -6,7 +6,7 @@ const GroupUserList = ({ groupUsers, groupId }) => {
     <section>
       {groupUsers.map((user) => {
         const userLog = user.logs.find(
-          (log) => log.group.id === Number(groupId)
+          (log) => log.group?.id === Number(groupId)
         );
         return (
           <GroupUserTile
