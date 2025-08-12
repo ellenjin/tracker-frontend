@@ -3,8 +3,8 @@ import SignUpBtn from './SignUpBtn';
 import { getOneUserApi } from '../../requests/userApi';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './AuthPage.css';
 import { useUser } from '../../contexts/UserContext';
+import { Box, Typography, Alert } from '@mui/material';
 
 function AuthPage() {
   const { setCurrentUser } = useUser();
@@ -23,20 +23,41 @@ function AuthPage() {
   };
 
   return (
-    <div className="container auth-container">
-      <h1>Logger</h1>
-      <p>Let's stay on track together!</p>
+    <Box
+      sx={{
+        maxWidth: 400,
+        mx: 'auto',
+        mt: 8,
+        p: 3,
+        borderRadius: 2,
+        boxShadow: 3,
+        backgroundColor: 'background.paper',
+        textAlign: 'center',
+      }}
+    >
+      <Typography variant="h3" component="h1" gutterBottom>
+        Logger
+      </Typography>
+      <Typography variant="body1" gutterBottom>
+        Let's stay on track together!
+      </Typography>
+
       <LoginForm
         username={username}
         setUsername={setUsername}
         onSubmit={handleLogin}
         setError={setError}
-      ></LoginForm>
-      <SignUpBtn></SignUpBtn>
+      />
+
+      <SignUpBtn />
+
       {error && (
-        <div className="auth-error ${error ? '' : 'hidden}">{error || ''}</div>
+        <Alert severity="error" sx={{ mt: 2 }}>
+          {error}
+        </Alert>
       )}
-    </div>
+    </Box>
   );
 }
+
 export default AuthPage;
