@@ -19,7 +19,7 @@ function SignUpForm() {
       e.target.reset();
       refreshUser();
 
-      navigate('/HomeDashboard');
+      navigate('/profilePage');
     } catch (error) {
       alert('User could not be created! Please check your input.');
       console.error('Failed to create user', error);
