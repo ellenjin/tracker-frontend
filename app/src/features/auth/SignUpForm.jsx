@@ -14,7 +14,6 @@ function SignUpForm() {
 
     try {
       const newUser = await postUserApi(formDataJson);
-      //       onCreateUser(newUser);
       setCurrentUser(newUser);
       console.log(newUser);
       e.target.reset();

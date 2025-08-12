@@ -23,6 +23,10 @@ function ProfilePage({ user, setCurrentUser }) {
     setSelectedInterests(newInterests);
     try {
       await updateUserInterestsApi(user.id, newInterests);
+      setCurrentUser((prev) => ({
+        ...prev,
+        interests: newInterests,
+      }));
     } catch (error) {
       console.error('Failed to update interests', error);
     }
