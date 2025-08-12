@@ -34,7 +34,7 @@ function ProfilePage({ user, setCurrentUser }) {
 
   // Generate placeholder if profilePicture is missing
   const avatarSrc =
-    user.profilePicture || //will need to pudate this if solhee is able to add a picture prop to user
+    user.profilePicture || 
     `https://ui-avatars.com/api/?name=${encodeURIComponent(
       user.username
     )}&background=random&color=fff&size=256`;
