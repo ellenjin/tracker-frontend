@@ -33,8 +33,10 @@ function ProfilePage({ user, setCurrentUser }) {
   };
 
   // Generate placeholder if profilePicture is missing
+  console.log('profile picture: ');
+  console.log(user.profilePicture);
   const avatarSrc =
-    user.profilePicture || 
+    user.profilePicture ||
     `https://ui-avatars.com/api/?name=${encodeURIComponent(
       user.username
     )}&background=random&color=fff&size=256`;

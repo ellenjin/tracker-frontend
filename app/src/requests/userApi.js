@@ -16,6 +16,7 @@ export const getOneUserApi = async (identifier) => {
         username: user.username,
         groups: user.groups,
         phoneNumber: user.phoneNumber,
+        profilePicture: user.profilePicture,
         interests: user.interests,
       }));
     } else if (response.data) {
@@ -24,6 +25,7 @@ export const getOneUserApi = async (identifier) => {
         username: response.data.username,
         groups: response.data.groups,
         phoneNumber: response.data.phoneNumber,
+        profilePicture: response.data.profilePicture,
         interests: response.data.interests,
       };
     }
@@ -41,6 +43,7 @@ export const postUserApi = async (userData) => {
       username: response.data.username,
       groups: response.data.groups,
       phoneNumber: response.data.phoneNumber,
+      profilePicture: response.data.profilePicture,
       interests: response.data.interests,
     };
   } catch (error) {
