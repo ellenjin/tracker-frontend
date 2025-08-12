@@ -93,7 +93,10 @@ function PageRoutes() {
       <Route
         path="/Logs/:logId"
         element={
-          <ProtectedRoute user={currentUser}>
+          <ProtectedRoute
+            user={currentUser}
+            onLogout={() => setCurrentUser(null)}
+          >
             <LogDetails />
           </ProtectedRoute>
         }
