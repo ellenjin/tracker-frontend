@@ -1,8 +1,10 @@
 import { postUserApi } from '../../requests/userApi';
 import { useNavigate } from 'react-router-dom';
 import { Box, TextField, Button } from '@mui/material';
+import { useUser } from '../../contexts/UserContext';
 
-function SignUpForm({ currentUser, onCreateUser }) {
+function SignUpForm() {
+  const { setCurrentUser, refreshUser } = useUser();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -12,8 +14,12 @@ function SignUpForm({ currentUser, onCreateUser }) {
 
     try {
       const newUser = await postUserApi(formDataJson);
-      onCreateUser(newUser);
+//       onCreateUser(newUser);
+      setCurrentUser(newUser);
+      console.log(newUser);
       e.target.reset();
+      refreshUser();
+
       navigate('/HomeDashboard');
     } catch (error) {
       alert('User could not be created! Please check your input.');

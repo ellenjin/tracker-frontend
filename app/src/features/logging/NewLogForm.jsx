@@ -48,19 +48,6 @@ const NewLogForm = ({ userId }) => {
       const response = await createLogApi(payload);
       alert('Log created!');
       navigate(`/logs/${response.logId}`);
-
-      // // Reset form
-      // setFormData({
-      //   title: '',
-      //   frequencyCount: 0,
-      //   frequencyUnit: 'WEEK',
-      //   skillLevel: 'BEGINNER',
-      //   score: 0, // reset score
-      //   checkInCount: 0,
-      //   wantsPartner: false,
-      //   partnerName: null,
-      //   timeStamp: '',
-      // });
     } catch (error) {
       console.error('Failed to create log:', error);
       alert('Something went wrong. Try Again.');

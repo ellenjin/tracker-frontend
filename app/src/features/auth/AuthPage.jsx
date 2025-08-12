@@ -3,8 +3,7 @@ import SignUpBtn from './SignUpBtn';
 import { getOneUserApi } from '../../requests/userApi';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useUser } from './UserContext';
-
+import { useUser } from '../../contexts/UserContext';
 import { Box, Typography, Alert } from '@mui/material';
 
 function AuthPage() {
@@ -19,7 +18,7 @@ function AuthPage() {
       setCurrentUser(userData);
       navigate('/HomeDashboard');
     } else {
-      setError('User does not exist');
+      setError('Could not log in, please try again!');
     }
   };
 

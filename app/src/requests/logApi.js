@@ -41,5 +41,6 @@ export const getLogForUserInGroupApi = async (userId, groupId) => {
 
 // increase checkIn
 export const logCheckInApi = async (logId) => {
-  axios.put(`${URL}/logs/${logId}/checkIn`);
+  const response = await axios.put(`${URL}/logs/${logId}/checkIn`);
+  return response.data;
 };

@@ -36,15 +36,13 @@ export const postUserApi = async (userData) => {
   try {
     const response = await axios.post(`${URL}/users`, userData);
     console.log(response);
-    return [
-      {
-        id: response.data.id,
-        username: response.data.username,
-        groups: response.data.groups,
-        phoneNumber: response.data.phoneNumber,
-        interests: response.data.interests,
-      },
-    ];
+    return {
+      id: response.data.id,
+      username: response.data.username,
+      groups: response.data.groups,
+      phoneNumber: response.data.phoneNumber,
+      interests: response.data.interests,
+    };
   } catch (error) {
     console.log('Cannot post user with username "' + userData.username + '"');
     console.log(error);

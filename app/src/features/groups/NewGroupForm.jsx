@@ -1,4 +1,6 @@
 import { useState } from 'react';
+// import { postGroupApi } from '../../requests/groupApi';
+// import { useNavigate } from 'react-router-dom';
 
 const KDefaultGroupState = {
   groupName: '',
@@ -7,51 +9,67 @@ const KDefaultGroupState = {
 };
 const NewGroupForm = ({ createGroup }) => {
   const [formData, setFormData] = useState(KDefaultGroupState);
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    createGroup(formData);
-    setFormData(KDefaultGroupState);
-  };
+  const [showForm, setShowForm] = useState(false);
+  // const navigate = useNavigate();
 
   const handleChange = (event) => {
-    const inputName = event.target.name;
-    const inputValue = event.target.value;
-
-    setFormData((formData) => ({
-      ...formData,
-      [inputName]: inputValue,
+    const { name, value } = event.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
     }));
   };
 
-  return (
-    <form onSubmit={handleSubmit} action="/action_page.php">
-      <label htmlFor="groupName">Name</label>
-      <input
-        id="groupName"
-        onChange={handleChange}
-        type="text"
-        name="groupName"
-        value={formData['groupName']}
-      />
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
-      <label htmlFor="description">Description</label>
-      <input
-        id="description"
-        onChange={handleChange}
-        type="text"
-        name="groupDescription"
-        value={formData['groupDescription']}
-      />
-      {/* <label htmlFor="groupPicture">Picture</label>
+    try {
+      // Call parent function with form data
+      await createGroup(formData);
+
+      // Reset form
+      setFormData(KDefaultGroupState);
+      setShowForm(false);
+    } catch (error) {
+      console.error('Failed to create group:', error);
+    }
+  };
+
+  return (
+    <>
+      <button onClick={() => setShowForm((prev) => !prev)}>
+        {showForm ? 'Hide New Group Form' : 'Create New Group!'}
+      </button>
+      {showForm && (
+        <form onSubmit={handleSubmit} action="/action_page.php">
+          <label htmlFor="groupName">Name</label>
+          <input
+            id="groupName"
+            onChange={handleChange}
+            type="text"
+            name="groupName"
+            value={formData['groupName']}
+          />
+
+          <label htmlFor="description">Description</label>
+          <input
+            id="description"
+            onChange={handleChange}
+            type="text"
+            name="groupDescription"
+            value={formData['groupDescription']}
+          />
+          {/* <label htmlFor="groupPicture">Picture</label>
       <input
         type="file"
         id="groupPicture"
         name="groupPicture"
         onChange={handleChange}
       /> */}
-      <button type="submit">Create Group</button>
-    </form>
+          <button type="submit">Create Group</button>
+        </form>
+      )}
+    </>
   );
 };
 
