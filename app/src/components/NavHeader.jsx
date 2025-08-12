@@ -29,7 +29,6 @@ function NavHeader({ onLogout }) {
 
   const navLinks = [
     { label: 'Home', to: '/ProfilePage' },
-    // { label: 'OldHome', to: '/HomeDashboard' },
     { label: 'Groups', to: '/GroupPage' },
     { label: 'Logs', to: '/Logs' },
   ];

@@ -24,8 +24,8 @@ const DeleteAccountButton = ({ user, setCurrentUser }) => {
 
   return (
     <>
-      <Button variant="contained" color="error" onClick={() => setOpen(true)}>
-        Delete your account {user.username}
+      <Button variant="outlined" color="error" onClick={() => setOpen(true)}>
+        Delete account 
       </Button>
 
       <Dialog open={open} onClose={() => setOpen(false)}>
