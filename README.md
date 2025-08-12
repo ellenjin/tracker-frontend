@@ -113,7 +113,7 @@ Inside the `tracker-frontend` folder:
 ```
 VITE_BACKEND_URL=http://localhost:8080
 # Or for deployed backend:
-# VITE_BACKEND_URL=https://your-backend-url.com
+# VITE_BACKEND_URL=https://tracker-backend-r9ae.onrender.com/
 ```
 
 ### 5. Run the development server
