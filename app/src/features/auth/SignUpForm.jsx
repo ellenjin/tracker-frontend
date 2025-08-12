@@ -14,7 +14,7 @@ function SignUpForm() {
 
     try {
       const newUser = await postUserApi(formDataJson);
-//       onCreateUser(newUser);
+      //       onCreateUser(newUser);
       setCurrentUser(newUser);
       console.log(newUser);
       e.target.reset();
@@ -62,6 +62,7 @@ function SignUpForm() {
         label="Phone Number"
         name="phoneNumber"
         variant="outlined"
+        required
         fullWidth
         placeholder="123-456-7890"
         slotProps={{ maxLength: 15 }}
