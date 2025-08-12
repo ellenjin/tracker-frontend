@@ -1,29 +1,27 @@
 import React, { useEffect, useState } from 'react';
-import { getLogsApi } from '../../requests/logApi';
+import { List, Typography, Box, Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { getLogsApi, deleteLogApi } from '../../requests/logApi';
+import LogListItem from './LogListItem';
+import SkeletonList from './SkeletonLogList';
 import NewLogForm from './NewLogForm';
-import NewLogBtn from '../../components/NewLogBtn';
-import {
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
-  Typography,
-  Box,
-} from '@mui/material';
 
-const LogList = ({ userId, groupId, logId }) => {
+export default function LogList({ userId, groupId, logId }) {
   const [logs, setLogs] = useState([]);
-  const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
   const [isVisible, setIsVisible] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchLogs = async () => {
+      setLoading(true);
       try {
         const logs = await getLogsApi(userId);
         setLogs(logs);
       } catch (error) {
         console.error('Failed to fetch logs:', error);
+      } finally {
+        setLoading(false);
       }
     };
     fetchLogs();
@@ -33,40 +31,49 @@ const LogList = ({ userId, groupId, logId }) => {
     navigate(`/logs/${logId}`);
   };
 
+  const handleDelete = async (logId) => {
+    try {
+      await deleteLogApi(logId);
+      setLogs((prevLogs) => prevLogs.filter((log) => log.logId !== logId));
+    } catch (error) {
+      console.error('Failed to delete log:', error);
+    }
+  };
+
   return (
-    <Box sx={{ p: 2, maxWidth: 720, margin: 'auto' }}>
-      <Typography variant="h5" component="h2" gutterBottom>
-        Your Current Logs
+    <Box sx={{ maxWidth: 720, mx: 'auto', p: 2 }}>
+      <Typography variant="h5" gutterBottom>
+        Logs Activity
       </Typography>
 
-      {logs.length === 0 ? (
+      {loading ? (
+        <SkeletonList />
+      ) : logs.length === 0 ? (
         <Typography>No logs yet.</Typography>
       ) : (
         <List>
           {logs.map((log) => (
-            <ListItem key={log.logId} disablePadding>
-              <ListItemButton onClick={() => handleClick(log.logId)}>
-                <ListItemText primary={log.title} />
-              </ListItemButton>
-            </ListItem>
+            <LogListItem
+              key={log.logId}
+              log={log}
+              onClick={handleClick}
+              onDelete={handleDelete}
+            />
           ))}
         </List>
       )}
 
-      <NewLogBtn
-        isVisible={isVisible}
+      <Button
+        variant="contained"
         onClick={() => setIsVisible(!isVisible)}
-        showText="Create a New Log!"
-        hideText="Hide New Log Form"
-      />
+        sx={{ mt: 2 }}
+      >
+        {isVisible ? 'Hide New Log Form' : 'Create a New Log!'}
+      </Button>
 
       {isVisible && (
         <NewLogForm userId={userId} groupId={groupId} logId={logId} />
       )}
     </Box>
   );
-};
-
-export default LogList;
-
-
+}
