@@ -1,10 +1,8 @@
-// Display user's username, phone number, interests
-// Allow user to choose interests (from a drop down)
-// Allow user to change username and phone number?
 import InterestDropdown from './InterestDropdown';
 import DeleteAccountButton from './DeleteAccountButton';
 import { useState } from 'react';
 import { updateUserInterestsApi } from '../../requests/userApi';
+import { Box, Typography, Divider } from '@mui/material';
 
 function ProfilePage({ user, setCurrentUser }) {
   const [selectedInterests, setSelectedInterests] = useState(
@@ -21,21 +19,30 @@ function ProfilePage({ user, setCurrentUser }) {
   };
 
   return (
-    <div className="container">
-      <h1>Profile Page for {user.username}</h1>{' '}
-      {/* could change this later to user.name if we add in name */}
-      <h2> Information </h2>
-      <p>Username: {user.username}</p>
-      <p>Phone number: {user.phoneNumber}</p>
+    <Box sx={{ maxWidth: 720, mx: 'auto', p: 3 }}>
+      <Typography variant="h4" gutterBottom>
+        Profile Page for {user.username}
+      </Typography>
+
+      <Typography variant="h6" gutterBottom>
+        Information
+      </Typography>
+      <Typography>Username: {user.username}</Typography>
+      <Typography>
+        Phone number: {user.phoneNumber || 'Not provided'}
+      </Typography>
+
+      <Divider sx={{ my: 3 }} />
+
       <InterestDropdown
         selectedInterests={selectedInterests}
         onChange={updateInterests}
-      ></InterestDropdown>
-      <DeleteAccountButton
-        user={user}
-        setCurrentUser={setCurrentUser}
-      ></DeleteAccountButton>
-    </div>
+      />
+
+      <Divider sx={{ my: 3 }} />
+
+      <DeleteAccountButton user={user} setCurrentUser={setCurrentUser} />
+    </Box>
   );
 }
 

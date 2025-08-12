@@ -1,47 +1,105 @@
-// Purpose: Navigation bar for authenticated user (home, logs, groups, logout
-// Events: onClick -> route change.
-// Imports: React Router, Hash router
-// Routes: N/A (nav only).
-// Notes: Reference PageRoutes where the routes are defined.
-
-import { Link, useNavigate } from 'react-router-dom';
-import './NavHeader.css';
+import {
+  AppBar,
+  Toolbar,
+  Button,
+  Box,
+  IconButton,
+  Drawer,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+  useMediaQuery,
+} from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { useTheme } from '@mui/material/styles';
 
 function NavHeader({ onLogout }) {
   const navigate = useNavigate();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   const handleLogout = () => {
     onLogout();
     navigate('/login');
   };
+
+  const navLinks = [
+    { label: 'Home', to: '/HomeDashboard' },
+    { label: 'Groups', to: '/GroupPage' },
+    { label: 'Logs', to: '/Logs' },
+    { label: 'Profile', to: '/ProfilePage' },
+  ];
+
   return (
-    <nav className="container nav">
-      <ul className="nav-links">
-        <li>
-          <Link to="/HomeDashboard" className="nav-link">
-            Home
-          </Link>
-        </li>
-        <li>
-          <Link to="/GroupPage" className="nav-link">
-            Groups
-          </Link>
-        </li>
-        <li>
-          <Link to="/logs" className="nav-link">
-            Logs
-          </Link>
-        </li>
-        <li>
-          <Link to="/ProfilePage" className="nav-link">
-            Profile
-          </Link>
-        </li>
-      </ul>
-      <button onClick={handleLogout} className="logout-button">
-        Logout
-      </button>
-    </nav>
+    <AppBar position="static" color="primary">
+      <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
+        {isMobile ? (
+          <>
+            <IconButton
+              color="inherit"
+              edge="start"
+              onClick={() => setDrawerOpen(true)}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Drawer
+              anchor="left"
+              open={drawerOpen}
+              onClose={() => setDrawerOpen(false)}
+            >
+              <Box sx={{ width: 250 }}>
+                <List>
+                  {navLinks.map((link) => (
+                    <ListItem key={link.to} disablePadding>
+                      <ListItemButton
+                        component={RouterLink}
+                        to={link.to}
+                        onClick={() => setDrawerOpen(false)}
+                      >
+                        <ListItemText primary={link.label} />
+                      </ListItemButton>
+                    </ListItem>
+                  ))}
+                  <ListItem disablePadding>
+                    <ListItemButton onClick={handleLogout}>
+                      <ListItemText primary="Logout" />
+                    </ListItemButton>
+                  </ListItem>
+                </List>
+              </Box>
+            </Drawer>
+          </>
+        ) : (
+          <Box sx={{ display: 'flex', gap: 2 }}>
+            {navLinks.map((link) => (
+              <Button
+                key={link.to}
+                component={RouterLink}
+                to={link.to}
+                color="inherit"
+                sx={{ fontWeight: 500 }}
+              >
+                {link.label}
+              </Button>
+            ))}
+            <Button
+              onClick={handleLogout}
+              color="inherit"
+              sx={{
+                backgroundColor: theme.palette.primary.light,
+                '&:hover': { backgroundColor: theme.palette.primary.dark },
+              }}
+            >
+              Logout
+            </Button>
+          </Box>
+        )}
+      </Toolbar>
+    </AppBar>
   );
 }
 

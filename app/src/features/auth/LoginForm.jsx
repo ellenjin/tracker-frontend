@@ -1,17 +1,9 @@
-// Purpose: Collect username and password for login.
-// Events: onChange for inputs, onSubmit for login.
-// Imports: LoginBtn, FormField, LoginBtn
-// Routes: POST /api/auth/login.
-// State: user
-
-import LoginBtn from './LoginBtn';
+import { Box, TextField, Button } from '@mui/material';
 
 function LoginForm({ username, setUsername, onSubmit, setError }) {
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Make sure is username (not userId) and that field is not empty
-    let isAlphabetic = /^[A-Za-z]+$/.test(username); // username can only contain letters
-    // May want to change this to allow numbers as well just so long as there are *some* letters
+    let isAlphabetic = /^[A-Za-z]+$/.test(username);
     if (!username || !isAlphabetic) {
       setError('Please enter a valid username');
       return;
@@ -20,17 +12,31 @@ function LoginForm({ username, setUsername, onSubmit, setError }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        /* Should this ^ be using FormField.jsx? Not sure if it's necessary */
-        value={username} /* Should I change this to input name = instead? */
+    <Box
+      component="form"
+      onSubmit={handleSubmit}
+      sx={{ display: 'flex', flexDirection: 'column', gap: 2, mt: 2 }}
+    >
+      <TextField
+        label="Username"
+        value={username}
         onChange={(e) => setUsername(e.target.value)}
-        placeholder="Username"
+        variant="outlined"
+        fullWidth
       />
-      <input placeholder="Password" /> {/* Just a dummy holder for now */}
-      <LoginBtn></LoginBtn>
-    </form>
+      <TextField
+        label="Password"
+        type="password"
+        variant="outlined"
+        fullWidth
+        helperText="Make sure that your password is at least 15 characters long."
+      />
+      <Button type="submit" variant="contained" color="primary" fullWidth>
+        Login
+      </Button>
+    </Box>
   );
 }
 
 export default LoginForm;
+

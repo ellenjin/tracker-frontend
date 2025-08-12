@@ -1,18 +1,18 @@
-// Purpose: Submit new user signup.
-// Events: onClick -> call signup handler from parent.
-// Imports: none.
-// Routes: None directly, handled by parent form.
-
-// NOTE: REPURPOSING BUTTON TO REDIRECT TO THE SIGN UP PAGE INSTEAD
-
-import { Link } from 'react-router-dom';
-import SignUpForm from './SignUpForm';
+import { Button } from '@mui/material';
+import { Link as RouterLink } from 'react-router-dom';
 
 const SignUpBtn = () => {
   return (
-    <Link to="/SignUpForm">
-      <button>Not a user yet? Sign up here</button>
-    </Link>
+    <Button
+      component={RouterLink}
+      to="/SignUpForm"
+      variant="text"
+      color="primary"
+      sx={{ mt: 2 }}
+      fullWidth
+    >
+      Not a user yet? Sign up here
+    </Button>
   );
 };
 

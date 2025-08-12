@@ -2,10 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { getLogsApi } from '../../requests/logApi';
 import { useNavigate } from 'react-router-dom';
 import NewLogForm from './NewLogForm';
-
-// Fetch logs from backend using getLogsApi(userId) in logApi.js
-// Map over the logs and display relevant info (Log Name for now to click into later)
-// Each log display title will be a button that takes you to full log information
+import NewLogBtn from '../../components/NewLogBtn';
+import {
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+  Typography,
+  Box,
+} from '@mui/material';
 
 const LogList = ({ userId, groupId, logId }) => {
   const [logs, setLogs] = useState([]);
@@ -29,32 +34,39 @@ const LogList = ({ userId, groupId, logId }) => {
   };
 
   return (
-    <div>
-      <h2>Your Currrent Logs</h2>
+    <Box sx={{ p: 2, maxWidth: 720, margin: 'auto' }}>
+      <Typography variant="h5" component="h2" gutterBottom>
+        Your Current Logs
+      </Typography>
+
       {logs.length === 0 ? (
-        <p>No logs yet.</p>
+        <Typography>No logs yet.</Typography>
       ) : (
-        <ul>
+        <List>
           {logs.map((log) => (
-            <li key={log.logId}>
-              <button onClick={() => handleClick(log.logId)}>
-                {log.title}
-              </button>
-            </li>
+            <ListItem key={log.logId} disablePadding>
+              <ListItemButton onClick={() => handleClick(log.logId)}>
+                <ListItemText primary={log.title} />
+              </ListItemButton>
+            </ListItem>
           ))}
-        </ul>
+        </List>
       )}
 
-      <button onClick={() => setIsVisible(!isVisible)}>
-        {isVisible ? 'Hide New Log Form' : 'Create a New Log!'}
-      </button>
+      <NewLogBtn
+        isVisible={isVisible}
+        onClick={() => setIsVisible(!isVisible)}
+        showText="Create a New Log!"
+        hideText="Hide New Log Form"
+      />
+
       {isVisible && (
-        <div>
-          <NewLogForm userId={userId} groupId={groupId} logId={logId} />
-        </div>
+        <NewLogForm userId={userId} groupId={groupId} logId={logId} />
       )}
-    </div>
+    </Box>
   );
 };
 
 export default LogList;
+
+

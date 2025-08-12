@@ -1,15 +1,19 @@
-/* --- BASIC CONTAINER --- */
+/* --- BASIC CONTAINER ---
+/* .container {
+  width: 90%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 1rem; 
+} */
+
+/*  MOBILE */
 .container {
   width: 90%;
   max-width: 600px;
   margin: 0 auto;
   padding: 1rem;
 }
-
-/* --- MOBILE --- */
-/* Using 90% width and max-width 600px is mobile friendly */
-
-/* --- TABLET --- */
+/*  TABLET  */
 @media (min-width: 600px) {
   .container {
     max-width: 720px;
@@ -17,7 +21,7 @@
   }
 }
 
-/* --- LAPTOP --- */
+/*  LAPTOP  */
 @media (min-width: 1024px) {
   .container {
     max-width: 1024px;
