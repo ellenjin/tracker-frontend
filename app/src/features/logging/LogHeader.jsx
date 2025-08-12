@@ -38,7 +38,7 @@ const LogHeader = ({ title, onCheckIn }) => {
         </Typography>
 
         <Button
-          variant="outlined"
+          variant="contained"
           color="secondary"
           onClick={onCheckIn}
           startIcon={<AddIcon />}

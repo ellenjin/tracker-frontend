@@ -10,8 +10,9 @@ import {
   DialogTitle,
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit'; // ✅ added import for Edit icon
 
-const LogActions = ({ onDelete }) => {
+const LogActions = ({ onDelete, setIsEditing }) => { // ✅ added setIsEditing prop
   const [open, setOpen] = useState(false);
 
   const handleDelete = async () => {
@@ -27,10 +28,19 @@ const LogActions = ({ onDelete }) => {
     <Box
       sx={{
         display: 'flex',
+        gap: 2, // ✅ added spacing between buttons
         justifyContent: 'flex-end',
         mt: 4,
       }}
     >
+      <Button
+        variant="outlined"
+        color="primary"
+        startIcon={<EditIcon />} // ✅ added Edit icon
+        onClick={() => setIsEditing(true)} // ✅ triggers edit mode
+      >
+        Edit
+      </Button>
       <Button
         variant="outlined"
         color="error"
