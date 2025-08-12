@@ -19,7 +19,7 @@ function SignUpForm() {
       e.target.reset();
       refreshUser();
 
-      navigate('/HomeDashboard');
+      navigate('/profilePage');
     } catch (error) {
       alert('User could not be created! Please check your input.');
       console.error('Failed to create user', error);
@@ -68,6 +68,14 @@ function SignUpForm() {
       />
       <Button type="submit" variant="contained" color="primary" fullWidth>
         Sign Up
+      </Button>
+      <Button
+        variant="outlined"
+        color="secondary"
+        fullWidth
+        onClick={() => navigate('/')}
+      >
+        Back to Login
       </Button>
     </Box>
   );

@@ -79,7 +79,7 @@ The frontend is built with **React** (Vite) and styled using Material UI. It com
 
 ### 1. Clone the repository
 ```bash
-git clone <frontend-repo-url>
+git clone https://github.com/ellenjin/tracker-frontend.git
 cd tracker-frontend
 ```
 
@@ -113,7 +113,7 @@ Inside the `tracker-frontend` folder:
 ```
 VITE_BACKEND_URL=http://localhost:8080
 # Or for deployed backend:
-# VITE_BACKEND_URL=https://your-backend-url.com
+# VITE_BACKEND_URL=https://tracker-backend-r9ae.onrender.com/
 ```
 
 ### 5. Run the development server
@@ -137,4 +137,4 @@ VITE_BACKEND_URL=http://localhost:8080
   - `http://localhost:5173` (default Vite port), or
   - The deployed frontend (`ellenjin.github.io/tracker-frontend`).
 - The app is configured to use the deployed database by default — local DB setup is optional.
-- For backend setup instructions, refer to the [`tracker-backend` repository](<backend-repo-url>).
+- For backend setup instructions, refer to the [`tracker-backend repository`](https://github.com/ellenjin/tracker-backend).

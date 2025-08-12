@@ -20,6 +20,19 @@ function PageRoutes() {
     <Routes>
       <Route path="/login" element={<AuthPage />} />
       <Route
+        path="/ProfilePage"
+        element={
+          <ProtectedRoute
+            user={currentUser}
+            onLogout={() => setCurrentUser(null)}
+          >
+            {currentUser && (
+              <ProfilePage user={currentUser} setCurrentUser={setCurrentUser} />
+            )}
+          </ProtectedRoute>
+        }
+      />
+      {/* <Route
         path="/HomeDashboard"
         element={
           <ProtectedRoute
@@ -34,7 +47,7 @@ function PageRoutes() {
             />
           </ProtectedRoute>
         }
-      />
+      /> */}
       <Route
         path="/GroupPage"
         element={
@@ -60,19 +73,6 @@ function PageRoutes() {
         }
       />
       <Route
-        path="/ProfilePage"
-        element={
-          <ProtectedRoute
-            user={currentUser}
-            onLogout={() => setCurrentUser(null)}
-          >
-            {currentUser && (
-              <ProfilePage user={currentUser} setCurrentUser={setCurrentUser} />
-            )}
-          </ProtectedRoute>
-        }
-      />
-      <Route
         path="/SignUpForm"
         element={
           <SignUpForm newUser={currentUser} onCreateUser={setCurrentUser} />
@@ -93,7 +93,10 @@ function PageRoutes() {
       <Route
         path="/Logs/:logId"
         element={
-          <ProtectedRoute user={currentUser}>
+          <ProtectedRoute
+            user={currentUser}
+            onLogout={() => setCurrentUser(null)}
+          >
             <LogDetails />
           </ProtectedRoute>
         }

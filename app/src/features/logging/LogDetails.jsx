@@ -4,16 +4,20 @@ import {
   deleteLogApi,
   getOneLogApi,
   logCheckInApi,
+  updateLogApi,
 } from '../../requests/logApi';
 import LogHeader from './LogHeader'; 
 import LogInfo from './LogInfo';
 import LogActions from './LogActions';
 import { Container, CircularProgress } from '@mui/material';
+import LogEditForm from './LogEditForm';
+
 
 const LogDetails = () => {
   const { logId } = useParams();
   const navigate = useNavigate();
   const [log, setLog] = useState(null);
+  const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
     const fetchLog = async () => {
@@ -47,13 +51,63 @@ const LogDetails = () => {
     navigate('/logs');
   };
 
+  const handleSave = async (updatedData) => {
+    try {
+      const updatedLog = await updateLogApi(logId, updatedData);
+      setLog(updatedLog);
+      setIsEditing(false);
+    } catch (error) {
+      console.error(error);
+      alert('Failed to save changes');
+    }
+  };
+
   return (
     <Container sx={{ mt: 4 }}>
       <LogHeader title={log.title} onCheckIn={handleCheckIn} />
       <LogInfo log={log} />
       <LogActions onDelete={deleteLog}/>
     </Container>
+
+//     <div>
+//       {isEditing ? (
+//         <LogEditForm
+//           log={log}
+//           onCancel={() => setIsEditing(false)}
+//           onSave={handleSave}
+//         />
+//       ) : (
+//         <>
+//           <h2>{log.title}</h2>
+//           <div>
+//             <button onClick={handleCheckIn}>Check In (+1)</button>
+//             <button onClick={() => setIsEditing(true)}>Edit</button>
+//           </div>
+
+//           <p>
+//             <strong>Frequency:</strong> {log.frequencyCount} /{' '}
+//             {log.frequencyUnit}
+//           </p>
+//           <p>
+//             <strong>Skill Level:</strong> {log.skillLevel}
+//           </p>
+//           <p>
+//             <strong>Check-Ins:</strong> {log.checkInCount}
+//           </p>
+//           <p>
+//             <strong>Looking for Partner:</strong>{' '}
+//             {log.wantsPartner ? 'Yes' : 'No'}
+//           </p>
+//           <p>
+//             <strong>Partner Name:</strong> {log.partnerName}
+//           </p>
+
+//           <button onClick={deleteLog}>Delete this Log</button>
+//         </>
+//       )}
+//     </div>
   );
 };
 
 export default LogDetails;
+
