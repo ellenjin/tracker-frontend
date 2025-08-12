@@ -85,7 +85,6 @@ function GroupPage() {
       <h1 className="page-header">Groups</h1>
       <section className="group-list">{getGroupTilesJSX()}</section>
       <NewGroupForm createGroup={handleCreateGroup} userId={currentUser.id} />
-      <button>Join an existing group</button>
       <JoinGroupForm joinGroup={handleJoinGroup}></JoinGroupForm>
     </div>
   );

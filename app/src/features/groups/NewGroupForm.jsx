@@ -34,32 +34,6 @@ const NewGroupForm = ({ createGroup }) => {
       console.error('Failed to create group:', error);
     }
   };
-  // const inputName = event.target.name;
-  // const inputValue = event.target.value;
-
-  // const handleSubmit = async (event) => {
-  //   event.preventDefault();
-  //   try {
-  //     const newGroup = await postGroupApi(formData);
-  //     alert('Group created!');
-  //     if (createGroup) {
-  //       createGroup(newGroup);
-  //     }
-
-  //     navigate(`/groups/${newGroup.id}`);
-  //   } catch (error) {
-  //     console.error('Failed to create group:', error);
-  //     alert('Something went wrong. Try again.');
-  //   }
-  // createGroup(formData);
-  // setFormData(KDefaultGroupState);
-  // };
-
-  //   setFormData((formData) => ({
-  //     ...formData,
-  //     [inputName]: inputValue,
-  //   }));
-  // };
 
   return (
     <>
@@ -68,7 +42,6 @@ const NewGroupForm = ({ createGroup }) => {
       </button>
       {showForm && (
         <form onSubmit={handleSubmit} action="/action_page.php">
-          {/* <form onSubmit={handleSubmit} action="/action_page.php"> */}
           <label htmlFor="groupName">Name</label>
           <input
             id="groupName"
