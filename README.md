@@ -79,7 +79,7 @@ The frontend is built with **React** (Vite) and styled using Material UI. It com
 
 ### 1. Clone the repository
 ```bash
-git clone <frontend-repo-url>
+git clone https://github.com/ellenjin/tracker-frontend.git
 cd tracker-frontend
 ```
 
