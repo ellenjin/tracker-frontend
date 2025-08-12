@@ -19,6 +19,21 @@ const NewGroupForm = ({ createGroup }) => {
       [name]: value,
     }));
   };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      // Call parent function with form data
+      await createGroup(formData);
+
+      // Reset form
+      setFormData(KDefaultGroupState);
+      setShowForm(false);
+    } catch (error) {
+      console.error('Failed to create group:', error);
+    }
+  };
   // const inputName = event.target.name;
   // const inputValue = event.target.value;
 
@@ -52,7 +67,7 @@ const NewGroupForm = ({ createGroup }) => {
         {showForm ? 'Hide New Group Form' : 'Create New Group!'}
       </button>
       {showForm && (
-        <form onSubmit={createGroup}>
+        <form onSubmit={handleSubmit} action="/action_page.php">
           {/* <form onSubmit={handleSubmit} action="/action_page.php"> */}
           <label htmlFor="groupName">Name</label>
           <input
