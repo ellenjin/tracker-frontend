@@ -1,4 +1,10 @@
-import { FormGroup, FormControlLabel, Checkbox, Typography, Box } from '@mui/material';
+import {
+  FormGroup,
+  FormControlLabel,
+  Checkbox,
+  Typography,
+  Box,
+} from '@mui/material';
 
 const InterestDropdown = ({ selectedInterests, onChange }) => {
   const interests = [
@@ -7,7 +13,7 @@ const InterestDropdown = ({ selectedInterests, onChange }) => {
     'cleaning',
     'swimming',
     'meditating',
-    'Took vitamins',
+    'Vitamins',
     'reading',
     'journaling',
   ];
