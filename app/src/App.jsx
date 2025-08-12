@@ -1,11 +1,10 @@
 import { HashRouter } from 'react-router-dom';
 import './App.css';
 import PageRoutes from './PageRoutes';
-import { UserProvider } from './features/auth/UserContext';
+import { UserProvider } from './contexts/UserProvider';
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import theme from './theme';
-
 
 function App() {
   return (

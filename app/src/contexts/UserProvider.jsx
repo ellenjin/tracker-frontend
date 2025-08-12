@@ -45,30 +45,3 @@ export const UserProvider = ({ children }) => {
     </UserContext.Provider>
   );
 };
-
-// import { UserContext } from './UserContext';
-// import { useState } from 'react';
-// import { getOneUserApi } from '../requests/userApi';
-
-// // export const UserContext = createContext();
-
-// export const UserProvider = ({ children }) => {
-//   const [currentUser, setCurrentUser] = useState(null);
-
-//   // Manual user refresh function
-//   const refreshUser = async () => {
-//     if (!currentUser?.id) return;
-//     try {
-//       const updatedUser = await getOneUserApi(currentUser.id);
-//       setCurrentUser(updatedUser);
-//     } catch (error) {
-//       console.error('Failed to refresh user:', error);
-//     }
-//   };
-
-//   return (
-//     <UserContext.Provider value={{ currentUser, setCurrentUser, refreshUser }}>
-//       {children}
-//     </UserContext.Provider>
-//   );
-// };
