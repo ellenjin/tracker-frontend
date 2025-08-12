@@ -17,8 +17,8 @@ const GroupDetails = () => {
   const { groupId } = useParams();
   const [group, setGroup] = useState(null);
   const [groupUsers, setGroupUsers] = useState([]);
-  const message = 'Check in today!';
   const navigate = useNavigate();
+  const message = 'Check in today!';
 
   useEffect(() => {
     const fetchGroup = async () => {
