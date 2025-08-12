@@ -15,8 +15,8 @@ const LogEditForm = ({ log, onCancel, onSave }) => {
       setFormData({
         title: log.title || '',
         frequencyCount: log.frequencyCount || '',
-        frequencyUnit: log.frequencyUnit || 'day',
-        skillLevel: log.skillLevel || 'beginner',
+        frequencyUnit: log.frequencyUnit || 'DAY',
+        skillLevel: log.skillLevel || 'BEGINNER',
         wantsPartner: log.wantsPartner || false,
         partnerName: log.partnerName || '',
       });
@@ -60,9 +60,9 @@ const LogEditForm = ({ log, onCancel, onSave }) => {
           value={formData.frequencyUnit}
           onChange={handleChange}
         >
-          <option value="day">day</option>
-          <option value="week">week</option>
-          <option value="month">month</option>
+          <option value="DAY">day</option>
+          <option value="WEEK">week</option>
+          <option value="MONTH">month</option>
         </select>
       </div>
       <div>
@@ -72,9 +72,9 @@ const LogEditForm = ({ log, onCancel, onSave }) => {
           value={formData.skillLevel}
           onChange={handleChange}
         >
-          <option value="beginner">Beginner</option>
-          <option value="intermediate">Intermediate</option>
-          <option value="advanced">Advanced</option>
+          <option value="BEGINNER">Beginner</option>
+          <option value="INTERMEDIATE">Intermediate</option>
+          <option value="ADVANCED">Advanced</option>
         </select>
       </div>
       <div>
