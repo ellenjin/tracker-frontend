@@ -1,11 +1,10 @@
 import MatchDropdown from './MatchDropDown';
 
-const GroupActions = ({ onRemind, groupUsers, groupId }) => {
+const GroupActions = ({ onRemind, groupUsers, groupId, handleCheckIn }) => {
   return (
     <>
       <p>You haven't checked-in today!</p>
-      <button type="button">Check-in</button>
-      <p aria-label="check-in-count">0</p>
+      <button onClick={handleCheckIn}>Check-in</button>
       <button onClick={onRemind}>Remind Friends</button>
       <MatchDropdown groupUsers={groupUsers} groupId={groupId} />
     </>
