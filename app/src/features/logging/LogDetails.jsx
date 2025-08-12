@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import {
   deleteLogApi,
@@ -6,10 +6,15 @@ import {
   logCheckInApi,
   updateLogApi,
 } from '../../requests/logApi';
+import LogHeader from './LogHeader'; 
+import LogInfo from './LogInfo';
+import LogActions from './LogActions';
+import { Container, CircularProgress } from '@mui/material';
 import LogEditForm from './LogEditForm';
 
+
 const LogDetails = () => {
-  const { logId } = useParams(); // logId = the value from the URL
+  const { logId } = useParams();
   const navigate = useNavigate();
   const [log, setLog] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
@@ -22,7 +27,12 @@ const LogDetails = () => {
     fetchLog();
   }, [logId]);
 
-  if (!log) return <p>Loading... </p>;
+  if (!log)
+    return (
+      <Container sx={{ mt: 4, display: 'flex', justifyContent: 'center' }}>
+        <CircularProgress />
+      </Container>
+    );
 
   const handleCheckIn = async () => {
     try {
@@ -53,71 +63,51 @@ const LogDetails = () => {
   };
 
   return (
-    <div>
-      {isEditing ? (
-        <LogEditForm
-          log={log}
-          onCancel={() => setIsEditing(false)}
-          onSave={handleSave}
-        />
-      ) : (
-        <>
-          <h2>{log.title}</h2>
-          <div>
-            <button onClick={handleCheckIn}>Check In (+1)</button>
-            <button onClick={() => setIsEditing(true)}>Edit</button>
-          </div>
+    <Container sx={{ mt: 4 }}>
+      <LogHeader title={log.title} onCheckIn={handleCheckIn} />
+      <LogInfo log={log} />
+      <LogActions onDelete={deleteLog}/>
+    </Container>
 
-          <p>
-            <strong>Frequency:</strong> {log.frequencyCount} /{' '}
-            {log.frequencyUnit}
-          </p>
-          <p>
-            <strong>Skill Level:</strong> {log.skillLevel}
-          </p>
-          <p>
-            <strong>Check-Ins:</strong> {log.checkInCount}
-          </p>
-          <p>
-            <strong>Looking for Partner:</strong>{' '}
-            {log.wantsPartner ? 'Yes' : 'No'}
-          </p>
-          <p>
-            <strong>Partner Name:</strong> {log.partnerName}
-          </p>
+//     <div>
+//       {isEditing ? (
+//         <LogEditForm
+//           log={log}
+//           onCancel={() => setIsEditing(false)}
+//           onSave={handleSave}
+//         />
+//       ) : (
+//         <>
+//           <h2>{log.title}</h2>
+//           <div>
+//             <button onClick={handleCheckIn}>Check In (+1)</button>
+//             <button onClick={() => setIsEditing(true)}>Edit</button>
+//           </div>
 
-          <button onClick={deleteLog}>Delete this Log</button>
-        </>
-      )}
-    </div>
+//           <p>
+//             <strong>Frequency:</strong> {log.frequencyCount} /{' '}
+//             {log.frequencyUnit}
+//           </p>
+//           <p>
+//             <strong>Skill Level:</strong> {log.skillLevel}
+//           </p>
+//           <p>
+//             <strong>Check-Ins:</strong> {log.checkInCount}
+//           </p>
+//           <p>
+//             <strong>Looking for Partner:</strong>{' '}
+//             {log.wantsPartner ? 'Yes' : 'No'}
+//           </p>
+//           <p>
+//             <strong>Partner Name:</strong> {log.partnerName}
+//           </p>
+
+//           <button onClick={deleteLog}>Delete this Log</button>
+//         </>
+//       )}
+//     </div>
   );
 };
 
 export default LogDetails;
-//   return (
-//     <div>
-//       <h2>{log.title}</h2>
-//       <div>
-//         <button onClick={handleCheckIn}>Check In (+1)</button>
-//       </div>
-//       <p>
-//         <strong>Frequency:</strong> {log.frequencyCount} / {log.frequencyUnit}
-//       </p>
-//       <p>
-//         <strong>Skill Level:</strong> {log.skillLevel}
-//       </p>
-//       <p>
-//         <strong>Check-Ins:</strong> {log.checkInCount}
-//       </p>
-//       <p>
-//         <strong>Looking for Partner:</strong> {log.wantsPartner ? 'Yes' : 'No'}
-//       </p>
-//       <p>
-//         <strong>Partner Name:</strong> {log.partnerName}
-//       </p>
-//       <button onClick={deleteLog}> Delete this Log </button>
-//     </div>
-//   );
-// };
 
-// export default LogDetails;
