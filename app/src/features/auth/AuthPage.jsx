@@ -16,7 +16,7 @@ function AuthPage() {
     const userData = await getOneUserApi(username);
     if (userData) {
       setCurrentUser(userData);
-      navigate('/HomeDashboard');
+      navigate('/ProfilePage');
     } else {
       setError('Could not log in, please try again!');
     }
