@@ -1,4 +1,16 @@
 import { useState, useEffect } from 'react';
+import {
+  Box,
+  Button,
+  Checkbox,
+  FormControl,
+  FormControlLabel,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+  Typography,
+} from '@mui/material';
 
 const LogEditForm = ({ log, onCancel, onSave }) => {
   const [formData, setFormData] = useState({
@@ -37,72 +49,96 @@ const LogEditForm = ({ log, onCancel, onSave }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h3>Edit Log</h3>
-      <div>
-        <label>Title:</label>
-        <input name="title" value={formData.title} onChange={handleChange} />
-      </div>
-      <div>
-        <label>Frequency Count:</label>
-        <input
-          name="frequencyCount"
-          type="number"
-          value={formData.frequencyCount}
-          onChange={handleChange}
-          min="0"
-        />
-      </div>
-      <div>
-        <label>Frequency Unit:</label>
-        <select
+    <Box
+      component="form"
+      onSubmit={handleSubmit}
+      sx={{ maxWidth: 500, mx: 'auto', mt: 3, display: 'flex', flexDirection: 'column', gap: 2 }}
+    >
+      <Typography variant="h5" component="h3" textAlign="center" gutterBottom>
+        Edit Log
+      </Typography>
+
+      <TextField
+        label="Title"
+        name="title"
+        value={formData.title}
+        onChange={handleChange}
+        fullWidth
+        required
+      />
+
+      <TextField
+        label="Frequency Count"
+        name="frequencyCount"
+        type="number"
+        inputProps={{ min: 0 }}
+        value={formData.frequencyCount}
+        onChange={handleChange}
+        fullWidth
+        required
+      />
+
+      <FormControl fullWidth>
+        <InputLabel id="frequency-unit-label">Frequency Unit</InputLabel>
+        <Select
+          labelId="frequency-unit-label"
+          label="Frequency Unit"
           name="frequencyUnit"
           value={formData.frequencyUnit}
           onChange={handleChange}
+          required
         >
-          <option value="DAY">day</option>
-          <option value="WEEK">week</option>
-          <option value="MONTH">month</option>
-        </select>
-      </div>
-      <div>
-        <label>Skill Level:</label>
-        <select
+          <MenuItem value="DAY">Day</MenuItem>
+          <MenuItem value="WEEK">Week</MenuItem>
+          <MenuItem value="MONTH">Month</MenuItem>
+        </Select>
+      </FormControl>
+
+      <FormControl fullWidth>
+        <InputLabel id="skill-level-label">Skill Level</InputLabel>
+        <Select
+          labelId="skill-level-label"
+          label="Skill Level"
           name="skillLevel"
           value={formData.skillLevel}
           onChange={handleChange}
+          required
         >
-          <option value="BEGINNER">Beginner</option>
-          <option value="INTERMEDIATE">Intermediate</option>
-          <option value="ADVANCED">Advanced</option>
-        </select>
-      </div>
-      <div>
-        <label>
-          <input
+          <MenuItem value="BEGINNER">Beginner</MenuItem>
+          <MenuItem value="INTERMEDIATE">Intermediate</MenuItem>
+          <MenuItem value="ADVANCED">Advanced</MenuItem>
+        </Select>
+      </FormControl>
+
+      <FormControlLabel
+        control={
+          <Checkbox
             name="wantsPartner"
-            type="checkbox"
             checked={formData.wantsPartner}
             onChange={handleChange}
           />
-          Looking for Partner
-        </label>
-      </div>
-      <div>
-        <label>Partner Name:</label>
-        <input
-          name="partnerName"
-          value={formData.partnerName}
-          onChange={handleChange}
-          disabled={!formData.wantsPartner}
-        />
-      </div>
+        }
+        label="Looking for Partner"
+      />
 
-      <button type="submit">Save</button>
-      <button type="button" onClick={onCancel} style={{ marginLeft: '1rem' }}>
-        Cancel
-      </button>
-    </form>
+      <TextField
+        label="Partner Name"
+        name="partnerName"
+        value={formData.partnerName}
+        onChange={handleChange}
+        disabled={!formData.wantsPartner}
+        fullWidth
+      />
+
+      <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2, mt: 3 }}>
+        <Button type="submit" variant="contained" color="primary">
+          Save
+        </Button>
+        <Button variant="outlined" color="secondary" onClick={onCancel}>
+          Cancel
+        </Button>
+      </Box>
+    </Box>
   );
 };
 
