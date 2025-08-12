@@ -46,7 +46,7 @@ function SignUpForm() {
         variant="outlined"
         required
         fullWidth
-        autoComplete="username"
+        helperText="Username can only contain letters (aA-zZ)."
       />
       <TextField
         label="Password"
@@ -55,12 +55,13 @@ function SignUpForm() {
         variant="outlined"
         required
         fullWidth
-        autoComplete="new-password"
+        helperText="Make sure that your password is at least 15 characters long."
       />
       <TextField
         label="Phone Number"
         name="phoneNumber"
         variant="outlined"
+        required
         fullWidth
         placeholder="123-456-7890"
         slotProps={{ maxLength: 15 }}

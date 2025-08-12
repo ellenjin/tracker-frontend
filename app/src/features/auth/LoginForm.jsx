@@ -29,7 +29,6 @@ function LoginForm({ username, setUsername, onSubmit, setError }) {
         type="password"
         variant="outlined"
         fullWidth
-        helperText="Make sure that your password is at least 15 characters long."
       />
       <Button type="submit" variant="contained" color="primary" fullWidth>
         Login
@@ -39,4 +38,3 @@ function LoginForm({ username, setUsername, onSubmit, setError }) {
 }
 
 export default LoginForm;
-
