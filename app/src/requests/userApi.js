@@ -74,3 +74,11 @@ export const deleteUserApi = async (userId) => {
     console.log(error);
   }
 };
+
+export const setProfilePictureApi = async (userId, profilePicture) => {
+  try {
+    await axios.put(`${URL}/users/${userId}/set-pfp`, { profilePicture });
+  } catch (error) {
+    console.log('Could not set profile picture', error);
+  }
+};
