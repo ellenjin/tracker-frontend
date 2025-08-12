@@ -24,12 +24,10 @@ const DeleteAccountButton = ({ user, setCurrentUser }) => {
 
   return (
     <>
-      {/* Trigger button */}
       <Button variant="contained" color="error" onClick={() => setOpen(true)}>
         Delete your account {user.username}
       </Button>
 
-      {/* Confirmation modal */}
       <Dialog open={open} onClose={() => setOpen(false)}>
         <DialogTitle>Delete Account</DialogTitle>
         <DialogContent>
