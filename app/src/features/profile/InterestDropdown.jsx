@@ -1,5 +1,6 @@
+import { FormGroup, FormControlLabel, Checkbox, Typography, Box } from '@mui/material';
+
 const InterestDropdown = ({ selectedInterests, onChange }) => {
-  // const [selectedInterests, setSelectedInterests] = useState([]);
   const interests = [
     'running',
     'cooking',
@@ -25,23 +26,31 @@ const InterestDropdown = ({ selectedInterests, onChange }) => {
   };
 
   return (
-    <label>
-      <h2>Interests</h2>
-      <div>
+    <Box>
+      <Typography variant="h6" gutterBottom>
+        Interests
+      </Typography>
+      <FormGroup row sx={{ gap: 2 }}>
         {interests.map((interest) => (
-          <label key={interest}>
-            <input
-              type="checkbox"
-              value={interest}
-              checked={selectedInterests.includes(interest)}
-              onChange={handleCheckboxChange}
-            />
-            {interest.charAt(0).toUpperCase() + interest.slice(1)}
-          </label>
+          <FormControlLabel
+            key={interest}
+            control={
+              <Checkbox
+                checked={selectedInterests.includes(interest)}
+                onChange={handleCheckboxChange}
+                value={interest}
+                color="primary"
+              />
+            }
+            label={interest.charAt(0).toUpperCase() + interest.slice(1)}
+          />
         ))}
-      </div>
-      <p>Selected Interests: {selectedInterests.join(', ')}</p>
-    </label>
+      </FormGroup>
+      <Typography variant="body2" sx={{ mt: 1 }}>
+        Selected Interests: {selectedInterests.join(', ') || 'None'}
+      </Typography>
+    </Box>
   );
 };
+
 export default InterestDropdown;

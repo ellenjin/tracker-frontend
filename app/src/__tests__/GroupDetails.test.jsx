@@ -4,7 +4,7 @@ import { vi, describe, it, beforeEach, afterEach, expect } from 'vitest';
 import '@testing-library/jest-dom';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 
-import GroupDetails from '../features/groups/GroupDetails';
+import GroupDetails from '../features/groups/details/GroupDetails';
 import * as groupApi from '../requests/groupApi';
 
 // Mock react-router useParams with MemoryRouter and route param
