@@ -3,10 +3,6 @@ import { getLogsApi } from '../../requests/logApi';
 import { useNavigate } from 'react-router-dom';
 import NewLogForm from './NewLogForm';
 
-// Fetch logs from backend using getLogsApi(userId) in logApi.js
-// Map over the logs and display relevant info (Log Name for now to click into later)
-// Each log display title will be a button that takes you to full log information
-
 const LogList = ({ userId, groupId, logId }) => {
   const [logs, setLogs] = useState([]);
   const navigate = useNavigate();

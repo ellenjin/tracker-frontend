@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getOneLogApi, deleteLogApi } from '../../requests/logApi';
+import {
+  deleteLogApi,
+  getOneLogApi,
+  logCheckInApi,
+} from '../../requests/logApi';
 import { useNavigate } from 'react-router-dom';
 
 const LogDetails = () => {
@@ -18,6 +22,15 @@ const LogDetails = () => {
 
   if (!log) return <p>Loading... </p>;
 
+  const handleCheckIn = async () => {
+    try {
+      const updatedLog = await logCheckInApi(log.logId);
+      setLog(updatedLog);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const deleteLog = async () => {
     const confirm = window.confirm('Delete this log?');
     if (!confirm) return;
@@ -29,6 +42,9 @@ const LogDetails = () => {
   return (
     <div>
       <h2>{log.title}</h2>
+      <div>
+        <button onClick={handleCheckIn}>Check In (+1)</button>
+      </div>
       <p>
         <strong>Frequency:</strong> {log.frequencyCount} / {log.frequencyUnit}
       </p>
