@@ -9,6 +9,7 @@ import {
 } from '../../requests/groupApi';
 import { createLogApi } from '../../requests/logApi';
 import JoinGroupForm from './JoinGroupForm';
+import { List, Typography, Box, Button } from '@mui/material';
 
 function GroupPage() {
   const { currentUser, setCurrentUser } = useUser();
@@ -63,8 +64,8 @@ function GroupPage() {
     if (!currentUser?.groups || currentUser.groups.length === 0) {
       return (
         <>
-          <h1>Groups</h1>
-          <h2>Oops! No groups here, you should join some!</h2>
+          <Typography>Groups</Typography>
+          <Typography>Oops! No groups here, you should join some!</Typography>
         </>
       );
     }
@@ -72,7 +73,7 @@ function GroupPage() {
 
     return sortedGroups.map((group) => {
       return (
-        <button
+        <Button
           className="group-tile"
           key={group.id}
           onClick={() => handleClick(group.id)}
@@ -83,18 +84,24 @@ function GroupPage() {
             name={group.name}
             description={group.description}
           />
-        </button>
+        </Button>
       );
     });
   };
 
   return (
-    <div className="container group-page">
-      <h1 className="page-header">Groups</h1>
+    <Box sx={{ maxWidth: 720, mx: 'auto', p: 2 }}>
+      {/* <div className="container group-page"> */}
+      {/* <h1 className="page-header">Groups</h1> */}
+      <Typography variant="h5" gutterBottom>
+        Groups
+      </Typography>
+
       <section className="group-list">{getGroupTilesJSX()}</section>
       <NewGroupForm createGroup={handleCreateGroup} userId={currentUser.id} />
       <JoinGroupForm joinGroup={handleJoinGroup}></JoinGroupForm>
-    </div>
+      {/* </div> */}
+    </Box>
   );
 }
 
