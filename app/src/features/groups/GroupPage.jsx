@@ -39,6 +39,14 @@ function GroupPage() {
         title: group.name,
         user: { id: currentUser.id },
         group: { id: group.id },
+        // set the rest to default
+        frequencyCount: 1,
+        frequencyUnit: 'WEEK',
+        skillLevel: 'BEGINNER',
+        wantsPartner: false,
+        partnerName: '',
+        checkInCount: 0,
+        score: 0,
       };
       const response = await createLogApi(request);
       console.log('User added to group ', response.title);

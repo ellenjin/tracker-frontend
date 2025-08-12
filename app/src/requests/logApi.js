@@ -28,7 +28,15 @@ export const deleteLogApi = async (logId) => {
 };
 
 // updateLogApi(id, data) -- Sends a PUT/PATCH to edit a specific log
-
+export const updateLogApi = async (logId, data) => {
+  try {
+    const response = await axios.put(`${URL}/logs/${logId}`, data);
+    return response.data;
+  } catch (error) {
+    console.error('Failed to update log: ', error);
+    throw error;
+  }
+};
 // Get a log for given userId and groupId
 export const getLogForUserInGroupApi = async (userId, groupId) => {
   const response = await axios.get(
