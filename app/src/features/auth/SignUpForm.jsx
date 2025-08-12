@@ -69,6 +69,14 @@ function SignUpForm() {
       <Button type="submit" variant="contained" color="primary" fullWidth>
         Sign Up
       </Button>
+      <Button
+        variant="outlined"
+        color="secondary"
+        fullWidth
+        onClick={() => navigate('/')}
+      >
+        Back to Login
+      </Button>
     </Box>
   );
 }
