@@ -1,16 +1,21 @@
 import { useState } from 'react';
-// import { postGroupApi } from '../../requests/groupApi';
-// import { useNavigate } from 'react-router-dom';
+import {
+  Box,
+  Button,
+  TextField,
+  Typography,
+  Stack,
+} from '@mui/material';
 
 const KDefaultGroupState = {
   groupName: '',
   groupPicture: '',
   groupDescription: '',
 };
+
 const NewGroupForm = ({ createGroup }) => {
   const [formData, setFormData] = useState(KDefaultGroupState);
   const [showForm, setShowForm] = useState(false);
-  // const navigate = useNavigate();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -24,10 +29,7 @@ const NewGroupForm = ({ createGroup }) => {
     event.preventDefault();
 
     try {
-      // Call parent function with form data
       await createGroup(formData);
-
-      // Reset form
       setFormData(KDefaultGroupState);
       setShowForm(false);
     } catch (error) {
@@ -36,40 +38,51 @@ const NewGroupForm = ({ createGroup }) => {
   };
 
   return (
-    <>
-      <button onClick={() => setShowForm((prev) => !prev)}>
+    <Box sx={{ mt: 3 }}>
+      <Button
+        variant="contained"
+        onClick={() => setShowForm((prev) => !prev)}
+        sx={{ mb: 2 }}
+      >
         {showForm ? 'Hide New Group Form' : 'Create New Group!'}
-      </button>
-      {showForm && (
-        <form onSubmit={handleSubmit} action="/action_page.php">
-          <label htmlFor="groupName">Name</label>
-          <input
-            id="groupName"
-            onChange={handleChange}
-            type="text"
-            name="groupName"
-            value={formData['groupName']}
-          />
+      </Button>
 
-          <label htmlFor="description">Description</label>
-          <input
-            id="description"
-            onChange={handleChange}
-            type="text"
-            name="groupDescription"
-            value={formData['groupDescription']}
-          />
-          {/* <label htmlFor="groupPicture">Picture</label>
-      <input
-        type="file"
-        id="groupPicture"
-        name="groupPicture"
-        onChange={handleChange}
-      /> */}
-          <button type="submit">Create Group</button>
-        </form>
+      {showForm && (
+        <Box
+          component="form"
+          onSubmit={handleSubmit}
+          noValidate
+          autoComplete="off"
+          sx={{ maxWidth: 480 }}
+        >
+          <Stack spacing={2}>
+            <TextField
+              label="Name"
+              id="groupName"
+              name="groupName"
+              value={formData.groupName}
+              onChange={handleChange}
+              required
+              fullWidth
+            />
+
+            <TextField
+              label="Description"
+              id="description"
+              name="groupDescription"
+              value={formData.groupDescription}
+              onChange={handleChange}
+              required
+              fullWidth
+            />
+
+            <Button type="submit" variant="contained" color="primary">
+              Create Group
+            </Button>
+          </Stack>
+        </Box>
       )}
-    </>
+    </Box>
   );
 };
 
