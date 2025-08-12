@@ -13,7 +13,7 @@ const NewLogForm = ({ userId }) => {
     score: 0,
     checkInCount: 0,
     wantsPartner: false,
-    partnerName: '',
+    partnerName: '(not assigned)',
     timeStamp: new Date().toISOString(),
   });
 
@@ -93,14 +93,14 @@ const NewLogForm = ({ userId }) => {
           <option value="INTERMEDIATE">Intermediate</option>
           <option value="ADVANCED">Advanced</option>
         </select>
-        <label htmlFor="score">Starting Score:</label>
+        {/* <label htmlFor="score">Starting Score:</label>
         <input
           name="score"
           value={formData.score}
           onChange={handleChange}
           type="number"
           placeholder="Score"
-        />
+        /> */}
         <label>
           <input
             type="checkbox"
@@ -110,7 +110,7 @@ const NewLogForm = ({ userId }) => {
           />
           Looking for a partner?
         </label>
-        <label htmlFor="partnerName">
+        {/* <label htmlFor="partnerName">
           Or do you already have a partner in mind? Partner Name:
         </label>
         <input
@@ -118,7 +118,7 @@ const NewLogForm = ({ userId }) => {
           value={formData.partnerName}
           onChange={handleChange}
           placeholder="Partner Name"
-        />
+        /> */}
         <button type="submit"> Add Log </button>
       </form>
     </>
