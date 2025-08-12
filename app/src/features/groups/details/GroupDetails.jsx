@@ -4,6 +4,7 @@ import {
   getOneGroupApi,
   getAllGroupUsersApi,
   postTextMemberApi,
+  deleteGroupApi,
 } from '../../../requests/groupApi';
 import { getLogForUserInGroupApi } from '../../../requests/logApi';
 import GroupHeader from './GroupHeader';
@@ -46,6 +47,23 @@ const GroupDetails = () => {
     navigate(`/logs/${getLog.logId}`);
   };
 
+  const handleDeleteGroup = async () => {
+    const confirmDelete = window.confirm(
+      `Are you sure you want to delete the group "${group.name}"?`
+    );
+    if (!confirmDelete) return;
+
+    try {
+      await deleteGroupApi(group.id);
+      alert('Group deleted successfully');
+      // navigate('/groups', { state: { deletedGroupId: group.id } });
+      navigate('/groups');
+    } catch (error) {
+      console.error(error);
+      alert('Error deleting group');
+    }
+  };
+
   return (
     <div className="container">
       <GroupHeader group={group} />
@@ -61,6 +79,7 @@ const GroupDetails = () => {
         groupId={groupId}
         onRemind={handleTextGroupUsers}
       />
+      <button onClick={handleDeleteGroup}>Delete Group</button>
     </div>
   );
 };

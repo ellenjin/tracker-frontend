@@ -78,3 +78,12 @@ export const getUserLogForGroupApi = async (userId, groupId) => {
     console.error('Could not get user log for group', userId, groupId, error);
   }
 };
+
+// Delete a Group
+export const deleteGroupApi = async (groupId) => {
+  try {
+    await axios.delete(`${URL}/groups/${groupId}`);
+  } catch (error) {
+    console.error('Could not delete group', groupId, error);
+  }
+};
