@@ -41,13 +41,14 @@ function AuthPage() {
       <Typography variant="body1" gutterBottom>
         Let's stay on track together!
       </Typography>
-
-      <LoginForm
-        username={username}
-        setUsername={setUsername}
-        onSubmit={handleLogin}
-        setError={setError}
-      />
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+        <LoginForm
+          username={username}
+          setUsername={setUsername}
+          onSubmit={handleLogin}
+          setError={setError}
+        />
+      </Box>
 
       <SignUpBtn />
 
